@@ -1,0 +1,23 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst reloj_soc.NIOSII -pg 1 -lvl 2 -y 130
+preplace inst reloj_soc.MEMORY -pg 1 -lvl 3 -y 360
+preplace inst reloj_soc.NIOSII.cpu -pg 1
+preplace inst reloj_soc.NIOSII.clock_bridge -pg 1
+preplace inst reloj_soc -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst reloj_soc.CLK -pg 1 -lvl 1 -y 210
+preplace inst reloj_soc.UART -pg 1 -lvl 3 -y 140
+preplace inst reloj_soc.TIMER -pg 1 -lvl 3 -y 30
+preplace inst reloj_soc.REG_SWITCHES -pg 1 -lvl 3 -y 450
+preplace inst reloj_soc.REG_LEDS -pg 1 -lvl 3 -y 250
+preplace inst reloj_soc.NIOSII.reset_bridge -pg 1
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.clk,(SLAVE)CLK.clk_in) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)NIOSII.reset,(SLAVE)REG_LEDS.reset,(MASTER)CLK.clk_reset,(SLAVE)TIMER.reset,(SLAVE)UART.reset,(SLAVE)MEMORY.reset1,(SLAVE)REG_SWITCHES.reset) 1 1 2 280 500 700
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.switches,(SLAVE)REG_SWITCHES.external_connection) 1 0 3 NJ 480 NJ 480 NJ
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.leds,(SLAVE)REG_LEDS.external_connection) 1 0 3 NJ 280 NJ 280 NJ
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)CLK.clk_in_reset,(SLAVE)reloj_soc.reset) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(MASTER)CLK.clk,(SLAVE)NIOSII.clk,(SLAVE)REG_LEDS.clk,(SLAVE)UART.clk,(SLAVE)MEMORY.clk1,(SLAVE)REG_SWITCHES.clk,(SLAVE)TIMER.clk) 1 1 2 260 300 680
+preplace netloc INTERCONNECT<net_container>reloj_soc</net_container>(SLAVE)UART.avalon_jtag_slave,(MASTER)NIOSII.data_master,(SLAVE)REG_SWITCHES.s1,(MASTER)NIOSII.instruction_master,(SLAVE)REG_LEDS.s1,(SLAVE)TIMER.s1,(SLAVE)NIOSII.debug_mem_slave,(SLAVE)MEMORY.s1) 1 1 2 280 90 640
+preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)UART.irq,(SLAVE)TIMER.irq,(MASTER)NIOSII.irq) 1 2 1 660
+levelinfo -pg 1 0 60 890
+levelinfo -hier reloj_soc 70 100 410 730 880

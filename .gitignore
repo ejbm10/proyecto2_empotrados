@@ -1,0 +1,40 @@
+# Ignore Quartus-generated folders and temp files
+db/
+incremental_db/
+*.rpt
+*.chg
+*.log
+*.bak
+*.smsg
+*.qmsg
+*.rdr
+*.lck
+*.flock
+*.tmp
+*.html
+*.eqn
+*.pin
+*.summary
+*.svd
+
+# Keep source files and project configs
+!*.qpf
+!*.qsf
+!*.qws
+!*.bdf
+!*.vhd
+!*.v
+!*.sv
+!*.sv.bak
+!*.ptf
+!*.bsf
+!*.tbd
+!*.sof
+
+# Other useful project files to track
+!*.sdc
+!*.do
+!*.tcl
+
+
+output_files/
