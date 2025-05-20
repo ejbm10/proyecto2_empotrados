@@ -79,22 +79,29 @@
  */
 
 #include "sys/alt_stdio.h"
+#include "altera_up_avalon_audio.h"
+#include "altera_up_avalon_audio_and_video_config.h"
 
 #define LEDS_BASE 0x4000
 #define SWITCHES_BASE 0x4010
 #define TIMER_BASE 0x4020
+#define AUDIO_BASE 0x4060
+#define AUDIO_CONFIG_BASE 0x4070
 
 int main()
 {
 	volatile unsigned int* leds_ptr = (unsigned int *) LEDS_BASE;
 	volatile unsigned int* switches_ptr = (unsigned int *) SWITCHES_BASE;
 
+
 	volatile unsigned int* timer_status_ptr = (unsigned int *) TIMER_BASE;
 	volatile unsigned int* timer_ctrl_ptr = timer_status_ptr + 1;
 	volatile unsigned int* timer_snap_ptr = timer_status_ptr + 4;
 
-
-	alt_putstr("Hello from Nios II!\n");
+	volatile unsigned int* aud_ctr_ptr = (unsigned int *) AUDIO_CONFIG_BASE;
+	volatile unsigned int* aud_status_ptr = (unsigned int *) aud_ctr_ptr + 4;
+	volatile unsigned int* aud_addr_ptr = (unsigned int *) aud_ctr_ptr + 8;
+	volatile unsigned int* aud_data_ptr = (unsigned int *) aud_ctr_ptr + 12;
 
 	*timer_ctrl_ptr = 0x6;
 	while (*timer_status_ptr != 0x2);

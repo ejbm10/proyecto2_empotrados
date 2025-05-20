@@ -208,6 +208,20 @@ GENERATED_C_LIB_SRCS += alt_sys_init.c
 # used to build each file.
 #-------------------------------------------------------------------------------
 
+# avalon_audio_and_video_driver sources root 
+Avalon_Audio_and_Video_driver_SRCS_ROOT := drivers
+
+# avalon_audio_and_video_driver sources 
+Avalon_Audio_and_Video_driver_C_LIB_SRCS := \
+	$(Avalon_Audio_and_Video_driver_SRCS_ROOT)/src/altera_up_avalon_audio_and_video_config.c
+
+# avalon_audio_driver sources root 
+Avalon_Audio_driver_SRCS_ROOT := drivers
+
+# avalon_audio_driver sources 
+Avalon_Audio_driver_C_LIB_SRCS := \
+	$(Avalon_Audio_driver_SRCS_ROOT)/src/altera_up_avalon_audio.c
+
 # altera_avalon_jtag_uart_driver sources root 
 altera_avalon_jtag_uart_driver_SRCS_ROOT := drivers
 
@@ -331,6 +345,8 @@ hal_C_LIB_SRCS := \
 
 # Assemble all component C source files 
 COMPONENT_C_LIB_SRCS += \
+	$(Avalon_Audio_and_Video_driver_C_LIB_SRCS) \
+	$(Avalon_Audio_driver_C_LIB_SRCS) \
 	$(altera_avalon_jtag_uart_driver_C_LIB_SRCS) \
 	$(altera_avalon_timer_driver_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \

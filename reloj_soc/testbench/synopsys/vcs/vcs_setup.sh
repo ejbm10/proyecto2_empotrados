@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 18.1 625 win32 2025.05.15.19:12:19
+# ACDS 18.1 625 win32 2025.05.20.17:02:12
 
 # ----------------------------------------
 # vcs - auto-generated simulation script
@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 win32 2025.05.15.19:12:19
+# ACDS 18.1 625 win32 2025.05.20.17:02:12
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="reloj_soc_tb"
@@ -158,15 +158,21 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_avalon_st_adapter.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_st_handshake_clock_crosser.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_st_clock_crosser.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_st_pipeline_base.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_std_synchronizer_nocut.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_mux_001.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_mux.sv \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux_003.sv \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux_002.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux.sv \
-  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux_001.sv \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux_002.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_demux_001.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_demux.sv \
-  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_003.sv \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_004.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_002.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_001.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router.sv \
@@ -181,8 +187,11 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_tck.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_wrapper.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_test_bench.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_avalon_reset_from_locked_signal.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK_audio_pll.vo \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_reset_controller.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_reset_synchronizer.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_irq_clock_crosser.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_irq_mapper.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_UART.v \
@@ -191,6 +200,28 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_REG_LEDS.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_MEMORY.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_slow_clock_generator.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_dc2.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_d5m.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_lcm.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ltm.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de1_soc.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2_115.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2i_150.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de10_standard.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_audio.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7180.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7181.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CONFIG.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_audio_bit_counter.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_audio_in_deserializer.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_audio_out_serializer.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_clock_edge.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_sync_fifo.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv \

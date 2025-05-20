@@ -4,7 +4,7 @@
  * Machine generated for CPU 'NIOSII' in SOPC Builder design 'reloj_soc'
  * SOPC Builder design path: ../../reloj_soc.sopcinfo
  *
- * Generated: Thu May 15 19:28:05 CST 2025
+ * Generated: Tue May 20 17:13:56 CST 2025
  */
 
 /*
@@ -56,6 +56,34 @@
 
 
 /*
+ * AUDIO configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_AUDIO altera_up_avalon_audio
+#define AUDIO_BASE 0x4060
+#define AUDIO_IRQ 1
+#define AUDIO_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define AUDIO_NAME "/dev/AUDIO"
+#define AUDIO_SPAN 16
+#define AUDIO_TYPE "altera_up_avalon_audio"
+
+
+/*
+ * AUDIO_CONFIG configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_AUDIO_CONFIG altera_up_avalon_audio_and_video_config
+#define AUDIO_CONFIG_BASE 0x4070
+#define AUDIO_CONFIG_IRQ -1
+#define AUDIO_CONFIG_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define AUDIO_CONFIG_NAME "/dev/AUDIO_CONFIG"
+#define AUDIO_CONFIG_SPAN 16
+#define AUDIO_CONFIG_TYPE "altera_up_avalon_audio_and_video_config"
+
+
+/*
  * CPU configuration
  *
  */
@@ -87,7 +115,7 @@
 #define ALT_CPU_ICACHE_LINE_SIZE 0
 #define ALT_CPU_ICACHE_LINE_SIZE_LOG2 0
 #define ALT_CPU_ICACHE_SIZE 0
-#define ALT_CPU_INST_ADDR_WIDTH 0xe
+#define ALT_CPU_INST_ADDR_WIDTH 0xf
 #define ALT_CPU_NAME "NIOSII"
 #define ALT_CPU_OCI_VERSION 1
 #define ALT_CPU_RESET_ADDR 0x00000000
@@ -123,7 +151,7 @@
 #define NIOS2_ICACHE_LINE_SIZE 0
 #define NIOS2_ICACHE_LINE_SIZE_LOG2 0
 #define NIOS2_ICACHE_SIZE 0
-#define NIOS2_INST_ADDR_WIDTH 0xe
+#define NIOS2_INST_ADDR_WIDTH 0xf
 #define NIOS2_OCI_VERSION 1
 #define NIOS2_RESET_ADDR 0x00000000
 
@@ -138,6 +166,8 @@
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_GEN2
+#define __ALTERA_UP_AVALON_AUDIO
+#define __ALTERA_UP_AVALON_AUDIO_AND_VIDEO_CONFIG
 
 
 /*
@@ -229,8 +259,8 @@
  */
 
 #define ALT_DEVICE_FAMILY "Cyclone V"
-#define ALT_ENHANCED_INTERRUPT_API_PRESENT
 #define ALT_IRQ_BASE NULL
+#define ALT_LEGACY_INTERRUPT_API_PRESENT
 #define ALT_LOG_PORT "/dev/null"
 #define ALT_LOG_PORT_BASE 0x0
 #define ALT_LOG_PORT_DEV null
@@ -239,19 +269,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/UART"
-#define ALT_STDERR_BASE 0x4040
+#define ALT_STDERR_BASE 0x4080
 #define ALT_STDERR_DEV UART
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/UART"
-#define ALT_STDIN_BASE 0x4040
+#define ALT_STDIN_BASE 0x4080
 #define ALT_STDIN_DEV UART
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/UART"
-#define ALT_STDOUT_BASE 0x4040
+#define ALT_STDOUT_BASE 0x4080
 #define ALT_STDOUT_DEV UART
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -291,7 +321,7 @@
  */
 
 #define ALT_MODULE_CLASS_UART altera_avalon_jtag_uart
-#define UART_BASE 0x4040
+#define UART_BASE 0x4080
 #define UART_IRQ 0
 #define UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define UART_NAME "/dev/UART"

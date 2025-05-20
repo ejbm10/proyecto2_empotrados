@@ -3,11 +3,13 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="143" />
+   <connections preferredWidth="175" />
    <irq preferredWidth="34" />
+   <tags preferredWidth="91" />
+   <endaddress preferredWidth="109" />
   </columns>
  </systemtable>
  <library
-   expandedCategories="Library/Interface Protocols/Serial,Library/Basic Functions/Bridges and Adaptors/Memory Mapped,Library/Basic Functions,Library/Basic Functions/Simulation; Debug and Verification/Debug and Performance,Project,Library/Interface Protocols,Library/Basic Functions/Bridges and Adaptors,Library/Basic Functions/Simulation; Debug and Verification,Library" />
+   expandedCategories="Library/University Program/Audio &amp; Video/Video,Library/University Program,Library/Interface Protocols/Audio &amp; Video,Library/University Program/Clock,Library/Interface Protocols,Project,Library,Library/University Program/Audio &amp; Video" />
  <window width="1942" height="1030" x="-11" y="-11" />
 </preferences>

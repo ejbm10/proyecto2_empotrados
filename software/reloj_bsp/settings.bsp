@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>May 15, 2025 7:28:04 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1747358884068</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>May 20, 2025 5:13:51 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1747782831136</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\eboli\Documents\Github\proyecto2_empotrados\software\reloj_bsp</BspGeneratedLocation>
-        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\reloj_soc.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>NIOSII</Cpu>
@@ -923,8 +923,20 @@
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>AUDIO</slaveDescriptor>
+                <addressRange>0x00004060 - 0x0000406F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>AUDIO_CONFIG</slaveDescriptor>
+                <addressRange>0x00004070 - 0x0000407F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>UART</slaveDescriptor>
-                <addressRange>0x00004040 - 0x00004047</addressRange>
+                <addressRange>0x00004080 - 0x00004087</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
