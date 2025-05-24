@@ -4,10 +4,15 @@
 
 `timescale 1 ps / 1 ps
 module reloj_soc (
-		input  wire        clk_clk,         //      clk.clk
-		output wire [31:0] leds_export,     //     leds.export
-		input  wire        reset_reset_n,   //    reset.reset_n
-		input  wire [7:0]  switches_export  // switches.export
+		input  wire        audio_BCLK,        //        audio.BCLK
+		output wire        audio_DACDAT,      //             .DACDAT
+		input  wire        audio_DACLRCK,     //             .DACLRCK
+		inout  wire        audio_config_SDAT, // audio_config.SDAT
+		output wire        audio_config_SCLK, //             .SCLK
+		input  wire [3:0]  buttons_export,    //      buttons.export
+		input  wire        clk_clk,           //          clk.clk
+		output wire [27:0] leds_export,       //         leds.export
+		input  wire        reset_reset_n      //        reset.reset_n
 	);
 
 	wire         audio_clk_audio_clk_clk;                                           // AUDIO_CLK:audio_clk_clk -> [AUDIO:clk, AUDIO_CONFIG:clk, irq_synchronizer:receiver_clk, mm_interconnect_0:AUDIO_CLK_audio_clk_clk, rst_controller:clk]
@@ -58,13 +63,13 @@ module reloj_soc (
 	wire         mm_interconnect_0_memory_s1_write;                                 // mm_interconnect_0:MEMORY_s1_write -> MEMORY:write
 	wire  [31:0] mm_interconnect_0_memory_s1_writedata;                             // mm_interconnect_0:MEMORY_s1_writedata -> MEMORY:writedata
 	wire         mm_interconnect_0_memory_s1_clken;                                 // mm_interconnect_0:MEMORY_s1_clken -> MEMORY:clken
-	wire         mm_interconnect_0_reg_leds_s1_chipselect;                          // mm_interconnect_0:REG_LEDS_s1_chipselect -> REG_LEDS:chipselect
-	wire  [31:0] mm_interconnect_0_reg_leds_s1_readdata;                            // REG_LEDS:readdata -> mm_interconnect_0:REG_LEDS_s1_readdata
-	wire   [1:0] mm_interconnect_0_reg_leds_s1_address;                             // mm_interconnect_0:REG_LEDS_s1_address -> REG_LEDS:address
-	wire         mm_interconnect_0_reg_leds_s1_write;                               // mm_interconnect_0:REG_LEDS_s1_write -> REG_LEDS:write_n
-	wire  [31:0] mm_interconnect_0_reg_leds_s1_writedata;                           // mm_interconnect_0:REG_LEDS_s1_writedata -> REG_LEDS:writedata
-	wire  [31:0] mm_interconnect_0_reg_switches_s1_readdata;                        // REG_SWITCHES:readdata -> mm_interconnect_0:REG_SWITCHES_s1_readdata
-	wire   [1:0] mm_interconnect_0_reg_switches_s1_address;                         // mm_interconnect_0:REG_SWITCHES_s1_address -> REG_SWITCHES:address
+	wire         mm_interconnect_0_reg_segments_s1_chipselect;                      // mm_interconnect_0:REG_SEGMENTS_s1_chipselect -> REG_SEGMENTS:chipselect
+	wire  [31:0] mm_interconnect_0_reg_segments_s1_readdata;                        // REG_SEGMENTS:readdata -> mm_interconnect_0:REG_SEGMENTS_s1_readdata
+	wire   [1:0] mm_interconnect_0_reg_segments_s1_address;                         // mm_interconnect_0:REG_SEGMENTS_s1_address -> REG_SEGMENTS:address
+	wire         mm_interconnect_0_reg_segments_s1_write;                           // mm_interconnect_0:REG_SEGMENTS_s1_write -> REG_SEGMENTS:write_n
+	wire  [31:0] mm_interconnect_0_reg_segments_s1_writedata;                       // mm_interconnect_0:REG_SEGMENTS_s1_writedata -> REG_SEGMENTS:writedata
+	wire  [31:0] mm_interconnect_0_reg_buttons_s1_readdata;                         // REG_BUTTONS:readdata -> mm_interconnect_0:REG_BUTTONS_s1_readdata
+	wire   [1:0] mm_interconnect_0_reg_buttons_s1_address;                          // mm_interconnect_0:REG_BUTTONS_s1_address -> REG_BUTTONS:address
 	wire         mm_interconnect_0_timer_s1_chipselect;                             // mm_interconnect_0:TIMER_s1_chipselect -> TIMER:chipselect
 	wire  [15:0] mm_interconnect_0_timer_s1_readdata;                               // TIMER:readdata -> mm_interconnect_0:TIMER_s1_readdata
 	wire   [2:0] mm_interconnect_0_timer_s1_address;                                // mm_interconnect_0:TIMER_s1_address -> TIMER:address
@@ -77,7 +82,7 @@ module reloj_soc (
 	wire   [0:0] irq_synchronizer_receiver_irq;                                     // AUDIO:irq -> irq_synchronizer:receiver_irq
 	wire         rst_controller_reset_out_reset;                                    // rst_controller:reset_out -> [AUDIO:reset, AUDIO_CONFIG:reset, irq_synchronizer:receiver_reset, mm_interconnect_0:AUDIO_reset_reset_bridge_in_reset_reset]
 	wire         audio_clk_reset_source_reset;                                      // AUDIO_CLK:reset_source_reset -> rst_controller:reset_in0
-	wire         rst_controller_001_reset_out_reset;                                // rst_controller_001:reset_out -> [MEMORY:reset, NIOSII:reset_n, REG_LEDS:reset_n, REG_SWITCHES:reset_n, TIMER:reset_n, UART:rst_n, irq_mapper:reset, irq_synchronizer:sender_reset, mm_interconnect_0:NIOSII_reset_reset_bridge_in_reset_reset, rst_translator:in_reset]
+	wire         rst_controller_001_reset_out_reset;                                // rst_controller_001:reset_out -> [MEMORY:reset, NIOSII:reset_n, REG_BUTTONS:reset_n, REG_SEGMENTS:reset_n, TIMER:reset_n, UART:rst_n, irq_mapper:reset, irq_synchronizer:sender_reset, mm_interconnect_0:NIOSII_reset_reset_bridge_in_reset_reset, rst_translator:in_reset]
 	wire         rst_controller_001_reset_out_reset_req;                            // rst_controller_001:reset_req -> [MEMORY:reset_req, NIOSII:reset_req, rst_translator:reset_req_in]
 
 	reloj_soc_AUDIO audio (
@@ -90,9 +95,9 @@ module reloj_soc (
 		.writedata   (mm_interconnect_0_audio_avalon_audio_slave_writedata),  //                   .writedata
 		.readdata    (mm_interconnect_0_audio_avalon_audio_slave_readdata),   //                   .readdata
 		.irq         (irq_synchronizer_receiver_irq),                         //          interrupt.irq
-		.AUD_BCLK    (),                                                      // external_interface.export
-		.AUD_DACDAT  (),                                                      //                   .export
-		.AUD_DACLRCK ()                                                       //                   .export
+		.AUD_BCLK    (audio_BCLK),                                            // external_interface.export
+		.AUD_DACDAT  (audio_DACDAT),                                          //                   .export
+		.AUD_DACLRCK (audio_DACLRCK)                                          //                   .export
 	);
 
 	reloj_soc_AUDIO_CLK audio_clk (
@@ -112,8 +117,8 @@ module reloj_soc (
 		.writedata   (mm_interconnect_0_audio_config_avalon_av_config_slave_writedata),   //                       .writedata
 		.readdata    (mm_interconnect_0_audio_config_avalon_av_config_slave_readdata),    //                       .readdata
 		.waitrequest (mm_interconnect_0_audio_config_avalon_av_config_slave_waitrequest), //                       .waitrequest
-		.I2C_SDAT    (),                                                                  //     external_interface.export
-		.I2C_SCLK    ()                                                                   //                       .export
+		.I2C_SDAT    (audio_config_SDAT),                                                 //     external_interface.export
+		.I2C_SCLK    (audio_config_SCLK)                                                  //                       .export
 	);
 
 	reloj_soc_MEMORY memory (
@@ -159,23 +164,23 @@ module reloj_soc (
 		.dummy_ci_port                       ()                                                      // custom_instruction_master.readra
 	);
 
-	reloj_soc_REG_LEDS reg_leds (
-		.clk        (clk_clk),                                  //                 clk.clk
-		.reset_n    (~rst_controller_001_reset_out_reset),      //               reset.reset_n
-		.address    (mm_interconnect_0_reg_leds_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_reg_leds_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_reg_leds_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_reg_leds_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_reg_leds_s1_readdata),   //                    .readdata
-		.out_port   (leds_export)                               // external_connection.export
+	reloj_soc_REG_BUTTONS reg_buttons (
+		.clk      (clk_clk),                                   //                 clk.clk
+		.reset_n  (~rst_controller_001_reset_out_reset),       //               reset.reset_n
+		.address  (mm_interconnect_0_reg_buttons_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_reg_buttons_s1_readdata), //                    .readdata
+		.in_port  (buttons_export)                             // external_connection.export
 	);
 
-	reloj_soc_REG_SWITCHES reg_switches (
-		.clk      (clk_clk),                                    //                 clk.clk
-		.reset_n  (~rst_controller_001_reset_out_reset),        //               reset.reset_n
-		.address  (mm_interconnect_0_reg_switches_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_reg_switches_s1_readdata), //                    .readdata
-		.in_port  (switches_export)                             // external_connection.export
+	reloj_soc_REG_SEGMENTS reg_segments (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_001_reset_out_reset),          //               reset.reset_n
+		.address    (mm_interconnect_0_reg_segments_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_reg_segments_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_reg_segments_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_reg_segments_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_reg_segments_s1_readdata),   //                    .readdata
+		.out_port   (leds_export)                                   // external_connection.export
 	);
 
 	reloj_soc_TIMER timer (
@@ -247,13 +252,13 @@ module reloj_soc (
 		.NIOSII_debug_mem_slave_byteenable               (mm_interconnect_0_niosii_debug_mem_slave_byteenable),               //                                    .byteenable
 		.NIOSII_debug_mem_slave_waitrequest              (mm_interconnect_0_niosii_debug_mem_slave_waitrequest),              //                                    .waitrequest
 		.NIOSII_debug_mem_slave_debugaccess              (mm_interconnect_0_niosii_debug_mem_slave_debugaccess),              //                                    .debugaccess
-		.REG_LEDS_s1_address                             (mm_interconnect_0_reg_leds_s1_address),                             //                         REG_LEDS_s1.address
-		.REG_LEDS_s1_write                               (mm_interconnect_0_reg_leds_s1_write),                               //                                    .write
-		.REG_LEDS_s1_readdata                            (mm_interconnect_0_reg_leds_s1_readdata),                            //                                    .readdata
-		.REG_LEDS_s1_writedata                           (mm_interconnect_0_reg_leds_s1_writedata),                           //                                    .writedata
-		.REG_LEDS_s1_chipselect                          (mm_interconnect_0_reg_leds_s1_chipselect),                          //                                    .chipselect
-		.REG_SWITCHES_s1_address                         (mm_interconnect_0_reg_switches_s1_address),                         //                     REG_SWITCHES_s1.address
-		.REG_SWITCHES_s1_readdata                        (mm_interconnect_0_reg_switches_s1_readdata),                        //                                    .readdata
+		.REG_BUTTONS_s1_address                          (mm_interconnect_0_reg_buttons_s1_address),                          //                      REG_BUTTONS_s1.address
+		.REG_BUTTONS_s1_readdata                         (mm_interconnect_0_reg_buttons_s1_readdata),                         //                                    .readdata
+		.REG_SEGMENTS_s1_address                         (mm_interconnect_0_reg_segments_s1_address),                         //                     REG_SEGMENTS_s1.address
+		.REG_SEGMENTS_s1_write                           (mm_interconnect_0_reg_segments_s1_write),                           //                                    .write
+		.REG_SEGMENTS_s1_readdata                        (mm_interconnect_0_reg_segments_s1_readdata),                        //                                    .readdata
+		.REG_SEGMENTS_s1_writedata                       (mm_interconnect_0_reg_segments_s1_writedata),                       //                                    .writedata
+		.REG_SEGMENTS_s1_chipselect                      (mm_interconnect_0_reg_segments_s1_chipselect),                      //                                    .chipselect
 		.TIMER_s1_address                                (mm_interconnect_0_timer_s1_address),                                //                            TIMER_s1.address
 		.TIMER_s1_write                                  (mm_interconnect_0_timer_s1_write),                                  //                                    .write
 		.TIMER_s1_readdata                               (mm_interconnect_0_timer_s1_readdata),                               //                                    .readdata

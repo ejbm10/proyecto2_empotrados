@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY reloj_soc
+set_global_assignment -name TOP_LEVEL_ENTITY audio_player_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:57:24  MAY 15, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
@@ -48,9 +48,48 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VERILOG_FILE reloj_soc/reloj_soc_inst.v
-set_global_assignment -name VERILOG_FILE reloj_soc/synthesis/reloj_soc.v
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name QIP_FILE reloj_soc/synthesis/reloj_soc.qip
+set_global_assignment -name VERILOG_FILE audio_player_top.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_H7 -to audio_BCLK
+set_location_assignment PIN_J7 -to audio_DACDAT
+set_location_assignment PIN_H8 -to audio_DACLRCK
+set_location_assignment PIN_K12 -to config_SDAT
+set_location_assignment PIN_J12 -to config_SCLK
+set_location_assignment PIN_AB12 -to rst
+set_location_assignment PIN_AA14 -to buttons[0]
+set_location_assignment PIN_AA15 -to buttons[1]
+set_location_assignment PIN_W15 -to buttons[2]
+set_location_assignment PIN_Y16 -to buttons[3]
+set_location_assignment PIN_AF14 -to clk
+set_location_assignment PIN_AE26 -to leds[0]
+set_location_assignment PIN_AE27 -to leds[1]
+set_location_assignment PIN_AE28 -to leds[2]
+set_location_assignment PIN_AG27 -to leds[3]
+set_location_assignment PIN_AF28 -to leds[4]
+set_location_assignment PIN_AG28 -to leds[5]
+set_location_assignment PIN_AH28 -to leds[6]
+set_location_assignment PIN_AJ29 -to leds[7]
+set_location_assignment PIN_AH29 -to leds[8]
+set_location_assignment PIN_AH30 -to leds[9]
+set_location_assignment PIN_AG30 -to leds[10]
+set_location_assignment PIN_AF29 -to leds[11]
+set_location_assignment PIN_AF30 -to leds[12]
+set_location_assignment PIN_AD27 -to leds[13]
+set_location_assignment PIN_AB23 -to leds[14]
+set_location_assignment PIN_AE29 -to leds[15]
+set_location_assignment PIN_AD29 -to leds[16]
+set_location_assignment PIN_AC28 -to leds[17]
+set_location_assignment PIN_AD30 -to leds[18]
+set_location_assignment PIN_AC29 -to leds[19]
+set_location_assignment PIN_AC30 -to leds[20]
+set_location_assignment PIN_AD26 -to leds[21]
+set_location_assignment PIN_AC27 -to leds[22]
+set_location_assignment PIN_AD25 -to leds[23]
+set_location_assignment PIN_AC25 -to leds[24]
+set_location_assignment PIN_AB28 -to leds[25]
+set_location_assignment PIN_AB25 -to leds[26]
+set_location_assignment PIN_AB22 -to leds[27]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

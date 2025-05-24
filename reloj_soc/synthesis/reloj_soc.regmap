@@ -263,7 +263,7 @@
     </registers>
    </peripheral>
   <peripheral>
-      <name>reloj_soc_REG_SWITCHES_s1_altera_avalon_pio</name><baseAddress>0x00000000</baseAddress> 
+      <name>reloj_soc_REG_SEGMENTS_s1_altera_avalon_pio</name><baseAddress>0x00000000</baseAddress> 
       <addressBlock>
         <offset>0x0</offset>
         <size>32</size>
@@ -381,7 +381,7 @@
     </registers>
    </peripheral>
   <peripheral>
-      <name>reloj_soc_REG_LEDS_s1_altera_avalon_pio</name><baseAddress>0x00000000</baseAddress> 
+      <name>reloj_soc_REG_BUTTONS_s1_altera_avalon_pio</name><baseAddress>0x00000000</baseAddress> 
       <addressBlock>
         <offset>0x0</offset>
         <size>32</size>

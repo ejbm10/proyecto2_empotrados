@@ -9,7 +9,6 @@
    <endaddress preferredWidth="109" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/University Program/Audio &amp; Video/Video,Library/University Program,Library/Interface Protocols/Audio &amp; Video,Library/University Program/Clock,Library/Interface Protocols,Project,Library,Library/University Program/Audio &amp; Video" />
- <window width="1942" height="1030" x="-11" y="-11" />
+ <library expandedCategories="Library,Project" />
+ <window width="1920" height="1008" x="0" y="0" />
 </preferences>

@@ -6,16 +6,41 @@
 module reloj_soc_tb (
 	);
 
-	wire         reloj_soc_inst_clk_bfm_clk_clk;             // reloj_soc_inst_clk_bfm:clk -> [reloj_soc_inst:clk_clk, reloj_soc_inst_reset_bfm:clk]
-	wire  [31:0] reloj_soc_inst_leds_export;                 // reloj_soc_inst:leds_export -> reloj_soc_inst_leds_bfm:sig_export
-	wire   [7:0] reloj_soc_inst_switches_bfm_conduit_export; // reloj_soc_inst_switches_bfm:sig_export -> reloj_soc_inst:switches_export
-	wire         reloj_soc_inst_reset_bfm_reset_reset;       // reloj_soc_inst_reset_bfm:reset -> reloj_soc_inst:reset_reset_n
+	wire         reloj_soc_inst_clk_bfm_clk_clk;            // reloj_soc_inst_clk_bfm:clk -> [reloj_soc_inst:clk_clk, reloj_soc_inst_reset_bfm:clk]
+	wire   [0:0] reloj_soc_inst_audio_bfm_conduit_daclrck;  // reloj_soc_inst_audio_bfm:sig_DACLRCK -> reloj_soc_inst:audio_DACLRCK
+	wire         reloj_soc_inst_audio_dacdat;               // reloj_soc_inst:audio_DACDAT -> reloj_soc_inst_audio_bfm:sig_DACDAT
+	wire   [0:0] reloj_soc_inst_audio_bfm_conduit_bclk;     // reloj_soc_inst_audio_bfm:sig_BCLK -> reloj_soc_inst:audio_BCLK
+	wire         reloj_soc_inst_audio_config_sdat;          // [] -> [reloj_soc_inst:audio_config_SDAT, reloj_soc_inst_audio_config_bfm:sig_SDAT]
+	wire         reloj_soc_inst_audio_config_sclk;          // reloj_soc_inst:audio_config_SCLK -> reloj_soc_inst_audio_config_bfm:sig_SCLK
+	wire   [3:0] reloj_soc_inst_buttons_bfm_conduit_export; // reloj_soc_inst_buttons_bfm:sig_export -> reloj_soc_inst:buttons_export
+	wire  [27:0] reloj_soc_inst_leds_export;                // reloj_soc_inst:leds_export -> reloj_soc_inst_leds_bfm:sig_export
+	wire         reloj_soc_inst_reset_bfm_reset_reset;      // reloj_soc_inst_reset_bfm:reset -> reloj_soc_inst:reset_reset_n
 
 	reloj_soc reloj_soc_inst (
-		.clk_clk         (reloj_soc_inst_clk_bfm_clk_clk),             //      clk.clk
-		.leds_export     (reloj_soc_inst_leds_export),                 //     leds.export
-		.reset_reset_n   (reloj_soc_inst_reset_bfm_reset_reset),       //    reset.reset_n
-		.switches_export (reloj_soc_inst_switches_bfm_conduit_export)  // switches.export
+		.audio_BCLK        (reloj_soc_inst_audio_bfm_conduit_bclk),     //        audio.BCLK
+		.audio_DACDAT      (reloj_soc_inst_audio_dacdat),               //             .DACDAT
+		.audio_DACLRCK     (reloj_soc_inst_audio_bfm_conduit_daclrck),  //             .DACLRCK
+		.audio_config_SDAT (reloj_soc_inst_audio_config_sdat),          // audio_config.SDAT
+		.audio_config_SCLK (reloj_soc_inst_audio_config_sclk),          //             .SCLK
+		.buttons_export    (reloj_soc_inst_buttons_bfm_conduit_export), //      buttons.export
+		.clk_clk           (reloj_soc_inst_clk_bfm_clk_clk),            //          clk.clk
+		.leds_export       (reloj_soc_inst_leds_export),                //         leds.export
+		.reset_reset_n     (reloj_soc_inst_reset_bfm_reset_reset)       //        reset.reset_n
+	);
+
+	altera_conduit_bfm reloj_soc_inst_audio_bfm (
+		.sig_BCLK    (reloj_soc_inst_audio_bfm_conduit_bclk),    // conduit.BCLK
+		.sig_DACDAT  (reloj_soc_inst_audio_dacdat),              //        .DACDAT
+		.sig_DACLRCK (reloj_soc_inst_audio_bfm_conduit_daclrck)  //        .DACLRCK
+	);
+
+	altera_conduit_bfm_0002 reloj_soc_inst_audio_config_bfm (
+		.sig_SCLK (reloj_soc_inst_audio_config_sclk), // conduit.SCLK
+		.sig_SDAT (reloj_soc_inst_audio_config_sdat)  //        .SDAT
+	);
+
+	altera_conduit_bfm_0003 reloj_soc_inst_buttons_bfm (
+		.sig_export (reloj_soc_inst_buttons_bfm_conduit_export)  // conduit.export
 	);
 
 	altera_avalon_clock_source #(
@@ -25,7 +50,7 @@ module reloj_soc_tb (
 		.clk (reloj_soc_inst_clk_bfm_clk_clk)  // clk.clk
 	);
 
-	altera_conduit_bfm reloj_soc_inst_leds_bfm (
+	altera_conduit_bfm_0004 reloj_soc_inst_leds_bfm (
 		.sig_export (reloj_soc_inst_leds_export)  // conduit.export
 	);
 
@@ -35,10 +60,6 @@ module reloj_soc_tb (
 	) reloj_soc_inst_reset_bfm (
 		.reset (reloj_soc_inst_reset_bfm_reset_reset), // reset.reset_n
 		.clk   (reloj_soc_inst_clk_bfm_clk_clk)        //   clk.clk
-	);
-
-	altera_conduit_bfm_0002 reloj_soc_inst_switches_bfm (
-		.sig_export (reloj_soc_inst_switches_bfm_conduit_export)  // conduit.export
 	);
 
 endmodule

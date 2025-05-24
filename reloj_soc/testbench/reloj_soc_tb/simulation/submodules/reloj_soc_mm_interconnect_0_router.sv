@@ -215,13 +215,13 @@ module reloj_soc_mm_interconnect_0_router
     // ( 0x4000 .. 0x4010 )
     if ( {address[RG:PAD2],{PAD2{1'b0}}} == 15'h4000   ) begin
             src_channel = 8'b00100000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 5;
     end
 
     // ( 0x4010 .. 0x4020 )
     if ( {address[RG:PAD3],{PAD3{1'b0}}} == 15'h4010  && read_transaction  ) begin
             src_channel = 8'b01000000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 5;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;
     end
 
     // ( 0x4020 .. 0x4040 )

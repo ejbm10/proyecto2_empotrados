@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>May 20, 2025 5:13:51 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1747782831136</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>May 24, 2025 12:20:43 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1748110843451</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\eboli\Documents\Github\proyecto2_empotrados\software\reloj_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\reloj_soc.sopcinfo</SopcDesignFile>
@@ -905,13 +905,13 @@
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>REG_LEDS</slaveDescriptor>
+                <slaveDescriptor>REG_SEGMENTS</slaveDescriptor>
                 <addressRange>0x00004000 - 0x0000400F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>REG_SWITCHES</slaveDescriptor>
+                <slaveDescriptor>REG_BUTTONS</slaveDescriptor>
                 <addressRange>0x00004010 - 0x0000401F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>

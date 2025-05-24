@@ -230,13 +230,13 @@
    type="VERILOG"
    library="TIMER" />
  <file
-   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_SWITCHES.v"
+   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_SEGMENTS.v"
    type="VERILOG"
-   library="REG_SWITCHES" />
+   library="REG_SEGMENTS" />
  <file
-   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_LEDS.v"
+   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_BUTTONS.v"
    type="VERILOG"
-   library="REG_LEDS" />
+   library="REG_BUTTONS" />
  <file
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII.v"
    type="VERILOG"
@@ -338,21 +338,29 @@
    type="VERILOG"
    library="AUDIO" />
  <file
-   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv"
-   type="SYSTEM_VERILOG"
-   library="reloj_soc_inst_switches_bfm" />
- <file
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv"
    type="SYSTEM_VERILOG"
    library="reloj_soc_inst_reset_bfm" />
  <file
-   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv"
+   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv"
    type="SYSTEM_VERILOG"
    library="reloj_soc_inst_leds_bfm" />
  <file
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv"
    type="SYSTEM_VERILOG"
    library="reloj_soc_inst_clk_bfm" />
+ <file
+   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv"
+   type="SYSTEM_VERILOG"
+   library="reloj_soc_inst_buttons_bfm" />
+ <file
+   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv"
+   type="SYSTEM_VERILOG"
+   library="reloj_soc_inst_audio_config_bfm" />
+ <file
+   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv"
+   type="SYSTEM_VERILOG"
+   library="reloj_soc_inst_audio_bfm" />
  <file
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc.v"
    type="VERILOG"
