@@ -53,3 +53,9 @@ RemoteSystemsTempFiles/
 *.o
 *.d
 *.lst
+# BSP generated object files
+software/reloj_bsp/obj/
+# General object files
+*.o
+*.d
+*.lst
