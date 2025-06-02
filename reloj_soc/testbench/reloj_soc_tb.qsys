@@ -25,19 +25,11 @@
          type = "int";
       }
    }
-   element reloj_soc_inst_audio_config_bfm
-   {
-      datum _sortIndex
-      {
-         value = "4";
-         type = "int";
-      }
-   }
    element reloj_soc_inst_buttons_bfm
    {
       datum _sortIndex
       {
-         value = "5";
+         value = "4";
          type = "int";
       }
    }
@@ -46,6 +38,14 @@
       datum _sortIndex
       {
          value = "1";
+         type = "int";
+      }
+   }
+   element reloj_soc_inst_config_bfm
+   {
+      datum _sortIndex
+      {
+         value = "5";
          type = "int";
       }
    }
@@ -108,17 +108,6 @@
   <parameter name="SIGNAL_WIDTHS" value="1,1,1" />
  </module>
  <module
-   name="reloj_soc_inst_audio_config_bfm"
-   kind="altera_conduit_bfm"
-   version="18.1"
-   enabled="1">
-  <parameter name="CLOCKED_SIGNAL" value="false" />
-  <parameter name="ENABLE_RESET" value="false" />
-  <parameter name="SIGNAL_DIRECTIONS" value="input,bidir" />
-  <parameter name="SIGNAL_ROLES" value="SCLK,SDAT" />
-  <parameter name="SIGNAL_WIDTHS" value="1,1" />
- </module>
- <module
    name="reloj_soc_inst_buttons_bfm"
    kind="altera_conduit_bfm"
    version="18.1"
@@ -136,6 +125,17 @@
    enabled="1">
   <parameter name="CLOCK_RATE" value="50000000" />
   <parameter name="CLOCK_UNIT" value="1" />
+ </module>
+ <module
+   name="reloj_soc_inst_config_bfm"
+   kind="altera_conduit_bfm"
+   version="18.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input,bidir" />
+  <parameter name="SIGNAL_ROLES" value="SCLK,SDAT" />
+  <parameter name="SIGNAL_WIDTHS" value="1,1" />
  </module>
  <module
    name="reloj_soc_inst_leds_bfm"
@@ -180,8 +180,8 @@
  <connection
    kind="conduit"
    version="18.1"
-   start="reloj_soc_inst_audio_config_bfm.conduit"
-   end="reloj_soc_inst.audio_config">
+   start="reloj_soc_inst_buttons_bfm.conduit"
+   end="reloj_soc_inst.buttons">
   <parameter name="endPort" value="" />
   <parameter name="endPortLSB" value="0" />
   <parameter name="startPort" value="" />
@@ -191,8 +191,8 @@
  <connection
    kind="conduit"
    version="18.1"
-   start="reloj_soc_inst_buttons_bfm.conduit"
-   end="reloj_soc_inst.buttons">
+   start="reloj_soc_inst_config_bfm.conduit"
+   end="reloj_soc_inst.config">
   <parameter name="endPort" value="" />
   <parameter name="endPortLSB" value="0" />
   <parameter name="startPort" value="" />

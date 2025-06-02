@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/Users/eboli/Documents/Github/proyecto2_empotrados/software/reloj/obj/default/runtime/sim/mentor
 valtera_merlin_master_translator
 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-!s110 1747374934
+!s110 1748889942
 !i10b 1
 !s100 NdRk@]3fC2C@V7Rm;dQM31
 ISHTOhXPkJ4;c:I<BobPCj0
@@ -18,7 +18,7 @@ VDg1SIo80bB@j0V0VzS_@n1
 !s105 altera_merlin_master_translator_sv_unit
 S1
 R0
-w1747357936
+w1748884078
 8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_master_translator.sv
 FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_master_translator.sv
 L0 32
@@ -26,7 +26,7 @@ OV;L;10.5b;63
 r1
 !s85 0
 31
-!s108 1747374934.000000
+!s108 1748889941.000000
 !s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_master_translator.sv|
 !s90 -reportprogress|300|-sv|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_master_translator.sv|-L|altera_common_sv_packages|-work|NIOSII_data_master_translator|
 !i113 1

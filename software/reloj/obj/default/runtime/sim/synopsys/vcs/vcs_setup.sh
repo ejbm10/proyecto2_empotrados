@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 18.1 625 win32 2025.05.15.19:42:18
+# ACDS 18.1 625 win32 2025.06.02.11:08:57
 
 # ----------------------------------------
 # vcs - auto-generated simulation script
@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 win32 2025.05.15.19:42:18
+# ACDS 18.1 625 win32 2025.06.02.11:08:57
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="reloj_soc_tb"
@@ -158,15 +158,21 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_avalon_st_adapter.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_st_handshake_clock_crosser.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_st_clock_crosser.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_st_pipeline_base.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_std_synchronizer_nocut.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_mux_001.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_mux.sv \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux_003.sv \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux_002.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux.sv \
-  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux_001.sv \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux_002.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_demux_001.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_demux.sv \
-  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_003.sv \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_004.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_002.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_001.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router.sv \
@@ -181,20 +187,47 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_tck.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_wrapper.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_test_bench.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_avalon_reset_from_locked_signal.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK_audio_pll.vo \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_controller.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_synchronizer.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_irq_clock_crosser.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_irq_mapper.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_UART.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_TIMER.v \
-  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_SWITCHES.v \
-  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_LEDS.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_SEGMENTS.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_BUTTONS.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_MEMORY.v \
-  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_slow_clock_generator.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_dc2.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_d5m.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_lcm.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ltm.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de1_soc.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2_115.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2i_150.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de10_standard.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_audio.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7180.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7181.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CONFIG.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_audio_bit_counter.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_audio_in_deserializer.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_audio_out_serializer.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_clock_edge.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_sync_fifo.v \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv \
-  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv \
+  C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc.v \
   C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/reloj_soc_tb.v \
   -top $TOP_LEVEL_NAME

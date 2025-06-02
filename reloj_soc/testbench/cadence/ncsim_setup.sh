@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 18.1 625 win32 2025.05.24.10:12:13
+# ACDS 18.1 625 win32 2025.06.02.11:08:02
 
 # ----------------------------------------
 # ncsim - auto-generated simulation script
@@ -106,7 +106,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 win32 2025.05.24.10:12:13
+# ACDS 18.1 625 win32 2025.06.02.11:08:02
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="reloj_soc_tb"
@@ -186,9 +186,9 @@ mkdir -p ./libraries/AUDIO_CLK/
 mkdir -p ./libraries/AUDIO/
 mkdir -p ./libraries/reloj_soc_inst_reset_bfm/
 mkdir -p ./libraries/reloj_soc_inst_leds_bfm/
+mkdir -p ./libraries/reloj_soc_inst_config_bfm/
 mkdir -p ./libraries/reloj_soc_inst_clk_bfm/
 mkdir -p ./libraries/reloj_soc_inst_buttons_bfm/
-mkdir -p ./libraries/reloj_soc_inst_audio_config_bfm/
 mkdir -p ./libraries/reloj_soc_inst_audio_bfm/
 mkdir -p ./libraries/reloj_soc_inst/
 mkdir -p ./libraries/altera_ver/
@@ -307,9 +307,9 @@ if [ $SKIP_COM -eq 0 ]; then
   ncvlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO.v"                                                -work AUDIO                                   -cdslib ./cds_libs/AUDIO.cds.lib                                  
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv"                                    -work reloj_soc_inst_reset_bfm                -cdslib ./cds_libs/reloj_soc_inst_reset_bfm.cds.lib               
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv"                                       -work reloj_soc_inst_leds_bfm                 -cdslib ./cds_libs/reloj_soc_inst_leds_bfm.cds.lib                
+  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv"                                       -work reloj_soc_inst_config_bfm               -cdslib ./cds_libs/reloj_soc_inst_config_bfm.cds.lib              
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv"                                    -work reloj_soc_inst_clk_bfm                  -cdslib ./cds_libs/reloj_soc_inst_clk_bfm.cds.lib                 
-  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv"                                       -work reloj_soc_inst_buttons_bfm              -cdslib ./cds_libs/reloj_soc_inst_buttons_bfm.cds.lib             
-  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv"                                       -work reloj_soc_inst_audio_config_bfm         -cdslib ./cds_libs/reloj_soc_inst_audio_config_bfm.cds.lib        
+  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv"                                       -work reloj_soc_inst_buttons_bfm              -cdslib ./cds_libs/reloj_soc_inst_buttons_bfm.cds.lib             
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv"                                            -work reloj_soc_inst_audio_bfm                -cdslib ./cds_libs/reloj_soc_inst_audio_bfm.cds.lib               
   ncvlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc.v"                                                      -work reloj_soc_inst                          -cdslib ./cds_libs/reloj_soc_inst.cds.lib                         
   ncvlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QSYS_SIMDIR/reloj_soc_tb/simulation/reloj_soc_tb.v"                                                                                                                                                                              

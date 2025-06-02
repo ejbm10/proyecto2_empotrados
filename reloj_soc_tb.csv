@@ -1,12 +1,12 @@
-# system info reloj_soc_tb on 2025.05.24.10:12:10
+# system info reloj_soc_tb on 2025.06.02.11:08:00
 system_info:
 name,value
 DEVICE,5CSEMA5F31C6
 DEVICE_FAMILY,Cyclone V
-GENERATION_ID,1748103078
+GENERATION_ID,1748884025
 #
 #
-# Files generated for reloj_soc_tb on 2025.05.24.10:12:10
+# Files generated for reloj_soc_tb on 2025.06.02.11:08:00
 files:
 filepath,kind,attributes,module,is_top
 reloj_soc/testbench/reloj_soc_tb/simulation/reloj_soc_tb.v,VERILOG,,reloj_soc_tb,true
@@ -15,10 +15,10 @@ reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_V
 reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv,SYSTEM_VERILOG,,altera_conduit_bfm,false
 reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG, COMMON_SYSTEMVERILOG_PACKAGE=avalon_vip_verbosity_pkg,altera_conduit_bfm_0002,false
 reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv,SYSTEM_VERILOG,,altera_conduit_bfm_0002,false
-reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG, COMMON_SYSTEMVERILOG_PACKAGE=avalon_vip_verbosity_pkg,altera_conduit_bfm_0003,false
-reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv,SYSTEM_VERILOG,,altera_conduit_bfm_0003,false
 reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG, COMMON_SYSTEMVERILOG_PACKAGE=avalon_vip_verbosity_pkg,altera_avalon_clock_source,false
 reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv,SYSTEM_VERILOG,,altera_avalon_clock_source,false
+reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG, COMMON_SYSTEMVERILOG_PACKAGE=avalon_vip_verbosity_pkg,altera_conduit_bfm_0003,false
+reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv,SYSTEM_VERILOG,,altera_conduit_bfm_0003,false
 reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG, COMMON_SYSTEMVERILOG_PACKAGE=avalon_vip_verbosity_pkg,altera_conduit_bfm_0004,false
 reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv,SYSTEM_VERILOG,,altera_conduit_bfm_0004,false
 reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG, COMMON_SYSTEMVERILOG_PACKAGE=avalon_vip_verbosity_pkg,altera_avalon_reset_source,false
@@ -213,8 +213,8 @@ reloj_soc_tb.reloj_soc_inst.irq_synchronizer,altera_irq_clock_crosser
 reloj_soc_tb.reloj_soc_inst.rst_controller,altera_reset_controller
 reloj_soc_tb.reloj_soc_inst.rst_controller_001,altera_reset_controller
 reloj_soc_tb.reloj_soc_inst_audio_bfm,altera_conduit_bfm
-reloj_soc_tb.reloj_soc_inst_audio_config_bfm,altera_conduit_bfm_0002
-reloj_soc_tb.reloj_soc_inst_buttons_bfm,altera_conduit_bfm_0003
+reloj_soc_tb.reloj_soc_inst_buttons_bfm,altera_conduit_bfm_0002
 reloj_soc_tb.reloj_soc_inst_clk_bfm,altera_avalon_clock_source
+reloj_soc_tb.reloj_soc_inst_config_bfm,altera_conduit_bfm_0003
 reloj_soc_tb.reloj_soc_inst_leds_bfm,altera_conduit_bfm_0004
 reloj_soc_tb.reloj_soc_inst_reset_bfm,altera_avalon_reset_source

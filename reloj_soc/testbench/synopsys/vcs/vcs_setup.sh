@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 18.1 625 win32 2025.05.24.10:12:13
+# ACDS 18.1 625 win32 2025.06.02.11:08:02
 
 # ----------------------------------------
 # vcs - auto-generated simulation script
@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 win32 2025.05.24.10:12:13
+# ACDS 18.1 625 win32 2025.06.02.11:08:02
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="reloj_soc_tb"
@@ -224,8 +224,8 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv \
-  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc.v \

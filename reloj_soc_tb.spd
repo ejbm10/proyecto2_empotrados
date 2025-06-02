@@ -346,17 +346,17 @@
    type="SYSTEM_VERILOG"
    library="reloj_soc_inst_leds_bfm" />
  <file
+   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv"
+   type="SYSTEM_VERILOG"
+   library="reloj_soc_inst_config_bfm" />
+ <file
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv"
    type="SYSTEM_VERILOG"
    library="reloj_soc_inst_clk_bfm" />
  <file
-   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv"
-   type="SYSTEM_VERILOG"
-   library="reloj_soc_inst_buttons_bfm" />
- <file
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv"
    type="SYSTEM_VERILOG"
-   library="reloj_soc_inst_audio_config_bfm" />
+   library="reloj_soc_inst_buttons_bfm" />
  <file
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv"
    type="SYSTEM_VERILOG"

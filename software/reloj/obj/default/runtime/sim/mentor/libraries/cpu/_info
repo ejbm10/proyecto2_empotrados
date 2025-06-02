@@ -9,13 +9,13 @@ z2
 cModel Technology
 Z0 dC:/Users/eboli/Documents/Github/proyecto2_empotrados/software/reloj/obj/default/runtime/sim/mentor
 vreloj_soc_NIOSII_cpu
-Z1 !s110 1747374934
+Z1 !s110 1748889942
 !i10b 1
-!s100 zMcf0mVn40`JdOKIfk`zB3
-IjSIgdjN5C`<:RV1?@P>5I1
+!s100 2JKlTeWiRLBBR=?V90MoL2
+IK^ib9VA5`HQ76BDVOFC]Q1
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1747357936
+Z3 w1748884078
 Z4 8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu.v
 Z5 FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu.v
 L0 2834
@@ -23,7 +23,7 @@ Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1747374934.000000
+Z7 !s108 1748889942.000000
 Z8 !s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu.v|
 Z9 !s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu.v|-work|cpu|
 !i113 1
@@ -99,8 +99,8 @@ nreloj_soc_@n@i@o@s@i@i_cpu_debug_slave_wrapper
 vreloj_soc_NIOSII_cpu_nios2_avalon_reg
 R1
 !i10b 1
-!s100 GhZEnHI1kSAM3KfYDQ^oX0
-I1;FFPjB:o]>o25_Sof8_92
+!s100 VlEJK3B2L8=SEnXE=YQ[e2
+I:iHf;PmQIX^XSf6H;=gOP2
 R2
 R0
 R3
@@ -121,8 +121,8 @@ nreloj_soc_@n@i@o@s@i@i_cpu_nios2_avalon_reg
 vreloj_soc_NIOSII_cpu_nios2_oci
 R1
 !i10b 1
-!s100 K87L^hPHajHLAL[9zDSR;2
-I:VE]JY3j<JAWe5cKR]CE^3
+!s100 XBDj9o3QZY3liALzbA94g1
+IGZO3ILfaYk^>kFYSeAV631
 R2
 R0
 R3
@@ -407,8 +407,8 @@ nreloj_soc_@n@i@o@s@i@i_cpu_nios2_oci_td_mode
 vreloj_soc_NIOSII_cpu_nios2_oci_xbrk
 R1
 !i10b 1
-!s100 RiNGPUJfA6f1S5;BgH4EJ0
-Id`>V>Cf]l:mI;>>X_TDSB0
+!s100 o<g[eFUoB@G[:Q70QSlP91
+I]Gb?5ORkKiE5;8CRMGDYK1
 R2
 R0
 R3
@@ -429,8 +429,8 @@ nreloj_soc_@n@i@o@s@i@i_cpu_nios2_oci_xbrk
 vreloj_soc_NIOSII_cpu_nios2_ocimem
 R1
 !i10b 1
-!s100 TUKIR0e60?jlZ4j3j4ajg3
-Io1hoK94aSdCF3`zz?m@eE3
+!s100 0[?8Boi_jBM[90UaIB6[D0
+InbcQOjg_3lX_1L^z3iA<P3
 R2
 R0
 R3
@@ -539,8 +539,8 @@ nreloj_soc_@n@i@o@s@i@i_cpu_register_bank_b_module
 vreloj_soc_NIOSII_cpu_test_bench
 R1
 !i10b 1
-!s100 =n8DSHeXNS:aZ^25]zGPV0
-IF9Eo8?N]`KeZG7dNXlVN>0
+!s100 L=]8lVRC?IjQ`Dk;1A1Qn3
+Ig7BZ<J6]nbQ_kQ]iQQJSA1
 R2
 R0
 R3

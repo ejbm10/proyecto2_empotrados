@@ -81,11 +81,10 @@
 #include "system.h"
 #include "sys/alt_stdio.h"
 #include "sys/alt_irq.h"
+#include "priv/alt_legacy_irq.h"
 #include "altera_up_avalon_audio.h"
 #include "altera_up_avalon_audio_and_video_config.h"
 #include "altera_avalon_pio_regs.h"
-
-volatile unsigned int* leds_ptr = (unsigned int *) REG_SEGMENTS_BASE;
 
 /*
  *
@@ -94,34 +93,28 @@ void button_isr_handler(void* context, alt_u32 id) {
 	unsigned int buttons = IORD_ALTERA_AVALON_PIO_EDGE_CAP(REG_BUTTONS_BASE);
 
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(REG_BUTTONS_BASE, 0);
-
-	*leds_ptr = ~buttons;
 }
 
 /*
  *
  */
-int main()
-{
-	volatile unsigned int* timer_status_ptr = (unsigned int *) TIMER_BASE;
-	volatile unsigned int* timer_ctrl_ptr = timer_status_ptr + 1;
-	volatile unsigned int* timer_snap_ptr = timer_status_ptr + 4;
+int main() {
+	volatile unsigned int* leds_ptr = (unsigned int *) REG_SEGMENTS_BASE;
+    volatile unsigned int* timer_status_ptr = (unsigned int *) TIMER_BASE;
+    volatile unsigned int* timer_ctrl_ptr   = timer_status_ptr + 1;
 
-	volatile unsigned int* aud_ctr_ptr = (unsigned int *) AUDIO_CONFIG_BASE;
-	volatile unsigned int* aud_status_ptr = (unsigned int *) aud_ctr_ptr + 4;
-	volatile unsigned int* aud_addr_ptr = (unsigned int *) aud_ctr_ptr + 8;
-	volatile unsigned int* aud_data_ptr = (unsigned int *) aud_ctr_ptr + 12;
+    // Start timer
+    *timer_ctrl_ptr = 0x6;
 
-	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(REG_BUTTONS_BASE, 0);
+    while (1) {
+        if (*timer_status_ptr & 0x1) {  // Timeout occurred
+            *timer_status_ptr = 0x1;    // Clear TO bit
+            *leds_ptr ^= 0xFFFFFFFF;   // Toggle LEDs
+        } else {
+        	*leds_ptr = 0xAAAA;
+        }
+    }
 
-	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(REG_BUTTONS_BASE, 0xF);
-
-	alt_ic_isr_register(0, REG_BUTTONS_IRQ, button_isr_handler, NULL, NULL);
-
-	/* Event loop never exits. */
-	while (1) {
-
-	}
-
-	return 0;
+    return 0;
 }
+

@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 win32 2025.05.15.19:42:18
+# ACDS 18.1 625 win32 2025.06.02.11:08:57
 
 # ----------------------------------------
 # Initialize variables
@@ -178,74 +178,96 @@ if ![ string match "*ModelSim ALTERA*" [ vsim -version ] ] {
   ensure_lib                       ./libraries/cyclonev_pcie_hip_ver/
   vmap       cyclonev_pcie_hip_ver ./libraries/cyclonev_pcie_hip_ver/
 }
-ensure_lib                                       ./libraries/altera_common_sv_packages/            
-vmap       altera_common_sv_packages             ./libraries/altera_common_sv_packages/            
-ensure_lib                                       ./libraries/error_adapter_0/                      
-vmap       error_adapter_0                       ./libraries/error_adapter_0/                      
-ensure_lib                                       ./libraries/avalon_st_adapter/                    
-vmap       avalon_st_adapter                     ./libraries/avalon_st_adapter/                    
-ensure_lib                                       ./libraries/rsp_mux_001/                          
-vmap       rsp_mux_001                           ./libraries/rsp_mux_001/                          
-ensure_lib                                       ./libraries/rsp_mux/                              
-vmap       rsp_mux                               ./libraries/rsp_mux/                              
-ensure_lib                                       ./libraries/rsp_demux/                            
-vmap       rsp_demux                             ./libraries/rsp_demux/                            
-ensure_lib                                       ./libraries/cmd_mux_001/                          
-vmap       cmd_mux_001                           ./libraries/cmd_mux_001/                          
-ensure_lib                                       ./libraries/cmd_mux/                              
-vmap       cmd_mux                               ./libraries/cmd_mux/                              
-ensure_lib                                       ./libraries/cmd_demux_001/                        
-vmap       cmd_demux_001                         ./libraries/cmd_demux_001/                        
-ensure_lib                                       ./libraries/cmd_demux/                            
-vmap       cmd_demux                             ./libraries/cmd_demux/                            
-ensure_lib                                       ./libraries/router_003/                           
-vmap       router_003                            ./libraries/router_003/                           
-ensure_lib                                       ./libraries/router_002/                           
-vmap       router_002                            ./libraries/router_002/                           
-ensure_lib                                       ./libraries/router_001/                           
-vmap       router_001                            ./libraries/router_001/                           
-ensure_lib                                       ./libraries/router/                               
-vmap       router                                ./libraries/router/                               
-ensure_lib                                       ./libraries/UART_avalon_jtag_slave_agent_rsp_fifo/
-vmap       UART_avalon_jtag_slave_agent_rsp_fifo ./libraries/UART_avalon_jtag_slave_agent_rsp_fifo/
-ensure_lib                                       ./libraries/UART_avalon_jtag_slave_agent/         
-vmap       UART_avalon_jtag_slave_agent          ./libraries/UART_avalon_jtag_slave_agent/         
-ensure_lib                                       ./libraries/NIOSII_data_master_agent/             
-vmap       NIOSII_data_master_agent              ./libraries/NIOSII_data_master_agent/             
-ensure_lib                                       ./libraries/UART_avalon_jtag_slave_translator/    
-vmap       UART_avalon_jtag_slave_translator     ./libraries/UART_avalon_jtag_slave_translator/    
-ensure_lib                                       ./libraries/NIOSII_data_master_translator/        
-vmap       NIOSII_data_master_translator         ./libraries/NIOSII_data_master_translator/        
-ensure_lib                                       ./libraries/cpu/                                  
-vmap       cpu                                   ./libraries/cpu/                                  
-ensure_lib                                       ./libraries/rst_controller/                       
-vmap       rst_controller                        ./libraries/rst_controller/                       
-ensure_lib                                       ./libraries/irq_mapper/                           
-vmap       irq_mapper                            ./libraries/irq_mapper/                           
-ensure_lib                                       ./libraries/mm_interconnect_0/                    
-vmap       mm_interconnect_0                     ./libraries/mm_interconnect_0/                    
-ensure_lib                                       ./libraries/UART/                                 
-vmap       UART                                  ./libraries/UART/                                 
-ensure_lib                                       ./libraries/TIMER/                                
-vmap       TIMER                                 ./libraries/TIMER/                                
-ensure_lib                                       ./libraries/REG_SWITCHES/                         
-vmap       REG_SWITCHES                          ./libraries/REG_SWITCHES/                         
-ensure_lib                                       ./libraries/REG_LEDS/                             
-vmap       REG_LEDS                              ./libraries/REG_LEDS/                             
-ensure_lib                                       ./libraries/NIOSII/                               
-vmap       NIOSII                                ./libraries/NIOSII/                               
-ensure_lib                                       ./libraries/MEMORY/                               
-vmap       MEMORY                                ./libraries/MEMORY/                               
-ensure_lib                                       ./libraries/reloj_soc_inst_switches_bfm/          
-vmap       reloj_soc_inst_switches_bfm           ./libraries/reloj_soc_inst_switches_bfm/          
-ensure_lib                                       ./libraries/reloj_soc_inst_reset_bfm/             
-vmap       reloj_soc_inst_reset_bfm              ./libraries/reloj_soc_inst_reset_bfm/             
-ensure_lib                                       ./libraries/reloj_soc_inst_leds_bfm/              
-vmap       reloj_soc_inst_leds_bfm               ./libraries/reloj_soc_inst_leds_bfm/              
-ensure_lib                                       ./libraries/reloj_soc_inst_clk_bfm/               
-vmap       reloj_soc_inst_clk_bfm                ./libraries/reloj_soc_inst_clk_bfm/               
-ensure_lib                                       ./libraries/reloj_soc_inst/                       
-vmap       reloj_soc_inst                        ./libraries/reloj_soc_inst/                       
+ensure_lib                                         ./libraries/altera_common_sv_packages/              
+vmap       altera_common_sv_packages               ./libraries/altera_common_sv_packages/              
+ensure_lib                                         ./libraries/error_adapter_0/                        
+vmap       error_adapter_0                         ./libraries/error_adapter_0/                        
+ensure_lib                                         ./libraries/avalon_st_adapter/                      
+vmap       avalon_st_adapter                       ./libraries/avalon_st_adapter/                      
+ensure_lib                                         ./libraries/crosser/                                
+vmap       crosser                                 ./libraries/crosser/                                
+ensure_lib                                         ./libraries/rsp_mux_001/                            
+vmap       rsp_mux_001                             ./libraries/rsp_mux_001/                            
+ensure_lib                                         ./libraries/rsp_mux/                                
+vmap       rsp_mux                                 ./libraries/rsp_mux/                                
+ensure_lib                                         ./libraries/rsp_demux_003/                          
+vmap       rsp_demux_003                           ./libraries/rsp_demux_003/                          
+ensure_lib                                         ./libraries/rsp_demux_002/                          
+vmap       rsp_demux_002                           ./libraries/rsp_demux_002/                          
+ensure_lib                                         ./libraries/rsp_demux/                              
+vmap       rsp_demux                               ./libraries/rsp_demux/                              
+ensure_lib                                         ./libraries/cmd_mux_002/                            
+vmap       cmd_mux_002                             ./libraries/cmd_mux_002/                            
+ensure_lib                                         ./libraries/cmd_mux/                                
+vmap       cmd_mux                                 ./libraries/cmd_mux/                                
+ensure_lib                                         ./libraries/cmd_demux_001/                          
+vmap       cmd_demux_001                           ./libraries/cmd_demux_001/                          
+ensure_lib                                         ./libraries/cmd_demux/                              
+vmap       cmd_demux                               ./libraries/cmd_demux/                              
+ensure_lib                                         ./libraries/router_004/                             
+vmap       router_004                              ./libraries/router_004/                             
+ensure_lib                                         ./libraries/router_002/                             
+vmap       router_002                              ./libraries/router_002/                             
+ensure_lib                                         ./libraries/router_001/                             
+vmap       router_001                              ./libraries/router_001/                             
+ensure_lib                                         ./libraries/router/                                 
+vmap       router                                  ./libraries/router/                                 
+ensure_lib                                         ./libraries/AUDIO_avalon_audio_slave_agent_rsp_fifo/
+vmap       AUDIO_avalon_audio_slave_agent_rsp_fifo ./libraries/AUDIO_avalon_audio_slave_agent_rsp_fifo/
+ensure_lib                                         ./libraries/AUDIO_avalon_audio_slave_agent/         
+vmap       AUDIO_avalon_audio_slave_agent          ./libraries/AUDIO_avalon_audio_slave_agent/         
+ensure_lib                                         ./libraries/NIOSII_data_master_agent/               
+vmap       NIOSII_data_master_agent                ./libraries/NIOSII_data_master_agent/               
+ensure_lib                                         ./libraries/AUDIO_avalon_audio_slave_translator/    
+vmap       AUDIO_avalon_audio_slave_translator     ./libraries/AUDIO_avalon_audio_slave_translator/    
+ensure_lib                                         ./libraries/NIOSII_data_master_translator/          
+vmap       NIOSII_data_master_translator           ./libraries/NIOSII_data_master_translator/          
+ensure_lib                                         ./libraries/cpu/                                    
+vmap       cpu                                     ./libraries/cpu/                                    
+ensure_lib                                         ./libraries/reset_from_locked/                      
+vmap       reset_from_locked                       ./libraries/reset_from_locked/                      
+ensure_lib                                         ./libraries/audio_pll/                              
+vmap       audio_pll                               ./libraries/audio_pll/                              
+ensure_lib                                         ./libraries/rst_controller/                         
+vmap       rst_controller                          ./libraries/rst_controller/                         
+ensure_lib                                         ./libraries/irq_synchronizer/                       
+vmap       irq_synchronizer                        ./libraries/irq_synchronizer/                       
+ensure_lib                                         ./libraries/irq_mapper/                             
+vmap       irq_mapper                              ./libraries/irq_mapper/                             
+ensure_lib                                         ./libraries/mm_interconnect_0/                      
+vmap       mm_interconnect_0                       ./libraries/mm_interconnect_0/                      
+ensure_lib                                         ./libraries/UART/                                   
+vmap       UART                                    ./libraries/UART/                                   
+ensure_lib                                         ./libraries/TIMER/                                  
+vmap       TIMER                                   ./libraries/TIMER/                                  
+ensure_lib                                         ./libraries/REG_SEGMENTS/                           
+vmap       REG_SEGMENTS                            ./libraries/REG_SEGMENTS/                           
+ensure_lib                                         ./libraries/REG_BUTTONS/                            
+vmap       REG_BUTTONS                             ./libraries/REG_BUTTONS/                            
+ensure_lib                                         ./libraries/NIOSII/                                 
+vmap       NIOSII                                  ./libraries/NIOSII/                                 
+ensure_lib                                         ./libraries/MEMORY/                                 
+vmap       MEMORY                                  ./libraries/MEMORY/                                 
+ensure_lib                                         ./libraries/AUDIO_CONFIG/                           
+vmap       AUDIO_CONFIG                            ./libraries/AUDIO_CONFIG/                           
+ensure_lib                                         ./libraries/AUDIO_CLK/                              
+vmap       AUDIO_CLK                               ./libraries/AUDIO_CLK/                              
+ensure_lib                                         ./libraries/AUDIO/                                  
+vmap       AUDIO                                   ./libraries/AUDIO/                                  
+ensure_lib                                         ./libraries/reloj_soc_inst_reset_bfm/               
+vmap       reloj_soc_inst_reset_bfm                ./libraries/reloj_soc_inst_reset_bfm/               
+ensure_lib                                         ./libraries/reloj_soc_inst_leds_bfm/                
+vmap       reloj_soc_inst_leds_bfm                 ./libraries/reloj_soc_inst_leds_bfm/                
+ensure_lib                                         ./libraries/reloj_soc_inst_config_bfm/              
+vmap       reloj_soc_inst_config_bfm               ./libraries/reloj_soc_inst_config_bfm/              
+ensure_lib                                         ./libraries/reloj_soc_inst_clk_bfm/                 
+vmap       reloj_soc_inst_clk_bfm                  ./libraries/reloj_soc_inst_clk_bfm/                 
+ensure_lib                                         ./libraries/reloj_soc_inst_buttons_bfm/             
+vmap       reloj_soc_inst_buttons_bfm              ./libraries/reloj_soc_inst_buttons_bfm/             
+ensure_lib                                         ./libraries/reloj_soc_inst_audio_bfm/               
+vmap       reloj_soc_inst_audio_bfm                ./libraries/reloj_soc_inst_audio_bfm/               
+ensure_lib                                         ./libraries/reloj_soc_inst/                         
+vmap       reloj_soc_inst                          ./libraries/reloj_soc_inst/                         
 
 # ----------------------------------------
 # Compile device library files
@@ -271,65 +293,98 @@ alias dev_com {
 # Compile the design files in correct order
 alias com {
   echo "\[exec\] com"
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv"                                                                              -work altera_common_sv_packages            
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv" -L altera_common_sv_packages -work error_adapter_0                      
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_avalon_st_adapter.v"                                               -work avalon_st_adapter                    
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_mux_001.sv"                       -L altera_common_sv_packages -work rsp_mux_001                          
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv"                                      -L altera_common_sv_packages -work rsp_mux_001                          
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_mux.sv"                           -L altera_common_sv_packages -work rsp_mux                              
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv"                                      -L altera_common_sv_packages -work rsp_mux                              
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux.sv"                         -L altera_common_sv_packages -work rsp_demux                            
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux_001.sv"                       -L altera_common_sv_packages -work cmd_mux_001                          
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv"                                      -L altera_common_sv_packages -work cmd_mux_001                          
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux.sv"                           -L altera_common_sv_packages -work cmd_mux                              
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv"                                      -L altera_common_sv_packages -work cmd_mux                              
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_demux_001.sv"                     -L altera_common_sv_packages -work cmd_demux_001                        
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_demux.sv"                         -L altera_common_sv_packages -work cmd_demux                            
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_003.sv"                        -L altera_common_sv_packages -work router_003                           
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_002.sv"                        -L altera_common_sv_packages -work router_002                           
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_001.sv"                        -L altera_common_sv_packages -work router_001                           
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router.sv"                            -L altera_common_sv_packages -work router                               
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_sc_fifo.v"                                                                       -work UART_avalon_jtag_slave_agent_rsp_fifo
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_slave_agent.sv"                                     -L altera_common_sv_packages -work UART_avalon_jtag_slave_agent         
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_burst_uncompressor.sv"                              -L altera_common_sv_packages -work UART_avalon_jtag_slave_agent         
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_master_agent.sv"                                    -L altera_common_sv_packages -work NIOSII_data_master_agent             
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_slave_translator.sv"                                -L altera_common_sv_packages -work UART_avalon_jtag_slave_translator    
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_master_translator.sv"                               -L altera_common_sv_packages -work NIOSII_data_master_translator        
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu.v"                                                                        -work cpu                                  
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_sysclk.v"                                                     -work cpu                                  
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_tck.v"                                                        -work cpu                                  
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_wrapper.v"                                                    -work cpu                                  
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_test_bench.v"                                                             -work cpu                                  
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_controller.v"                                                                     -work rst_controller                       
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_synchronizer.v"                                                                   -work rst_controller                       
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_irq_mapper.sv"                                          -L altera_common_sv_packages -work irq_mapper                           
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0.v"                                                                 -work mm_interconnect_0                    
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_UART.v"                                                                              -work UART                                 
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_TIMER.v"                                                                             -work TIMER                                
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_SWITCHES.v"                                                                      -work REG_SWITCHES                         
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_LEDS.v"                                                                          -work REG_LEDS                             
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII.v"                                                                            -work NIOSII                               
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_MEMORY.v"                                                                            -work MEMORY                               
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv"                                       -L altera_common_sv_packages -work reloj_soc_inst_switches_bfm          
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv"                                    -L altera_common_sv_packages -work reloj_soc_inst_reset_bfm             
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv"                                            -L altera_common_sv_packages -work reloj_soc_inst_leds_bfm              
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv"                                    -L altera_common_sv_packages -work reloj_soc_inst_clk_bfm               
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc.v"                                                                                   -work reloj_soc_inst                       
-  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/reloj_soc_tb.v"                                                                                                                                      
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/verbosity_pkg.sv"                                                                              -work altera_common_sv_packages              
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv" -L altera_common_sv_packages -work error_adapter_0                        
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_avalon_st_adapter.v"                                               -work avalon_st_adapter                      
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_st_handshake_clock_crosser.v"                       -L altera_common_sv_packages -work crosser                                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_st_clock_crosser.v"                                 -L altera_common_sv_packages -work crosser                                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_st_pipeline_base.v"                                 -L altera_common_sv_packages -work crosser                                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_std_synchronizer_nocut.v"                                  -L altera_common_sv_packages -work crosser                                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_mux_001.sv"                       -L altera_common_sv_packages -work rsp_mux_001                            
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv"                                      -L altera_common_sv_packages -work rsp_mux_001                            
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_mux.sv"                           -L altera_common_sv_packages -work rsp_mux                                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv"                                      -L altera_common_sv_packages -work rsp_mux                                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux_003.sv"                     -L altera_common_sv_packages -work rsp_demux_003                          
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux_002.sv"                     -L altera_common_sv_packages -work rsp_demux_002                          
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_rsp_demux.sv"                         -L altera_common_sv_packages -work rsp_demux                              
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux_002.sv"                       -L altera_common_sv_packages -work cmd_mux_002                            
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv"                                      -L altera_common_sv_packages -work cmd_mux_002                            
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_mux.sv"                           -L altera_common_sv_packages -work cmd_mux                                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_arbitrator.sv"                                      -L altera_common_sv_packages -work cmd_mux                                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_demux_001.sv"                     -L altera_common_sv_packages -work cmd_demux_001                          
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_cmd_demux.sv"                         -L altera_common_sv_packages -work cmd_demux                              
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_004.sv"                        -L altera_common_sv_packages -work router_004                             
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_002.sv"                        -L altera_common_sv_packages -work router_002                             
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router_001.sv"                        -L altera_common_sv_packages -work router_001                             
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0_router.sv"                            -L altera_common_sv_packages -work router                                 
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_sc_fifo.v"                                                                       -work AUDIO_avalon_audio_slave_agent_rsp_fifo
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_slave_agent.sv"                                     -L altera_common_sv_packages -work AUDIO_avalon_audio_slave_agent         
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_burst_uncompressor.sv"                              -L altera_common_sv_packages -work AUDIO_avalon_audio_slave_agent         
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_master_agent.sv"                                    -L altera_common_sv_packages -work NIOSII_data_master_agent               
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_slave_translator.sv"                                -L altera_common_sv_packages -work AUDIO_avalon_audio_slave_translator    
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_merlin_master_translator.sv"                               -L altera_common_sv_packages -work NIOSII_data_master_translator          
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu.v"                                                                        -work cpu                                    
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_sysclk.v"                                                     -work cpu                                    
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_tck.v"                                                        -work cpu                                    
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_debug_slave_wrapper.v"                                                    -work cpu                                    
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII_cpu_test_bench.v"                                                             -work cpu                                    
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_avalon_reset_from_locked_signal.v"                                                   -work reset_from_locked                      
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK_audio_pll.vo"                                                              -work audio_pll                              
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_controller.v"                                                                     -work rst_controller                         
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_synchronizer.v"                                                                   -work rst_controller                         
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_irq_clock_crosser.sv"                                      -L altera_common_sv_packages -work irq_synchronizer                       
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_irq_mapper.sv"                                          -L altera_common_sv_packages -work irq_mapper                             
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_mm_interconnect_0.v"                                                                 -work mm_interconnect_0                      
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_UART.v"                                                                              -work UART                                   
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_TIMER.v"                                                                             -work TIMER                                  
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_SEGMENTS.v"                                                                      -work REG_SEGMENTS                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_BUTTONS.v"                                                                       -work REG_BUTTONS                            
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII.v"                                                                            -work NIOSII                                 
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_MEMORY.v"                                                                            -work MEMORY                                 
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v"                                                   -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_slow_clock_generator.v"                                                              -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init.v"                                                               -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_dc2.v"                                                           -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_d5m.v"                                                           -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_lcm.v"                                                           -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ltm.v"                                                           -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de1_soc.v"                                                    -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2_115.v"                                                    -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2i_150.v"                                                   -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de10_standard.v"                                              -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_audio.v"                                                      -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7180.v"                                                    -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7181.v"                                                    -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CONFIG.v"                                                                      -work AUDIO_CONFIG                           
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK.v"                                                                         -work AUDIO_CLK                              
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_audio_bit_counter.v"                                                                 -work AUDIO                                  
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_audio_in_deserializer.v"                                                             -work AUDIO                                  
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_audio_out_serializer.v"                                                              -work AUDIO                                  
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_clock_edge.v"                                                                        -work AUDIO                                  
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_sync_fifo.v"                                                                         -work AUDIO                                  
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO.v"                                                                             -work AUDIO                                  
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv"                                    -L altera_common_sv_packages -work reloj_soc_inst_reset_bfm               
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv"                                       -L altera_common_sv_packages -work reloj_soc_inst_leds_bfm                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv"                                       -L altera_common_sv_packages -work reloj_soc_inst_config_bfm              
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv"                                    -L altera_common_sv_packages -work reloj_soc_inst_clk_bfm                 
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv"                                       -L altera_common_sv_packages -work reloj_soc_inst_buttons_bfm             
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv"                                            -L altera_common_sv_packages -work reloj_soc_inst_audio_bfm               
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc.v"                                                                                   -work reloj_soc_inst                         
+  eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/reloj_soc_tb.v"                                                                                                                                        
 }
 
 # ----------------------------------------
 # Elaborate top level design
 alias elab {
   echo "\[exec\] elab"
-  eval vsim -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L altera_common_sv_packages -L error_adapter_0 -L avalon_st_adapter -L rsp_mux_001 -L rsp_mux -L rsp_demux -L cmd_mux_001 -L cmd_mux -L cmd_demux_001 -L cmd_demux -L router_003 -L router_002 -L router_001 -L router -L UART_avalon_jtag_slave_agent_rsp_fifo -L UART_avalon_jtag_slave_agent -L NIOSII_data_master_agent -L UART_avalon_jtag_slave_translator -L NIOSII_data_master_translator -L cpu -L rst_controller -L irq_mapper -L mm_interconnect_0 -L UART -L TIMER -L REG_SWITCHES -L REG_LEDS -L NIOSII -L MEMORY -L reloj_soc_inst_switches_bfm -L reloj_soc_inst_reset_bfm -L reloj_soc_inst_leds_bfm -L reloj_soc_inst_clk_bfm -L reloj_soc_inst -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
+  eval vsim -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L altera_common_sv_packages -L error_adapter_0 -L avalon_st_adapter -L crosser -L rsp_mux_001 -L rsp_mux -L rsp_demux_003 -L rsp_demux_002 -L rsp_demux -L cmd_mux_002 -L cmd_mux -L cmd_demux_001 -L cmd_demux -L router_004 -L router_002 -L router_001 -L router -L AUDIO_avalon_audio_slave_agent_rsp_fifo -L AUDIO_avalon_audio_slave_agent -L NIOSII_data_master_agent -L AUDIO_avalon_audio_slave_translator -L NIOSII_data_master_translator -L cpu -L reset_from_locked -L audio_pll -L rst_controller -L irq_synchronizer -L irq_mapper -L mm_interconnect_0 -L UART -L TIMER -L REG_SEGMENTS -L REG_BUTTONS -L NIOSII -L MEMORY -L AUDIO_CONFIG -L AUDIO_CLK -L AUDIO -L reloj_soc_inst_reset_bfm -L reloj_soc_inst_leds_bfm -L reloj_soc_inst_config_bfm -L reloj_soc_inst_clk_bfm -L reloj_soc_inst_buttons_bfm -L reloj_soc_inst_audio_bfm -L reloj_soc_inst -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------
 # Elaborate the top level design with novopt option
 alias elab_debug {
   echo "\[exec\] elab_debug"
-  eval vsim -novopt -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L altera_common_sv_packages -L error_adapter_0 -L avalon_st_adapter -L rsp_mux_001 -L rsp_mux -L rsp_demux -L cmd_mux_001 -L cmd_mux -L cmd_demux_001 -L cmd_demux -L router_003 -L router_002 -L router_001 -L router -L UART_avalon_jtag_slave_agent_rsp_fifo -L UART_avalon_jtag_slave_agent -L NIOSII_data_master_agent -L UART_avalon_jtag_slave_translator -L NIOSII_data_master_translator -L cpu -L rst_controller -L irq_mapper -L mm_interconnect_0 -L UART -L TIMER -L REG_SWITCHES -L REG_LEDS -L NIOSII -L MEMORY -L reloj_soc_inst_switches_bfm -L reloj_soc_inst_reset_bfm -L reloj_soc_inst_leds_bfm -L reloj_soc_inst_clk_bfm -L reloj_soc_inst -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
+  eval vsim -novopt -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L altera_common_sv_packages -L error_adapter_0 -L avalon_st_adapter -L crosser -L rsp_mux_001 -L rsp_mux -L rsp_demux_003 -L rsp_demux_002 -L rsp_demux -L cmd_mux_002 -L cmd_mux -L cmd_demux_001 -L cmd_demux -L router_004 -L router_002 -L router_001 -L router -L AUDIO_avalon_audio_slave_agent_rsp_fifo -L AUDIO_avalon_audio_slave_agent -L NIOSII_data_master_agent -L AUDIO_avalon_audio_slave_translator -L NIOSII_data_master_translator -L cpu -L reset_from_locked -L audio_pll -L rst_controller -L irq_synchronizer -L irq_mapper -L mm_interconnect_0 -L UART -L TIMER -L REG_SEGMENTS -L REG_BUTTONS -L NIOSII -L MEMORY -L AUDIO_CONFIG -L AUDIO_CLK -L AUDIO -L reloj_soc_inst_reset_bfm -L reloj_soc_inst_leds_bfm -L reloj_soc_inst_config_bfm -L reloj_soc_inst_clk_bfm -L reloj_soc_inst_buttons_bfm -L reloj_soc_inst_audio_bfm -L reloj_soc_inst -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------

@@ -176,11 +176,6 @@ module reloj_soc_mm_interconnect_0_router
 
 
 
-    // -------------------------------------------------------
-    // Write and read transaction signals
-    // -------------------------------------------------------
-    wire read_transaction;
-    assign read_transaction  = sink_data[PKT_TRANS_READ];
 
 
     reloj_soc_mm_interconnect_0_router_default_decode the_default_decode(
@@ -219,7 +214,7 @@ module reloj_soc_mm_interconnect_0_router
     end
 
     // ( 0x4010 .. 0x4020 )
-    if ( {address[RG:PAD3],{PAD3{1'b0}}} == 15'h4010  && read_transaction  ) begin
+    if ( {address[RG:PAD3],{PAD3{1'b0}}} == 15'h4010   ) begin
             src_channel = 8'b01000000;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;
     end

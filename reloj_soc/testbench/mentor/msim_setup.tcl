@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 win32 2025.05.24.10:12:13
+# ACDS 18.1 625 win32 2025.06.02.11:08:02
 
 # ----------------------------------------
 # Initialize variables
@@ -258,12 +258,12 @@ ensure_lib                                         ./libraries/reloj_soc_inst_re
 vmap       reloj_soc_inst_reset_bfm                ./libraries/reloj_soc_inst_reset_bfm/               
 ensure_lib                                         ./libraries/reloj_soc_inst_leds_bfm/                
 vmap       reloj_soc_inst_leds_bfm                 ./libraries/reloj_soc_inst_leds_bfm/                
+ensure_lib                                         ./libraries/reloj_soc_inst_config_bfm/              
+vmap       reloj_soc_inst_config_bfm               ./libraries/reloj_soc_inst_config_bfm/              
 ensure_lib                                         ./libraries/reloj_soc_inst_clk_bfm/                 
 vmap       reloj_soc_inst_clk_bfm                  ./libraries/reloj_soc_inst_clk_bfm/                 
 ensure_lib                                         ./libraries/reloj_soc_inst_buttons_bfm/             
 vmap       reloj_soc_inst_buttons_bfm              ./libraries/reloj_soc_inst_buttons_bfm/             
-ensure_lib                                         ./libraries/reloj_soc_inst_audio_config_bfm/        
-vmap       reloj_soc_inst_audio_config_bfm         ./libraries/reloj_soc_inst_audio_config_bfm/        
 ensure_lib                                         ./libraries/reloj_soc_inst_audio_bfm/               
 vmap       reloj_soc_inst_audio_bfm                ./libraries/reloj_soc_inst_audio_bfm/               
 ensure_lib                                         ./libraries/reloj_soc_inst/                         
@@ -365,9 +365,9 @@ alias com {
   eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO.v"                                                                             -work AUDIO                                  
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv"                                    -L altera_common_sv_packages -work reloj_soc_inst_reset_bfm               
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv"                                       -L altera_common_sv_packages -work reloj_soc_inst_leds_bfm                
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv"                                       -L altera_common_sv_packages -work reloj_soc_inst_config_bfm              
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_clock_source.sv"                                    -L altera_common_sv_packages -work reloj_soc_inst_clk_bfm                 
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv"                                       -L altera_common_sv_packages -work reloj_soc_inst_buttons_bfm             
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv"                                       -L altera_common_sv_packages -work reloj_soc_inst_audio_config_bfm        
+  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0002.sv"                                       -L altera_common_sv_packages -work reloj_soc_inst_buttons_bfm             
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv"                                            -L altera_common_sv_packages -work reloj_soc_inst_audio_bfm               
   eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc.v"                                                                                   -work reloj_soc_inst                         
   eval  vlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QSYS_SIMDIR/reloj_soc_tb/simulation/reloj_soc_tb.v"                                                                                                                                        
@@ -377,14 +377,14 @@ alias com {
 # Elaborate top level design
 alias elab {
   echo "\[exec\] elab"
-  eval vsim -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L altera_common_sv_packages -L error_adapter_0 -L avalon_st_adapter -L crosser -L rsp_mux_001 -L rsp_mux -L rsp_demux_003 -L rsp_demux_002 -L rsp_demux -L cmd_mux_002 -L cmd_mux -L cmd_demux_001 -L cmd_demux -L router_004 -L router_002 -L router_001 -L router -L AUDIO_avalon_audio_slave_agent_rsp_fifo -L AUDIO_avalon_audio_slave_agent -L NIOSII_data_master_agent -L AUDIO_avalon_audio_slave_translator -L NIOSII_data_master_translator -L cpu -L reset_from_locked -L audio_pll -L rst_controller -L irq_synchronizer -L irq_mapper -L mm_interconnect_0 -L UART -L TIMER -L REG_SEGMENTS -L REG_BUTTONS -L NIOSII -L MEMORY -L AUDIO_CONFIG -L AUDIO_CLK -L AUDIO -L reloj_soc_inst_reset_bfm -L reloj_soc_inst_leds_bfm -L reloj_soc_inst_clk_bfm -L reloj_soc_inst_buttons_bfm -L reloj_soc_inst_audio_config_bfm -L reloj_soc_inst_audio_bfm -L reloj_soc_inst -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
+  eval vsim -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L altera_common_sv_packages -L error_adapter_0 -L avalon_st_adapter -L crosser -L rsp_mux_001 -L rsp_mux -L rsp_demux_003 -L rsp_demux_002 -L rsp_demux -L cmd_mux_002 -L cmd_mux -L cmd_demux_001 -L cmd_demux -L router_004 -L router_002 -L router_001 -L router -L AUDIO_avalon_audio_slave_agent_rsp_fifo -L AUDIO_avalon_audio_slave_agent -L NIOSII_data_master_agent -L AUDIO_avalon_audio_slave_translator -L NIOSII_data_master_translator -L cpu -L reset_from_locked -L audio_pll -L rst_controller -L irq_synchronizer -L irq_mapper -L mm_interconnect_0 -L UART -L TIMER -L REG_SEGMENTS -L REG_BUTTONS -L NIOSII -L MEMORY -L AUDIO_CONFIG -L AUDIO_CLK -L AUDIO -L reloj_soc_inst_reset_bfm -L reloj_soc_inst_leds_bfm -L reloj_soc_inst_config_bfm -L reloj_soc_inst_clk_bfm -L reloj_soc_inst_buttons_bfm -L reloj_soc_inst_audio_bfm -L reloj_soc_inst -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------
 # Elaborate the top level design with novopt option
 alias elab_debug {
   echo "\[exec\] elab_debug"
-  eval vsim -novopt -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L altera_common_sv_packages -L error_adapter_0 -L avalon_st_adapter -L crosser -L rsp_mux_001 -L rsp_mux -L rsp_demux_003 -L rsp_demux_002 -L rsp_demux -L cmd_mux_002 -L cmd_mux -L cmd_demux_001 -L cmd_demux -L router_004 -L router_002 -L router_001 -L router -L AUDIO_avalon_audio_slave_agent_rsp_fifo -L AUDIO_avalon_audio_slave_agent -L NIOSII_data_master_agent -L AUDIO_avalon_audio_slave_translator -L NIOSII_data_master_translator -L cpu -L reset_from_locked -L audio_pll -L rst_controller -L irq_synchronizer -L irq_mapper -L mm_interconnect_0 -L UART -L TIMER -L REG_SEGMENTS -L REG_BUTTONS -L NIOSII -L MEMORY -L AUDIO_CONFIG -L AUDIO_CLK -L AUDIO -L reloj_soc_inst_reset_bfm -L reloj_soc_inst_leds_bfm -L reloj_soc_inst_clk_bfm -L reloj_soc_inst_buttons_bfm -L reloj_soc_inst_audio_config_bfm -L reloj_soc_inst_audio_bfm -L reloj_soc_inst -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
+  eval vsim -novopt -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L altera_common_sv_packages -L error_adapter_0 -L avalon_st_adapter -L crosser -L rsp_mux_001 -L rsp_mux -L rsp_demux_003 -L rsp_demux_002 -L rsp_demux -L cmd_mux_002 -L cmd_mux -L cmd_demux_001 -L cmd_demux -L router_004 -L router_002 -L router_001 -L router -L AUDIO_avalon_audio_slave_agent_rsp_fifo -L AUDIO_avalon_audio_slave_agent -L NIOSII_data_master_agent -L AUDIO_avalon_audio_slave_translator -L NIOSII_data_master_translator -L cpu -L reset_from_locked -L audio_pll -L rst_controller -L irq_synchronizer -L irq_mapper -L mm_interconnect_0 -L UART -L TIMER -L REG_SEGMENTS -L REG_BUTTONS -L NIOSII -L MEMORY -L AUDIO_CONFIG -L AUDIO_CLK -L AUDIO -L reloj_soc_inst_reset_bfm -L reloj_soc_inst_leds_bfm -L reloj_soc_inst_config_bfm -L reloj_soc_inst_clk_bfm -L reloj_soc_inst_buttons_bfm -L reloj_soc_inst_audio_bfm -L reloj_soc_inst -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------

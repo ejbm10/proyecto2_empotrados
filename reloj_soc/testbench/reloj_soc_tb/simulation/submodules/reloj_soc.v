@@ -4,15 +4,15 @@
 
 `timescale 1 ps / 1 ps
 module reloj_soc (
-		input  wire        audio_BCLK,        //        audio.BCLK
-		output wire        audio_DACDAT,      //             .DACDAT
-		input  wire        audio_DACLRCK,     //             .DACLRCK
-		inout  wire        audio_config_SDAT, // audio_config.SDAT
-		output wire        audio_config_SCLK, //             .SCLK
-		input  wire [3:0]  buttons_export,    //      buttons.export
-		input  wire        clk_clk,           //          clk.clk
-		output wire [27:0] leds_export,       //         leds.export
-		input  wire        reset_reset_n      //        reset.reset_n
+		input  wire        audio_BCLK,     //   audio.BCLK
+		output wire        audio_DACDAT,   //        .DACDAT
+		input  wire        audio_DACLRCK,  //        .DACLRCK
+		input  wire [3:0]  buttons_export, // buttons.export
+		input  wire        clk_clk,        //     clk.clk
+		inout  wire        config_SDAT,    //  config.SDAT
+		output wire        config_SCLK,    //        .SCLK
+		output wire [27:0] leds_export,    //    leds.export
+		input  wire        reset_reset_n   //   reset.reset_n
 	);
 
 	wire         audio_clk_audio_clk_clk;                                           // AUDIO_CLK:audio_clk_clk -> [AUDIO:clk, AUDIO_CONFIG:clk, irq_synchronizer:receiver_clk, mm_interconnect_0:AUDIO_CLK_audio_clk_clk, rst_controller:clk]
@@ -68,8 +68,11 @@ module reloj_soc (
 	wire   [1:0] mm_interconnect_0_reg_segments_s1_address;                         // mm_interconnect_0:REG_SEGMENTS_s1_address -> REG_SEGMENTS:address
 	wire         mm_interconnect_0_reg_segments_s1_write;                           // mm_interconnect_0:REG_SEGMENTS_s1_write -> REG_SEGMENTS:write_n
 	wire  [31:0] mm_interconnect_0_reg_segments_s1_writedata;                       // mm_interconnect_0:REG_SEGMENTS_s1_writedata -> REG_SEGMENTS:writedata
+	wire         mm_interconnect_0_reg_buttons_s1_chipselect;                       // mm_interconnect_0:REG_BUTTONS_s1_chipselect -> REG_BUTTONS:chipselect
 	wire  [31:0] mm_interconnect_0_reg_buttons_s1_readdata;                         // REG_BUTTONS:readdata -> mm_interconnect_0:REG_BUTTONS_s1_readdata
 	wire   [1:0] mm_interconnect_0_reg_buttons_s1_address;                          // mm_interconnect_0:REG_BUTTONS_s1_address -> REG_BUTTONS:address
+	wire         mm_interconnect_0_reg_buttons_s1_write;                            // mm_interconnect_0:REG_BUTTONS_s1_write -> REG_BUTTONS:write_n
+	wire  [31:0] mm_interconnect_0_reg_buttons_s1_writedata;                        // mm_interconnect_0:REG_BUTTONS_s1_writedata -> REG_BUTTONS:writedata
 	wire         mm_interconnect_0_timer_s1_chipselect;                             // mm_interconnect_0:TIMER_s1_chipselect -> TIMER:chipselect
 	wire  [15:0] mm_interconnect_0_timer_s1_readdata;                               // TIMER:readdata -> mm_interconnect_0:TIMER_s1_readdata
 	wire   [2:0] mm_interconnect_0_timer_s1_address;                                // mm_interconnect_0:TIMER_s1_address -> TIMER:address
@@ -77,6 +80,7 @@ module reloj_soc (
 	wire  [15:0] mm_interconnect_0_timer_s1_writedata;                              // mm_interconnect_0:TIMER_s1_writedata -> TIMER:writedata
 	wire         irq_mapper_receiver1_irq;                                          // TIMER:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                          // UART:av_irq -> irq_mapper:receiver2_irq
+	wire         irq_mapper_receiver3_irq;                                          // REG_BUTTONS:irq -> irq_mapper:receiver3_irq
 	wire  [31:0] niosii_irq_irq;                                                    // irq_mapper:sender_irq -> NIOSII:irq
 	wire         irq_mapper_receiver0_irq;                                          // irq_synchronizer:sender_irq -> irq_mapper:receiver0_irq
 	wire   [0:0] irq_synchronizer_receiver_irq;                                     // AUDIO:irq -> irq_synchronizer:receiver_irq
@@ -117,8 +121,8 @@ module reloj_soc (
 		.writedata   (mm_interconnect_0_audio_config_avalon_av_config_slave_writedata),   //                       .writedata
 		.readdata    (mm_interconnect_0_audio_config_avalon_av_config_slave_readdata),    //                       .readdata
 		.waitrequest (mm_interconnect_0_audio_config_avalon_av_config_slave_waitrequest), //                       .waitrequest
-		.I2C_SDAT    (audio_config_SDAT),                                                 //     external_interface.export
-		.I2C_SCLK    (audio_config_SCLK)                                                  //                       .export
+		.I2C_SDAT    (config_SDAT),                                                       //     external_interface.export
+		.I2C_SCLK    (config_SCLK)                                                        //                       .export
 	);
 
 	reloj_soc_MEMORY memory (
@@ -165,11 +169,15 @@ module reloj_soc (
 	);
 
 	reloj_soc_REG_BUTTONS reg_buttons (
-		.clk      (clk_clk),                                   //                 clk.clk
-		.reset_n  (~rst_controller_001_reset_out_reset),       //               reset.reset_n
-		.address  (mm_interconnect_0_reg_buttons_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_reg_buttons_s1_readdata), //                    .readdata
-		.in_port  (buttons_export)                             // external_connection.export
+		.clk        (clk_clk),                                     //                 clk.clk
+		.reset_n    (~rst_controller_001_reset_out_reset),         //               reset.reset_n
+		.address    (mm_interconnect_0_reg_buttons_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_reg_buttons_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_reg_buttons_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_reg_buttons_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_reg_buttons_s1_readdata),   //                    .readdata
+		.in_port    (buttons_export),                              // external_connection.export
+		.irq        (irq_mapper_receiver3_irq)                     //                 irq.irq
 	);
 
 	reloj_soc_REG_SEGMENTS reg_segments (
@@ -253,7 +261,10 @@ module reloj_soc (
 		.NIOSII_debug_mem_slave_waitrequest              (mm_interconnect_0_niosii_debug_mem_slave_waitrequest),              //                                    .waitrequest
 		.NIOSII_debug_mem_slave_debugaccess              (mm_interconnect_0_niosii_debug_mem_slave_debugaccess),              //                                    .debugaccess
 		.REG_BUTTONS_s1_address                          (mm_interconnect_0_reg_buttons_s1_address),                          //                      REG_BUTTONS_s1.address
+		.REG_BUTTONS_s1_write                            (mm_interconnect_0_reg_buttons_s1_write),                            //                                    .write
 		.REG_BUTTONS_s1_readdata                         (mm_interconnect_0_reg_buttons_s1_readdata),                         //                                    .readdata
+		.REG_BUTTONS_s1_writedata                        (mm_interconnect_0_reg_buttons_s1_writedata),                        //                                    .writedata
+		.REG_BUTTONS_s1_chipselect                       (mm_interconnect_0_reg_buttons_s1_chipselect),                       //                                    .chipselect
 		.REG_SEGMENTS_s1_address                         (mm_interconnect_0_reg_segments_s1_address),                         //                     REG_SEGMENTS_s1.address
 		.REG_SEGMENTS_s1_write                           (mm_interconnect_0_reg_segments_s1_write),                           //                                    .write
 		.REG_SEGMENTS_s1_readdata                        (mm_interconnect_0_reg_segments_s1_readdata),                        //                                    .readdata
@@ -279,6 +290,7 @@ module reloj_soc (
 		.receiver0_irq (irq_mapper_receiver0_irq),           // receiver0.irq
 		.receiver1_irq (irq_mapper_receiver1_irq),           // receiver1.irq
 		.receiver2_irq (irq_mapper_receiver2_irq),           // receiver2.irq
+		.receiver3_irq (irq_mapper_receiver3_irq),           // receiver3.irq
 		.sender_irq    (niosii_irq_irq)                      //    sender.irq
 	);
 

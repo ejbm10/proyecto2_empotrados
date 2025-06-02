@@ -1,0 +1,32 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eboli/Documents/Github/proyecto2_empotrados/software/reloj/obj/default/runtime/sim/mentor
+vreloj_soc_AUDIO_CLK_audio_pll
+!s110 1748889942
+!i10b 1
+!s100 @M>>_zXO^ZdS4PH9P>cRY1
+IPN@@J3AXoj`NX^4DhaN483
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1748884074
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK_audio_pll.vo
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK_audio_pll.vo
+L0 31
+OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1748889942.000000
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK_audio_pll.vo|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CLK_audio_pll.vo|-work|audio_pll|
+!i113 1
+o-work audio_pll
+tCvgOpt 0
+nreloj_soc_@a@u@d@i@o_@c@l@k_audio_pll

@@ -9,27 +9,52 @@ z2
 cModel Technology
 Z0 dC:/Users/eboli/Documents/Github/proyecto2_empotrados/software/reloj/obj/default/runtime/sim/mentor
 valtera_conduit_bfm
-DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-DXx25 altera_common_sv_packages 13 verbosity_pkg 0 22 TS<K=[65<HFMMGCFAa8n=3
-!s110 1747374935
+Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z2 DXx25 altera_common_sv_packages 13 verbosity_pkg 0 22 TS<K=[65<HFMMGCFAa8n=3
+!s110 1748883888
 !i10b 1
-!s100 _lV8ASgQkoUd^a_o_cU[T2
-I06i;C1c3W_YkI8>ZQ5SdF0
-VDg1SIo80bB@j0V0VzS_@n1
+!s100 [Mj@ZgWL5OZ6=lWNnPhT`3
+IYC4na[LeIoY<5lU<SK;S`1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
 !s105 altera_conduit_bfm_sv_unit
 S1
 R0
-w1747357921
+w1748150574
 8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv
 FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv
-L0 36
-OV;L;10.5b;63
+Z4 L0 36
+Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-!s108 1747374935.000000
+!s108 1748883888.000000
 !s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv|
 !s90 -reportprogress|300|-sv|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm.sv|-L|altera_common_sv_packages|-work|reloj_soc_inst_leds_bfm|
 !i113 1
-o-sv -L altera_common_sv_packages -work reloj_soc_inst_leds_bfm
-tCvgOpt 0
+Z6 o-sv -L altera_common_sv_packages -work reloj_soc_inst_leds_bfm
+Z7 tCvgOpt 0
+valtera_conduit_bfm_0004
+R1
+R2
+!s110 1748889944
+!i10b 1
+!s100 z4iYYj?`AU3CD7B`4bTZ90
+I`PR@o:6<6:RFcom7d:bc=0
+R3
+!s105 altera_conduit_bfm_0004_sv_unit
+S1
+R0
+w1748884036
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv
+R4
+R5
+r1
+!s85 0
+31
+!s108 1748889944.000000
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv|
+!s90 -reportprogress|300|-sv|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv|-L|altera_common_sv_packages|-work|reloj_soc_inst_leds_bfm|
+!i113 1
+R6
+R7

@@ -1,0 +1,31 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eboli/Documents/Github/proyecto2_empotrados/software/reloj/obj/default/runtime/sim/mentor
+valtera_up_avalon_reset_from_locked_signal
+!s110 1748889942
+!i10b 1
+!s100 21LY9FTb`4C4iU[D9:fdD3
+I>ETQl53M0hW[<I?cz>[lh1
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1748884074
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_avalon_reset_from_locked_signal.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_avalon_reset_from_locked_signal.v
+L0 28
+OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1748889942.000000
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_avalon_reset_from_locked_signal.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_avalon_reset_from_locked_signal.v|-work|reset_from_locked|
+!i113 1
+o-work reset_from_locked
+tCvgOpt 0

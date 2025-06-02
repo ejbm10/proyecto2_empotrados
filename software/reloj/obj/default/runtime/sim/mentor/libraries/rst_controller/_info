@@ -9,13 +9,13 @@ z2
 cModel Technology
 Z0 dC:/Users/eboli/Documents/Github/proyecto2_empotrados/software/reloj/obj/default/runtime/sim/mentor
 valtera_reset_controller
-Z1 !s110 1747374934
+Z1 !s110 1748889942
 !i10b 1
 !s100 z[H_hRO9gO=:^2E3_jWH03
 Izb0MC[nBGKb2M^;E[NCnQ3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1747357930
+Z3 w1748884053
 8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_controller.v
 FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_controller.v
 L0 42
@@ -23,7 +23,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1747374934.000000
+Z5 !s108 1748889942.000000
 !s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_controller.v|
 !s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_reset_controller.v|-work|rst_controller|
 !i113 1

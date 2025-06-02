@@ -1,0 +1,326 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eboli/Documents/Github/proyecto2_empotrados/software/reloj/obj/default/runtime/sim/mentor
+valtera_up_av_config_auto_init
+Z1 !s110 1748889943
+!i10b 1
+!s100 llVi9JhWEDV8H5NR35H^R2
+IakoMNL@=8Va[JkEbT^]UH2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1748884038
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init.v
+Z4 L0 29
+Z5 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z6 !s108 1748889943.000000
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init.v|-work|AUDIO_CONFIG|
+!i113 1
+Z7 o-work AUDIO_CONFIG
+Z8 tCvgOpt 0
+valtera_up_av_config_auto_init_d5m
+R1
+!i10b 1
+!s100 ];VUeb3jd3h<6^;_Do?nf2
+Ia<okVg`:0S:?cUa<>EPWm1
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_d5m.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_d5m.v
+Z9 L0 28
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_d5m.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_d5m.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_dc2
+R1
+!i10b 1
+!s100 HKM7a1P5Si]MDa5fSPImO1
+IPh7QV>aBiN1@[CzMh6h4Y0
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_dc2.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_dc2.v
+R9
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_dc2.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_dc2.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_lcm
+R1
+!i10b 1
+!s100 4of3YO31Ie=i;9=eBTgU?2
+InHGB4jZh`g=Q=j]Ijl0ZK3
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_lcm.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_lcm.v
+R9
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_lcm.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_lcm.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_ltm
+R1
+!i10b 1
+!s100 6SYcii6dhU:6o<a2_R;5>3
+I?M9B[Gb;b7=9g<]YQLVPj0
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ltm.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ltm.v
+R9
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ltm.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ltm.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_ob_adv7180
+Z10 !s110 1748889944
+!i10b 1
+!s100 9B@1knAJ3l;2AE@4FH^z42
+IJEOUfl1D8zjall1m:T0VH3
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7180.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7180.v
+R9
+R5
+r1
+!s85 0
+31
+Z11 !s108 1748889944.000000
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7180.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7180.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_ob_adv7181
+R10
+!i10b 1
+!s100 <]]RKMOWckB3`;YQ33ni[1
+IAN]Jf94@jHk2lbFMA>[F53
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7181.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7181.v
+R9
+R5
+r1
+!s85 0
+31
+R11
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7181.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_adv7181.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_ob_audio
+R10
+!i10b 1
+!s100 >EzfYjamhP3m1[SLlcc@G0
+IJ52<7RS8mQFhzde5jF2:R0
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_audio.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_audio.v
+R9
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_audio.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_audio.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_ob_de10_standard
+R1
+!i10b 1
+!s100 kHPWVznWJPLR:a;7KSilm1
+IjD>LI7L9NoZJR`<W3CMU]1
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de10_standard.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de10_standard.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de10_standard.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de10_standard.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_ob_de1_soc
+R1
+!i10b 1
+!s100 W@JdEdAQcW1Y:eLclH=h63
+IBiiRX>UO0bEI`_JiH:LlZ1
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de1_soc.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de1_soc.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de1_soc.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de1_soc.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_ob_de2_115
+R1
+!i10b 1
+!s100 @ZT`R8:X;baogWbKDQH^<1
+I>@hZfzhOLaK26lM5;4E=Q1
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2_115.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2_115.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2_115.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2_115.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_auto_init_ob_de2i_150
+R1
+!i10b 1
+!s100 <>16EQ9O<7ieE^3RhH1z53
+I?Y3Pk=TL@eX]Z^c?GcH542
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2i_150.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2i_150.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2i_150.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init_ob_de2i_150.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_av_config_serial_bus_controller
+R1
+!i10b 1
+!s100 XDSjk8^6l9VTIENMO[PEF1
+IoVchiOJNa0aS_B9g4aCho1
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+valtera_up_slow_clock_generator
+R1
+!i10b 1
+!s100 YXh=3j7I_EN:]o_[QD[]70
+IR^z8W@5mkbTR^O_ob_`e31
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_slow_clock_generator.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_slow_clock_generator.v
+L0 34
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_slow_clock_generator.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_slow_clock_generator.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+vreloj_soc_AUDIO_CONFIG
+R10
+!i10b 1
+!s100 TGze:g5<dg]0?oElzj9VF0
+IGGbV0gA;o9X];KTHBVg8h2
+R2
+R0
+R3
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CONFIG.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CONFIG.v
+L0 35
+R5
+r1
+!s85 0
+31
+R11
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CONFIG.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO_CONFIG.v|-work|AUDIO_CONFIG|
+!i113 1
+R7
+R8
+nreloj_soc_@a@u@d@i@o_@c@o@n@f@i@g

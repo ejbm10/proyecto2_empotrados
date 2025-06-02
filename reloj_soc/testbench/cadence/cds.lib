@@ -49,9 +49,9 @@ DEFINE AUDIO_CLK                               ./libraries/AUDIO_CLK/
 DEFINE AUDIO                                   ./libraries/AUDIO/                                  
 DEFINE reloj_soc_inst_reset_bfm                ./libraries/reloj_soc_inst_reset_bfm/               
 DEFINE reloj_soc_inst_leds_bfm                 ./libraries/reloj_soc_inst_leds_bfm/                
+DEFINE reloj_soc_inst_config_bfm               ./libraries/reloj_soc_inst_config_bfm/              
 DEFINE reloj_soc_inst_clk_bfm                  ./libraries/reloj_soc_inst_clk_bfm/                 
 DEFINE reloj_soc_inst_buttons_bfm              ./libraries/reloj_soc_inst_buttons_bfm/             
-DEFINE reloj_soc_inst_audio_config_bfm         ./libraries/reloj_soc_inst_audio_config_bfm/        
 DEFINE reloj_soc_inst_audio_bfm                ./libraries/reloj_soc_inst_audio_bfm/               
 DEFINE reloj_soc_inst                          ./libraries/reloj_soc_inst/                         
 DEFINE altera_ver                              ./libraries/altera_ver/                             

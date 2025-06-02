@@ -42,9 +42,9 @@ AUDIO_CLK:                               ./libraries/AUDIO_CLK/
 AUDIO:                                   ./libraries/AUDIO/                                  
 reloj_soc_inst_reset_bfm:                ./libraries/reloj_soc_inst_reset_bfm/               
 reloj_soc_inst_leds_bfm:                 ./libraries/reloj_soc_inst_leds_bfm/                
+reloj_soc_inst_config_bfm:               ./libraries/reloj_soc_inst_config_bfm/              
 reloj_soc_inst_clk_bfm:                  ./libraries/reloj_soc_inst_clk_bfm/                 
 reloj_soc_inst_buttons_bfm:              ./libraries/reloj_soc_inst_buttons_bfm/             
-reloj_soc_inst_audio_config_bfm:         ./libraries/reloj_soc_inst_audio_config_bfm/        
 reloj_soc_inst_audio_bfm:                ./libraries/reloj_soc_inst_audio_bfm/               
 reloj_soc_inst:                          ./libraries/reloj_soc_inst/                         
 altera_ver:                              ./libraries/altera_ver/                             

@@ -1,0 +1,32 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eboli/Documents/Github/proyecto2_empotrados/software/reloj/obj/default/runtime/sim/mentor
+vreloj_soc_REG_BUTTONS
+!s110 1748889943
+!i10b 1
+!s100 C=mEMJEMI;<L:<n;S?j2h0
+I4Ko1W`L1]41P[]BnEDM2[3
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1748884040
+8C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_BUTTONS.v
+FC:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_BUTTONS.v
+L0 21
+OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1748889943.000000
+!s107 C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_BUTTONS.v|
+!s90 -reportprogress|300|C:/Users/eboli/Documents/Github/proyecto2_empotrados/reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_REG_BUTTONS.v|-work|REG_BUTTONS|
+!i113 1
+o-work REG_BUTTONS
+tCvgOpt 0
+nreloj_soc_@r@e@g_@b@u@t@t@o@n@s
