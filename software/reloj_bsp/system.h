@@ -4,7 +4,7 @@
  * Machine generated for CPU 'NIOSII' in SOPC Builder design 'reloj_soc'
  * SOPC Builder design path: ../../reloj_soc.sopcinfo
  *
- * Generated: Sat May 24 23:29:41 CST 2025
+ * Generated: Mon Jun 02 16:45:15 CST 2025
  */
 
 /*
@@ -302,15 +302,15 @@
 #define TIMER_FREQ 50000000
 #define TIMER_IRQ 2
 #define TIMER_IRQ_INTERRUPT_CONTROLLER_ID 0
-#define TIMER_LOAD_VALUE 49999
+#define TIMER_LOAD_VALUE 49999999
 #define TIMER_MULT 0.001
 #define TIMER_NAME "/dev/TIMER"
-#define TIMER_PERIOD 1
+#define TIMER_PERIOD 1000
 #define TIMER_PERIOD_UNITS "ms"
 #define TIMER_RESET_OUTPUT 0
 #define TIMER_SNAPSHOT 1
 #define TIMER_SPAN 32
-#define TIMER_TICKS_PER_SEC 1000
+#define TIMER_TICKS_PER_SEC 1
 #define TIMER_TIMEOUT_PULSE_OUTPUT 0
 #define TIMER_TYPE "altera_avalon_timer"
 
