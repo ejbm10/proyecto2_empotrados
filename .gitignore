@@ -49,3 +49,7 @@ RemoteSystemsTempFiles/
 *.swp
 *.bak
 *.dep
+# Ignore all object files
+*.o
+*.d
+*.lst
