@@ -78,29 +78,24 @@
  *
  */
 
+#include "system.h"
 #include "sys/alt_stdio.h"
 #include "sys/alt_irq.h"
 #include "altera_up_avalon_audio.h"
 #include "altera_up_avalon_audio_and_video_config.h"
 #include "altera_avalon_pio_regs.h"
 
-#define LEDS_BASE 0x4000
-#define BUTTONS_BASE 0x4010
-#define TIMER_BASE 0x4020
-#define AUDIO_BASE 0x4060
-#define AUDIO_CONFIG_BASE 0x4070
-
-volatile unsigned int* leds_ptr = (unsigned int *) LEDS_BASE;
+volatile unsigned int* leds_ptr = (unsigned int *) REG_SEGMENTS_BASE;
 
 /*
  *
  */
 void button_isr_handler(void* context, alt_u32 id) {
-	unsigned int buttons = IORD_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE);
+	unsigned int buttons = IORD_ALTERA_AVALON_PIO_EDGE_CAP(REG_BUTTONS_BASE);
 
-	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(REG_BUTTONS_BASE, 0);
 
-	*leds_ptr = buttons;
+	*leds_ptr = ~buttons;
 }
 
 /*
@@ -117,17 +112,15 @@ int main()
 	volatile unsigned int* aud_addr_ptr = (unsigned int *) aud_ctr_ptr + 8;
 	volatile unsigned int* aud_data_ptr = (unsigned int *) aud_ctr_ptr + 12;
 
-	alt_putstr("Hello\n");
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(REG_BUTTONS_BASE, 0);
 
-	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
+	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(REG_BUTTONS_BASE, 0xF);
 
-	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(BUTTONS_BASE, 0xF);
-
-	alt_irq_register(3, NULL, button_isr_handler);
+	alt_ic_isr_register(0, REG_BUTTONS_IRQ, button_isr_handler, NULL, NULL);
 
 	/* Event loop never exits. */
 	while (1) {
-		*leds_ptr = 0xA;
+
 	}
 
 	return 0;
