@@ -7,11 +7,10 @@ volatile int minutos = 0;
 volatile int segundos = 0;
 volatile int actualizar_display = 0;
 
+volatile unsigned int* segments_ptr = (unsigned int *) REG_SEGMENTS_BASE;
+volatile unsigned int* leds_ptr = (unsigned int *) LEDS_BASE;
 
 
-volatile unsigned int* leds_ptr = (unsigned int *) REG_SEGMENTS_BASE;
-
-// Botones
 volatile unsigned int* buttons_edge_ptr = (unsigned int *) (REG_BUTTONS_BASE + 0x0C);
 volatile unsigned int* buttons_mask_ptr = (unsigned int *) (REG_BUTTONS_BASE + 0x08);
 volatile unsigned int* buttons_data_ptr = (unsigned int *) (REG_BUTTONS_BASE + 0x00);
@@ -21,7 +20,6 @@ volatile unsigned int* timer_status_ptr = (unsigned int *) (TIMER_BASE + 0x00);
 volatile unsigned int* timer_control_ptr = (unsigned int *) (TIMER_BASE + 0x04);
 volatile unsigned int* timer_periodl_ptr = (unsigned int *) (TIMER_BASE + 0x08);
 volatile unsigned int* timer_periodh_ptr = (unsigned int *) (TIMER_BASE + 0x0C);
-
 
 
 short segmentos(short digito) {
@@ -40,20 +38,19 @@ short segmentos(short digito) {
     }
 }
 
-
+// ISR botones
 void button_isr_handler(void* context, alt_u32 id) {
     unsigned int buttons = *buttons_edge_ptr;
-    *buttons_edge_ptr = 0; // Limpiar EDGE_CAP
+    *buttons_edge_ptr = 0;
 
-    *leds_ptr = ~buttons;
+    *leds_ptr = buttons;
 
     alt_putstr("ISR BOTONES ejecutada\n");
 }
 
-
+// ISR timer
 void timer_isr_handler(void* context, alt_u32 id) {
-    *timer_status_ptr = 0;
-
+    *timer_status_ptr = 0; // Limpiar status
 
     segundos++;
     if (segundos >= 60) {
@@ -64,10 +61,11 @@ void timer_isr_handler(void* context, alt_u32 id) {
         minutos = 0;
     }
 
-    actualizar_display = 1; // actualizarlo
+    actualizar_display = 1;
 
     alt_putstr("ISR TIMER ejecutada\n");
 }
+
 
 void mostrar_duracion(int minutos, int segundos) {
     int min_dec = minutos / 10;
@@ -81,18 +79,19 @@ void mostrar_duracion(int minutos, int segundos) {
         (segmentos(seg_dec) << 8) |
         (segmentos(seg_uni));
 
-    *leds_ptr = display_value;
+    *segments_ptr = display_value;
 }
 
-
+// Main
 int main() {
     alt_putstr("Inicio del programa\n");
 
 
-    *buttons_edge_ptr = 0; // Limpiar EDGE_CAP
-    *buttons_mask_ptr = 0xF; // Habilitar interrupciones para botones 0-3
+    *buttons_edge_ptr = 0;
+    *buttons_mask_ptr = 0xF; // Habilitar interrupciones botones 0-3
 
     alt_irq_register(REG_BUTTONS_IRQ, NULL, button_isr_handler);
+
 
     alt_irq_register(TIMER_IRQ, NULL, timer_isr_handler);
 

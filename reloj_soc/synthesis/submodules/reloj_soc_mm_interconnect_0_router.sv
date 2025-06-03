@@ -47,23 +47,23 @@ module reloj_soc_mm_interconnect_0_router_default_decode
      parameter DEFAULT_CHANNEL = 4,
                DEFAULT_WR_CHANNEL = -1,
                DEFAULT_RD_CHANNEL = -1,
-               DEFAULT_DESTID = 2 
+               DEFAULT_DESTID = 3 
    )
-  (output [77 - 75 : 0] default_destination_id,
-   output [8-1 : 0] default_wr_channel,
-   output [8-1 : 0] default_rd_channel,
-   output [8-1 : 0] default_src_channel
+  (output [79 - 76 : 0] default_destination_id,
+   output [9-1 : 0] default_wr_channel,
+   output [9-1 : 0] default_rd_channel,
+   output [9-1 : 0] default_src_channel
   );
 
   assign default_destination_id = 
-    DEFAULT_DESTID[77 - 75 : 0];
+    DEFAULT_DESTID[79 - 76 : 0];
 
   generate
     if (DEFAULT_CHANNEL == -1) begin : no_default_channel_assignment
       assign default_src_channel = '0;
     end
     else begin : default_channel_assignment
-      assign default_src_channel = 8'b1 << DEFAULT_CHANNEL;
+      assign default_src_channel = 9'b1 << DEFAULT_CHANNEL;
     end
   endgenerate
 
@@ -73,8 +73,8 @@ module reloj_soc_mm_interconnect_0_router_default_decode
       assign default_rd_channel = '0;
     end
     else begin : default_rw_channel_assignment
-      assign default_wr_channel = 8'b1 << DEFAULT_WR_CHANNEL;
-      assign default_rd_channel = 8'b1 << DEFAULT_RD_CHANNEL;
+      assign default_wr_channel = 9'b1 << DEFAULT_WR_CHANNEL;
+      assign default_rd_channel = 9'b1 << DEFAULT_RD_CHANNEL;
     end
   endgenerate
 
@@ -93,7 +93,7 @@ module reloj_soc_mm_interconnect_0_router
     // Command Sink (Input)
     // -------------------
     input                       sink_valid,
-    input  [91-1 : 0]    sink_data,
+    input  [93-1 : 0]    sink_data,
     input                       sink_startofpacket,
     input                       sink_endofpacket,
     output                      sink_ready,
@@ -102,8 +102,8 @@ module reloj_soc_mm_interconnect_0_router
     // Command Source (Output)
     // -------------------
     output                          src_valid,
-    output reg [91-1    : 0] src_data,
-    output reg [8-1 : 0] src_channel,
+    output reg [93-1    : 0] src_data,
+    output reg [9-1 : 0] src_channel,
     output                          src_startofpacket,
     output                          src_endofpacket,
     input                           src_ready
@@ -114,12 +114,12 @@ module reloj_soc_mm_interconnect_0_router
     // -------------------------------------------------------
     localparam PKT_ADDR_H = 50;
     localparam PKT_ADDR_L = 36;
-    localparam PKT_DEST_ID_H = 77;
-    localparam PKT_DEST_ID_L = 75;
-    localparam PKT_PROTECTION_H = 81;
-    localparam PKT_PROTECTION_L = 79;
-    localparam ST_DATA_W = 91;
-    localparam ST_CHANNEL_W = 8;
+    localparam PKT_DEST_ID_H = 79;
+    localparam PKT_DEST_ID_L = 76;
+    localparam PKT_PROTECTION_H = 83;
+    localparam PKT_PROTECTION_L = 81;
+    localparam ST_DATA_W = 93;
+    localparam ST_CHANNEL_W = 9;
     localparam DECODER_TYPE = 0;
 
     localparam PKT_TRANS_WRITE = 53;
@@ -142,12 +142,13 @@ module reloj_soc_mm_interconnect_0_router
     localparam PAD5 = log2ceil(64'h4070 - 64'h4060); 
     localparam PAD6 = log2ceil(64'h4080 - 64'h4070); 
     localparam PAD7 = log2ceil(64'h4088 - 64'h4080); 
+    localparam PAD8 = log2ceil(64'h40a0 - 64'h4090); 
     // -------------------------------------------------------
     // Work out which address bits are significant based on the
     // address range of the slaves. If the required width is too
     // large or too small, we use the address field width instead.
     // -------------------------------------------------------
-    localparam ADDR_RANGE = 64'h4088;
+    localparam ADDR_RANGE = 64'h40a0;
     localparam RANGE_ADDR_WIDTH = log2ceil(ADDR_RANGE);
     localparam OPTIMIZED_ADDR_H = (RANGE_ADDR_WIDTH > PKT_ADDR_W) ||
                                   (RANGE_ADDR_WIDTH == 0) ?
@@ -171,7 +172,7 @@ module reloj_soc_mm_interconnect_0_router
     assign src_startofpacket = sink_startofpacket;
     assign src_endofpacket   = sink_endofpacket;
     wire [PKT_DEST_ID_W-1:0] default_destid;
-    wire [8-1 : 0] default_src_channel;
+    wire [9-1 : 0] default_src_channel;
 
 
 
@@ -197,50 +198,56 @@ module reloj_soc_mm_interconnect_0_router
 
     // ( 0x0 .. 0x2000 )
     if ( {address[RG:PAD0],{PAD0{1'b0}}} == 15'h0   ) begin
-            src_channel = 8'b00010000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 2;
+            src_channel = 9'b000010000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 3;
     end
 
     // ( 0x2000 .. 0x2800 )
     if ( {address[RG:PAD1],{PAD1{1'b0}}} == 15'h2000   ) begin
-            src_channel = 8'b00001000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 3;
+            src_channel = 9'b000001000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;
     end
 
     // ( 0x4000 .. 0x4010 )
     if ( {address[RG:PAD2],{PAD2{1'b0}}} == 15'h4000   ) begin
-            src_channel = 8'b00100000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 5;
+            src_channel = 9'b000100000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 6;
     end
 
     // ( 0x4010 .. 0x4020 )
     if ( {address[RG:PAD3],{PAD3{1'b0}}} == 15'h4010   ) begin
-            src_channel = 8'b01000000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 4;
+            src_channel = 9'b001000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 5;
     end
 
     // ( 0x4020 .. 0x4040 )
     if ( {address[RG:PAD4],{PAD4{1'b0}}} == 15'h4020   ) begin
-            src_channel = 8'b10000000;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 6;
+            src_channel = 9'b010000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 7;
     end
 
     // ( 0x4060 .. 0x4070 )
     if ( {address[RG:PAD5],{PAD5{1'b0}}} == 15'h4060   ) begin
-            src_channel = 8'b00000001;
+            src_channel = 9'b000000001;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 1;
     end
 
     // ( 0x4070 .. 0x4080 )
     if ( {address[RG:PAD6],{PAD6{1'b0}}} == 15'h4070   ) begin
-            src_channel = 8'b00000010;
+            src_channel = 9'b000000010;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 0;
     end
 
     // ( 0x4080 .. 0x4088 )
     if ( {address[RG:PAD7],{PAD7{1'b0}}} == 15'h4080   ) begin
-            src_channel = 8'b00000100;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 7;
+            src_channel = 9'b000000100;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 8;
+    end
+
+    // ( 0x4090 .. 0x40a0 )
+    if ( {address[RG:PAD8],{PAD8{1'b0}}} == 15'h4090   ) begin
+            src_channel = 9'b100000000;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 2;
     end
 
 end

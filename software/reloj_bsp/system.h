@@ -4,7 +4,7 @@
  * Machine generated for CPU 'NIOSII' in SOPC Builder design 'reloj_soc'
  * SOPC Builder design path: ../../reloj_soc.sopcinfo
  *
- * Generated: Mon Jun 02 16:45:15 CST 2025
+ * Generated: Mon Jun 02 20:35:38 CST 2025
  */
 
 /*
@@ -168,6 +168,33 @@
 #define __ALTERA_NIOS2_GEN2
 #define __ALTERA_UP_AVALON_AUDIO
 #define __ALTERA_UP_AVALON_AUDIO_AND_VIDEO_CONFIG
+
+
+/*
+ * LEDS configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_LEDS altera_avalon_pio
+#define LEDS_BASE 0x4090
+#define LEDS_BIT_CLEARING_EDGE_REGISTER 0
+#define LEDS_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define LEDS_CAPTURE 0
+#define LEDS_DATA_WIDTH 8
+#define LEDS_DO_TEST_BENCH_WIRING 0
+#define LEDS_DRIVEN_SIM_VALUE 0
+#define LEDS_EDGE_TYPE "NONE"
+#define LEDS_FREQ 50000000
+#define LEDS_HAS_IN 0
+#define LEDS_HAS_OUT 1
+#define LEDS_HAS_TRI 0
+#define LEDS_IRQ -1
+#define LEDS_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define LEDS_IRQ_TYPE "NONE"
+#define LEDS_NAME "/dev/LEDS"
+#define LEDS_RESET_VALUE 0
+#define LEDS_SPAN 16
+#define LEDS_TYPE "altera_avalon_pio"
 
 
 /*
