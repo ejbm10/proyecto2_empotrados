@@ -215,6 +215,13 @@ module reloj_soc (
 		.av_irq         (irq_mapper_receiver2_irq)                              //               irq.irq
 	);
 
+	reloj_soc_pll_0 pll_0 (
+		.refclk   (clk_clk),        //  refclk.clk
+		.rst      (~reset_reset_n), //   reset.reset
+		.outclk_0 (),               // outclk0.clk
+		.locked   ()                //  locked.export
+	);
+
 	reloj_soc_mm_interconnect_0 mm_interconnect_0 (
 		.AUDIO_CLK_audio_clk_clk                         (audio_clk_audio_clk_clk),                                           //                 AUDIO_CLK_audio_clk.clk
 		.CLK_clk_clk                                     (clk_clk),                                                           //                             CLK_clk.clk
