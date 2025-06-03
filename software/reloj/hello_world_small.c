@@ -2,6 +2,7 @@
 #include "sys/alt_stdio.h"
 #include "sys/alt_irq.h"
 
+#define TIMER_PERIOD 50000000 // 1 segundo @ 50 MHz
 
 volatile int minutos = 0;
 volatile int segundos = 0;
@@ -86,12 +87,16 @@ void mostrar_duracion(int minutos, int segundos) {
 int main() {
     alt_putstr("Inicio del programa\n");
 
-
+    // Config botones
     *buttons_edge_ptr = 0;
     *buttons_mask_ptr = 0xF; // Habilitar interrupciones botones 0-3
 
     alt_irq_register(REG_BUTTONS_IRQ, NULL, button_isr_handler);
 
+    *timer_periodl_ptr = TIMER_PERIOD & 0xFFFF;
+    *timer_periodh_ptr = (TIMER_PERIOD >> 16) & 0xFFFF;
+
+    *timer_control_ptr = 0x7; // START + CONT + ITO
 
     alt_irq_register(TIMER_IRQ, NULL, timer_isr_handler);
 
@@ -104,4 +109,5 @@ int main() {
 
     return 0;
 }
+
 
