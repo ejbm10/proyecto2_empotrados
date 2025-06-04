@@ -9,7 +9,8 @@ module audio_player_top (
     output wire config_SCLK,
     output wire [27:0] leds,
 
-    // Salidas VGA
+    // VGA
+    output wire vga_clk,
     output wire vga_hs,
     output wire vga_vs,
     output wire vga_blank_n,
@@ -19,58 +20,29 @@ module audio_player_top (
     output wire [7:0] vga_b
 );
 
-    // =========================
-    // Instancia del Qsys (reloj_soc)
-    // =========================
+    // Instancia del Qsys
     reloj_soc u0 (
         .audio_BCLK     (audio_BCLK),
         .audio_DACDAT   (audio_DACDAT),
         .audio_DACLRCK  (audio_DACLRCK),
-        .config_SDAT    (config_SDAT),
-        .config_SCLK    (config_SCLK),
         .buttons_export (buttons),
         .clk_clk        (clk),
+        .config_SDAT    (config_SDAT),
+        .config_SCLK    (config_SCLK),
         .leds_export    (leds),
-        .reset_reset_n  (rst)
+        .reset_reset_n  (rst),
+
+        // VGA - nombres EXACTOS de reloj_soc.v
+        .video_vga_controller_0_external_interface_CLK   (vga_clk),
+        .video_vga_controller_0_external_interface_HS    (vga_hs),
+        .video_vga_controller_0_external_interface_VS    (vga_vs),
+        .video_vga_controller_0_external_interface_BLANK (vga_blank_n),
+        .video_vga_controller_0_external_interface_SYNC  (vga_sync_n),
+        .video_vga_controller_0_external_interface_R     (vga_r),
+        .video_vga_controller_0_external_interface_G     (vga_g),
+        .video_vga_controller_0_external_interface_B     (vga_b)
     );
-
-    // =========================
-    // Instancia del PLL para VGA
-    // =========================
-    wire vga_clk;
-
-    reloj_soc_pll_0 pll_vga_inst (
-        .refclk (clk),          // Clock de entrada (50 MHz)
-        .rst    (~rst),         // Reset activo alto
-        .outclk_0 (vga_clk),     // Clock de salida (25 MHz)
-        .locked ()              // No usado por ahora
-    );
-
-    // =========================
-    // Instancia del VGA Controller
-    // =========================
-    wire [9:0] pixel_x;
-    wire [9:0] pixel_y;
-    wire video_on;
-
-    vga_controller vga_inst (
-        .clk        (vga_clk),
-        .reset      (~rst),
-        .hsync      (vga_hs),
-        .vsync      (vga_vs),
-        .blank_b    (vga_blank_n),
-        .sync_b     (vga_sync_n),
-        .pixel_x    (pixel_x),
-        .pixel_y    (pixel_y),
-        .video_on   (video_on)
-    );
-
-    // =========================
-    // Generación simple de color (ejemplo)
-    // =========================
-    assign vga_r = video_on ? 8'hFF : 8'h00;
-    assign vga_g = video_on ? 8'h00 : 8'h00;
-    assign vga_b = video_on ? 8'h00 : 8'h00;
 
 endmodule
+
 
