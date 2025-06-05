@@ -22,6 +22,8 @@ volatile unsigned int* timer_control_ptr = (unsigned int *) (TIMER_BASE + 0x04);
 volatile unsigned int* timer_periodl_ptr = (unsigned int *) (TIMER_BASE + 0x08);
 volatile unsigned int* timer_periodh_ptr = (unsigned int *) (TIMER_BASE + 0x0C);
 
+volatile unsigned int leds_state = 0;
+
 
 short segmentos(short digito) {
     switch (digito) {
@@ -40,14 +42,19 @@ short segmentos(short digito) {
 }
 
 // ISR botones
+
 void button_isr_handler(void* context, alt_u32 id) {
     unsigned int buttons = *buttons_edge_ptr;
     *buttons_edge_ptr = 0;
 
-    *leds_ptr = buttons;
+    // Toggle LEDs
+    leds_state ^= buttons;
+
+    *leds_ptr = leds_state;
 
     alt_putstr("ISR BOTONES ejecutada\n");
 }
+
 
 // ISR timer
 void timer_isr_handler(void* context, alt_u32 id) {
