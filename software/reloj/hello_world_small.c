@@ -1,5 +1,6 @@
 #include "io.h"
 #include "system.h"
+#include <string.h>
 
 #define CHAR_BUFFER_BASE  0x01020000
 #define CHAR_CONTROL_BASE 0x01000100
@@ -8,13 +9,11 @@
 
 void vga_clear()
 {
-    // Clear screen
     IOWR_32DIRECT(CHAR_CONTROL_BASE, 0, CLEAR_COMMAND);
 }
 
 void vga_enable()
 {
-    // Enable DMA
     IOWR_32DIRECT(CHAR_CONTROL_BASE, 0, ENABLE_COMMAND);
 }
 
@@ -31,33 +30,30 @@ void delay()
 
 int main()
 {
+    const char *sentence = "Hola, esta es una oracion larga con mas de quince palabras para la pantalla VGA.";
+
+    int i;
+
     // Clear
     vga_clear();
-
-    // Small delay
     delay();
-
-    // Enable VGA DMA!
     vga_enable();
-
-    // Another small delay
     delay();
 
-    // Write "HELLO WORLD"
-    vga_write_char(10, 5, 'H');
-    vga_write_char(11, 5, 'E');
-    vga_write_char(12, 5, 'L');
-    vga_write_char(13, 5, 'L');
-    vga_write_char(14, 5, 'O');
-
-    vga_write_char(16, 5, 'P');
-    vga_write_char(17, 5, 'O');
-    vga_write_char(18, 5, 'R');
-    vga_write_char(19, 5, 'L');
-    vga_write_char(20, 5, 'D');
+    // Escribir la oración en pantalla
+    for (i = 0; i < strlen(sentence); i++)
+    {
+    	vga_clear();
+    	delay();
+    	vga_enable();
+    	delay();
+        vga_write_char(5 + i, 1, sentence[i]);  // fila Y=10
+    }
 
     // Infinite loop
     while (1);
 
     return 0;
 }
+
+
