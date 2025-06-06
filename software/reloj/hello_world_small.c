@@ -87,21 +87,26 @@
 #include "altera_avalon_pio_regs.h"
 
 volatile unsigned int* audio_control;
-volatile unsigned int* audio_status;
-volatile unsigned int* audio_address;
-volatile unsigned int* audio_data;
+volatile unsigned int* audio_fifospace;
+volatile unsigned int* audio_leftdata;
+volatile unsigned int* audio_rightdata;
+
+volatile unsigned int* config_control;
+volatile unsigned int* config_status;
+volatile unsigned int* config_address;
+volatile unsigned int* config_data;
 
 void wait() {
-	while ((*audio_status & 0x102) == 0);
+	while ((*config_status & 0x102) == 0);
 }
 
 void config_wm8731(alt_u8 addr, alt_u16 data) {
 	wait();
 
-	*audio_address = addr;
-	*audio_data = data;
+	*config_address = addr;
+	*config_data = data;
 
-	*audio_control = 0x340002;
+	*config_control = 0x340002;
 }
 
 void init_wm8731() {
@@ -125,15 +130,29 @@ void init_wm8731() {
  *
  */
 int main() {
-	audio_control = (unsigned int *) AUDIO_CONFIG_BASE;
-	audio_status = audio_control + 1;
-	audio_address = audio_control + 2;
-	audio_data = audio_control + 3;
+	audio_control = (unsigned int *) AUDIO_BASE;
+	audio_fifospace = audio_control + 1;
+	audio_leftdata = audio_control + 2;
+	audio_rightdata = audio_control + 3;
 
-	*audio_control = 0x340003;
-	*audio_control = 0x340002;
+	config_control = (unsigned int *) AUDIO_CONFIG_BASE;
+	config_status = config_control + 1;
+	config_address = config_control + 2;
+	config_data = config_control + 3;
+
+	*config_control = 0x340003;
+	*config_control = 0x340002;
 
 	init_wm8731();
+
+	*audio_control = 0xE;	// Set clears to 1
+	*audio_control = 0x2;	// Set clears to 0 for normal flow
+
+	while (1) {
+		if ((*audio_control & 0x200) != 0) {
+			// Play
+		}
+	}
 
     return 0;
 }
