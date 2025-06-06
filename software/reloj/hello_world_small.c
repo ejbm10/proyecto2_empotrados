@@ -86,34 +86,54 @@
 #include "altera_up_avalon_audio_and_video_config.h"
 #include "altera_avalon_pio_regs.h"
 
-/*
- *
- */
-void button_isr_handler(void* context, alt_u32 id) {
-	unsigned int buttons = IORD_ALTERA_AVALON_PIO_EDGE_CAP(REG_BUTTONS_BASE);
+volatile unsigned int* audio_control;
+volatile unsigned int* audio_status;
+volatile unsigned int* audio_address;
+volatile unsigned int* audio_data;
 
-	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(REG_BUTTONS_BASE, 0);
+void wait() {
+	while ((*audio_status & 0x102) == 0);
+}
+
+void config_wm8731(alt_u8 addr, alt_u16 data) {
+	wait();
+
+	*audio_address = addr;
+	*audio_data = data;
+
+	*audio_control = 0x340002;
+}
+
+void init_wm8731() {
+	config_wm8731(0x0F, 0x000); // Reset CODEC
+
+	wait();
+
+	config_wm8731(0x00, 0x097); // Left Line In default
+	config_wm8731(0x01, 0x097); // Right Line In default
+	config_wm8731(0x02, 0x07F);	// Left output full volume
+	config_wm8731(0x03, 0x07F);	// Right output full volume
+	config_wm8731(0x04, 0x012);	// Analog Audio Config: Using DAC, Line In
+	config_wm8731(0x05, 0x000); // Digital Audio Config: Output unmuted, no filter
+	config_wm8731(0x06, 0x047); // Power off inputs and clock output (not needed)
+	config_wm8731(0x07, 0x009); // A bunch of config
+	config_wm8731(0x08, 0x000); // Sampling rate 48kHz normal
+	config_wm8731(0x09, 0x001); // Activate
 }
 
 /*
  *
  */
 int main() {
-	volatile unsigned int* leds_ptr = (unsigned int *) REG_SEGMENTS_BASE;
-    volatile unsigned int* timer_status_ptr = (unsigned int *) TIMER_BASE;
-    volatile unsigned int* timer_ctrl_ptr   = timer_status_ptr + 1;
+	audio_control = (unsigned int *) AUDIO_CONFIG_BASE;
+	audio_status = audio_control + 1;
+	audio_address = audio_control + 2;
+	audio_data = audio_control + 3;
 
-    // Start timer
-    *timer_ctrl_ptr = 0x6;
+	*audio_control = 0x340003;
+	*audio_control = 0x340002;
 
-    while (1) {
-        if (*timer_status_ptr & 0x1) {  // Timeout occurred
-            *timer_status_ptr = 0x1;    // Clear TO bit
-            *leds_ptr ^= 0xFFFFFFFF;   // Toggle LEDs
-        } else {
-        	*leds_ptr = 0xAAAA;
-        }
-    }
+	init_wm8731();
 
     return 0;
 }
