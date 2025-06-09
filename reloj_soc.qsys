@@ -25,12 +25,28 @@
          type = "String";
       }
    }
+   element AUDIO.interrupt
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+   }
    element AUDIO_CLK
    {
       datum _sortIndex
       {
          value = "9";
          type = "int";
+      }
+   }
+   element AUDIO_CLK.ref_clk
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
       }
    }
    element AUDIO_CONFIG
@@ -182,12 +198,12 @@
    internal="AUDIO_CONFIG.external_interface"
    type="conduit"
    dir="end" />
+ <interface name="reset" internal="CLK.clk_in_reset" type="reset" dir="end" />
  <interface
-   name="leds"
+   name="segments"
    internal="REG_SEGMENTS.external_connection"
    type="conduit"
    dir="end" />
- <interface name="reset" internal="CLK.clk_in_reset" type="reset" dir="end" />
  <module name="AUDIO" kind="altera_up_avalon_audio" version="18.0" enabled="1">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="12288135" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
@@ -450,14 +466,14 @@
    kind="altera_avalon_pio"
    version="18.1"
    enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitClearingEdgeCapReg" value="true" />
   <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
+  <parameter name="captureEdge" value="true" />
   <parameter name="clockRate" value="50000000" />
   <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="RISING" />
+  <parameter name="edgeType" value="FALLING" />
   <parameter name="generateIRQ" value="true" />
-  <parameter name="irqType" value="LEVEL" />
+  <parameter name="irqType" value="EDGE" />
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
@@ -486,7 +502,7 @@
   <parameter name="counterSize" value="32" />
   <parameter name="fixedPeriod" value="true" />
   <parameter name="period" value="1" />
-  <parameter name="periodUnits" value="MSEC" />
+  <parameter name="periodUnits" value="SEC" />
   <parameter name="resetOutput" value="false" />
   <parameter name="snapshot" value="true" />
   <parameter name="systemFrequency" value="50000000" />

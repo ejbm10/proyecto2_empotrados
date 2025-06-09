@@ -65,6 +65,14 @@
          type = "int";
       }
    }
+   element reloj_soc_inst_segments_bfm
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
@@ -146,7 +154,7 @@
   <parameter name="ENABLE_RESET" value="false" />
   <parameter name="SIGNAL_DIRECTIONS" value="input" />
   <parameter name="SIGNAL_ROLES" value="export" />
-  <parameter name="SIGNAL_WIDTHS" value="28" />
+  <parameter name="SIGNAL_WIDTHS" value="8" />
  </module>
  <module
    name="reloj_soc_inst_reset_bfm"
@@ -155,6 +163,17 @@
    enabled="1">
   <parameter name="ASSERT_HIGH_RESET" value="0" />
   <parameter name="INITIAL_RESET_CYCLES" value="50" />
+ </module>
+ <module
+   name="reloj_soc_inst_segments_bfm"
+   kind="altera_conduit_bfm"
+   version="18.1"
+   enabled="1">
+  <parameter name="CLOCKED_SIGNAL" value="false" />
+  <parameter name="ENABLE_RESET" value="false" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input" />
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="28" />
  </module>
  <connection
    kind="clock"
@@ -204,6 +223,17 @@
    version="18.1"
    start="reloj_soc_inst_leds_bfm.conduit"
    end="reloj_soc_inst.leds">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="18.1"
+   start="reloj_soc_inst_segments_bfm.conduit"
+   end="reloj_soc_inst.segments">
   <parameter name="endPort" value="" />
   <parameter name="endPortLSB" value="0" />
   <parameter name="startPort" value="" />

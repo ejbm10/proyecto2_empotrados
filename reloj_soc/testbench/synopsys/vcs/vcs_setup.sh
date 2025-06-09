@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 18.1 625 win32 2025.06.02.11:08:02
+# ACDS 18.1 625 win32 2025.06.08.21:25:41
 
 # ----------------------------------------
 # vcs - auto-generated simulation script
@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 win32 2025.06.02.11:08:02
+# ACDS 18.1 625 win32 2025.06.08.21:25:41
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="reloj_soc_tb"
@@ -200,6 +200,7 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_REG_BUTTONS.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_MEMORY.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_LEDS.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_slow_clock_generator.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init.v \
@@ -222,6 +223,7 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_clock_edge.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_sync_fifo.v \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO.v \
+  $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0005.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv \
   $QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv \

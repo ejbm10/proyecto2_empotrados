@@ -44,9 +44,11 @@ DEFINE REG_SEGMENTS                            ./libraries/REG_SEGMENTS/
 DEFINE REG_BUTTONS                             ./libraries/REG_BUTTONS/                            
 DEFINE NIOSII                                  ./libraries/NIOSII/                                 
 DEFINE MEMORY                                  ./libraries/MEMORY/                                 
+DEFINE LEDS                                    ./libraries/LEDS/                                   
 DEFINE AUDIO_CONFIG                            ./libraries/AUDIO_CONFIG/                           
 DEFINE AUDIO_CLK                               ./libraries/AUDIO_CLK/                              
 DEFINE AUDIO                                   ./libraries/AUDIO/                                  
+DEFINE reloj_soc_inst_segments_bfm             ./libraries/reloj_soc_inst_segments_bfm/            
 DEFINE reloj_soc_inst_reset_bfm                ./libraries/reloj_soc_inst_reset_bfm/               
 DEFINE reloj_soc_inst_leds_bfm                 ./libraries/reloj_soc_inst_leds_bfm/                
 DEFINE reloj_soc_inst_config_bfm               ./libraries/reloj_soc_inst_config_bfm/              

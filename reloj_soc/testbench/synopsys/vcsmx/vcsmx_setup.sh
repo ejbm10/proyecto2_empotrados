@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 18.1 625 win32 2025.06.02.11:08:02
+# ACDS 18.1 625 win32 2025.06.08.21:25:41
 
 # ----------------------------------------
 # vcsmx - auto-generated simulation script
@@ -107,7 +107,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 win32 2025.06.02.11:08:02
+# ACDS 18.1 625 win32 2025.06.08.21:25:41
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="reloj_soc_tb"
@@ -182,9 +182,11 @@ mkdir -p ./libraries/REG_SEGMENTS/
 mkdir -p ./libraries/REG_BUTTONS/
 mkdir -p ./libraries/NIOSII/
 mkdir -p ./libraries/MEMORY/
+mkdir -p ./libraries/LEDS/
 mkdir -p ./libraries/AUDIO_CONFIG/
 mkdir -p ./libraries/AUDIO_CLK/
 mkdir -p ./libraries/AUDIO/
+mkdir -p ./libraries/reloj_soc_inst_segments_bfm/
 mkdir -p ./libraries/reloj_soc_inst_reset_bfm/
 mkdir -p ./libraries/reloj_soc_inst_leds_bfm/
 mkdir -p ./libraries/reloj_soc_inst_config_bfm/
@@ -284,6 +286,7 @@ if [ $SKIP_COM -eq 0 ]; then
   vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_REG_BUTTONS.v"                                          -work REG_BUTTONS                            
   vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_NIOSII.v"                                               -work NIOSII                                 
   vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_MEMORY.v"                                               -work MEMORY                                 
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_LEDS.v"                                                 -work LEDS                                   
   vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v"                      -work AUDIO_CONFIG                           
   vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_slow_clock_generator.v"                                 -work AUDIO_CONFIG                           
   vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_av_config_auto_init.v"                                  -work AUDIO_CONFIG                           
@@ -306,6 +309,7 @@ if [ $SKIP_COM -eq 0 ]; then
   vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_clock_edge.v"                                           -work AUDIO                                  
   vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_up_sync_fifo.v"                                            -work AUDIO                                  
   vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO.v"                                                -work AUDIO                                  
+  vlogan +v2k -sverilog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0005.sv"                                       -work reloj_soc_inst_segments_bfm            
   vlogan +v2k -sverilog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv"                                    -work reloj_soc_inst_reset_bfm               
   vlogan +v2k -sverilog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0004.sv"                                       -work reloj_soc_inst_leds_bfm                
   vlogan +v2k -sverilog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0003.sv"                                       -work reloj_soc_inst_config_bfm              

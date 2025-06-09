@@ -250,6 +250,10 @@
    type="VERILOG"
    library="MEMORY" />
  <file
+   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_LEDS.v"
+   type="VERILOG"
+   library="LEDS" />
+ <file
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_up_av_config_serial_bus_controller.v"
    type="VERILOG"
    library="AUDIO_CONFIG" />
@@ -337,6 +341,10 @@
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/reloj_soc_AUDIO.v"
    type="VERILOG"
    library="AUDIO" />
+ <file
+   path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_conduit_bfm_0005.sv"
+   type="SYSTEM_VERILOG"
+   library="reloj_soc_inst_segments_bfm" />
  <file
    path="reloj_soc/testbench/reloj_soc_tb/simulation/submodules/altera_avalon_reset_source.sv"
    type="SYSTEM_VERILOG"

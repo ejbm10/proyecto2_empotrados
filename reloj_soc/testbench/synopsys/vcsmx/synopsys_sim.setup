@@ -37,9 +37,11 @@ REG_SEGMENTS:                            ./libraries/REG_SEGMENTS/
 REG_BUTTONS:                             ./libraries/REG_BUTTONS/                            
 NIOSII:                                  ./libraries/NIOSII/                                 
 MEMORY:                                  ./libraries/MEMORY/                                 
+LEDS:                                    ./libraries/LEDS/                                   
 AUDIO_CONFIG:                            ./libraries/AUDIO_CONFIG/                           
 AUDIO_CLK:                               ./libraries/AUDIO_CLK/                              
 AUDIO:                                   ./libraries/AUDIO/                                  
+reloj_soc_inst_segments_bfm:             ./libraries/reloj_soc_inst_segments_bfm/            
 reloj_soc_inst_reset_bfm:                ./libraries/reloj_soc_inst_reset_bfm/               
 reloj_soc_inst_leds_bfm:                 ./libraries/reloj_soc_inst_leds_bfm/                
 reloj_soc_inst_config_bfm:               ./libraries/reloj_soc_inst_config_bfm/              

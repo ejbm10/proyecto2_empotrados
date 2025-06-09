@@ -1,40 +1,61 @@
-# Ignore Quartus-generated folders and temp files
+# Ignore Quartus output
 db/
 incremental_db/
-*.rpt
-*.chg
-*.log
-*.bak
-*.smsg
-*.qmsg
-*.rdr
-*.lck
-*.flock
-*.tmp
-*.html
-*.eqn
-*.pin
-*.summary
-*.svd
-
-# Keep source files and project configs
-!*.qpf
-!*.qsf
-!*.qws
-!*.bdf
-!*.vhd
-!*.v
-!*.sv
-!*.sv.bak
-!*.ptf
-!*.bsf
-!*.tbd
-!*.sof
-
-# Other useful project files to track
-!*.sdc
-!*.do
-!*.tcl
-
-
 output_files/
+*.sof
+*.pof
+*.jam
+*.jic
+*.smsg
+*.rpt
+*.summary
+*.chg
+*.cdf
+*.pin
+*.smsg
+*.smsgsummary
+
+# Ignore Platform Designer auto-generated files
+synthesis/
+simulation/
+*.qip
+*.qsys_edit
+
+# Ignore Eclipse CDT build files
+reloj_bsp/
+reloj/obj/
+reloj/Debug/
+reloj/Release/
+reloj/*.elf
+reloj/*.map
+reloj/*.objdump
+
+# Ignore Eclipse metadata
+.metadata/
+RemoteSystemsTempFiles/
+.settings/
+
+# Ignore generated BSP files (regenerable)
+*/HAL/
+*/drivers/
+*/obj/
+*.bsp
+*.sopcinfo.bak
+
+# Ignore general temporary files
+*.log
+*.tmp
+*~
+*.swp
+*.bak
+*.dep
+# Ignore all object files
+*.o
+*.d
+*.lst
+# BSP generated object files
+software/reloj_bsp/obj/
+# General object files
+*.o
+*.d
+*.lst

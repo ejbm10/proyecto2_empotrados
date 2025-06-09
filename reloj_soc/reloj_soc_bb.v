@@ -7,8 +7,8 @@ module reloj_soc (
 	clk_clk,
 	config_SDAT,
 	config_SCLK,
-	leds_export,
-	reset_reset_n);	
+	reset_reset_n,
+	segments_export);	
 
 	input		audio_BCLK;
 	output		audio_DACDAT;
@@ -17,6 +17,6 @@ module reloj_soc (
 	input		clk_clk;
 	inout		config_SDAT;
 	output		config_SCLK;
-	output	[27:0]	leds_export;
 	input		reset_reset_n;
+	output	[27:0]	segments_export;
 endmodule

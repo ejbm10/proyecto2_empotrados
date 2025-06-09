@@ -4,15 +4,15 @@
 
 `timescale 1 ps / 1 ps
 module reloj_soc (
-		input  wire        audio_BCLK,     //   audio.BCLK
-		output wire        audio_DACDAT,   //        .DACDAT
-		input  wire        audio_DACLRCK,  //        .DACLRCK
-		input  wire [3:0]  buttons_export, // buttons.export
-		input  wire        clk_clk,        //     clk.clk
-		inout  wire        config_SDAT,    //  config.SDAT
-		output wire        config_SCLK,    //        .SCLK
-		output wire [27:0] leds_export,    //    leds.export
-		input  wire        reset_reset_n   //   reset.reset_n
+		input  wire        audio_BCLK,      //    audio.BCLK
+		output wire        audio_DACDAT,    //         .DACDAT
+		input  wire        audio_DACLRCK,   //         .DACLRCK
+		input  wire [3:0]  buttons_export,  //  buttons.export
+		input  wire        clk_clk,         //      clk.clk
+		inout  wire        config_SDAT,     //   config.SDAT
+		output wire        config_SCLK,     //         .SCLK
+		input  wire        reset_reset_n,   //    reset.reset_n
+		output wire [27:0] segments_export  // segments.export
 	);
 
 	wire         audio_clk_audio_clk_clk;                                           // AUDIO_CLK:audio_clk_clk -> [AUDIO:clk, AUDIO_CONFIG:clk, irq_synchronizer:receiver_clk, mm_interconnect_0:AUDIO_CLK_audio_clk_clk, rst_controller:clk]
@@ -188,7 +188,7 @@ module reloj_soc (
 		.writedata  (mm_interconnect_0_reg_segments_s1_writedata),  //                    .writedata
 		.chipselect (mm_interconnect_0_reg_segments_s1_chipselect), //                    .chipselect
 		.readdata   (mm_interconnect_0_reg_segments_s1_readdata),   //                    .readdata
-		.out_port   (leds_export)                                   // external_connection.export
+		.out_port   (segments_export)                               // external_connection.export
 	);
 
 	reloj_soc_TIMER timer (

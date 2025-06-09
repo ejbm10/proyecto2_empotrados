@@ -28,7 +28,7 @@
 // This BFM's HDL is been generated through terp file in Qsys/SOPC Builder.
 // Generation parameters:
 // output_name:                                       altera_conduit_bfm_0004
-// role:width:direction:                              export:28:input
+// role:width:direction:                              export:8:input
 // 0
 //-----------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
@@ -42,15 +42,15 @@ module altera_conduit_bfm_0004
    // =head1 PINS 
    // =head2 User defined interface
    //--------------------------------------------------------------------------
-   input [27 : 0] sig_export;
+   input [7 : 0] sig_export;
 
    // synthesis translate_off
    import verbosity_pkg::*;
    
-   typedef logic [27 : 0] ROLE_export_t;
+   typedef logic [7 : 0] ROLE_export_t;
 
-   logic [27 : 0] sig_export_in;
-   logic [27 : 0] sig_export_local;
+   logic [7 : 0] sig_export_in;
+   logic [7 : 0] sig_export_local;
 
    //--------------------------------------------------------------------------
    // =head1 Public Methods API
