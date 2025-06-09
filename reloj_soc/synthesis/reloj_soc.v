@@ -19,14 +19,14 @@ module reloj_soc (
 	wire  [31:0] niosii_data_master_readdata;                                       // mm_interconnect_0:NIOSII_data_master_readdata -> NIOSII:d_readdata
 	wire         niosii_data_master_waitrequest;                                    // mm_interconnect_0:NIOSII_data_master_waitrequest -> NIOSII:d_waitrequest
 	wire         niosii_data_master_debugaccess;                                    // NIOSII:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:NIOSII_data_master_debugaccess
-	wire  [14:0] niosii_data_master_address;                                        // NIOSII:d_address -> mm_interconnect_0:NIOSII_data_master_address
+	wire  [12:0] niosii_data_master_address;                                        // NIOSII:d_address -> mm_interconnect_0:NIOSII_data_master_address
 	wire   [3:0] niosii_data_master_byteenable;                                     // NIOSII:d_byteenable -> mm_interconnect_0:NIOSII_data_master_byteenable
 	wire         niosii_data_master_read;                                           // NIOSII:d_read -> mm_interconnect_0:NIOSII_data_master_read
 	wire         niosii_data_master_write;                                          // NIOSII:d_write -> mm_interconnect_0:NIOSII_data_master_write
 	wire  [31:0] niosii_data_master_writedata;                                      // NIOSII:d_writedata -> mm_interconnect_0:NIOSII_data_master_writedata
 	wire  [31:0] niosii_instruction_master_readdata;                                // mm_interconnect_0:NIOSII_instruction_master_readdata -> NIOSII:i_readdata
 	wire         niosii_instruction_master_waitrequest;                             // mm_interconnect_0:NIOSII_instruction_master_waitrequest -> NIOSII:i_waitrequest
-	wire  [14:0] niosii_instruction_master_address;                                 // NIOSII:i_address -> mm_interconnect_0:NIOSII_instruction_master_address
+	wire  [12:0] niosii_instruction_master_address;                                 // NIOSII:i_address -> mm_interconnect_0:NIOSII_instruction_master_address
 	wire         niosii_instruction_master_read;                                    // NIOSII:i_read -> mm_interconnect_0:NIOSII_instruction_master_read
 	wire         mm_interconnect_0_audio_avalon_audio_slave_chipselect;             // mm_interconnect_0:AUDIO_avalon_audio_slave_chipselect -> AUDIO:chipselect
 	wire  [31:0] mm_interconnect_0_audio_avalon_audio_slave_readdata;               // AUDIO:readdata -> mm_interconnect_0:AUDIO_avalon_audio_slave_readdata
@@ -58,7 +58,7 @@ module reloj_soc (
 	wire  [31:0] mm_interconnect_0_niosii_debug_mem_slave_writedata;                // mm_interconnect_0:NIOSII_debug_mem_slave_writedata -> NIOSII:debug_mem_slave_writedata
 	wire         mm_interconnect_0_memory_s1_chipselect;                            // mm_interconnect_0:MEMORY_s1_chipselect -> MEMORY:chipselect
 	wire  [31:0] mm_interconnect_0_memory_s1_readdata;                              // MEMORY:readdata -> mm_interconnect_0:MEMORY_s1_readdata
-	wire  [10:0] mm_interconnect_0_memory_s1_address;                               // mm_interconnect_0:MEMORY_s1_address -> MEMORY:address
+	wire   [9:0] mm_interconnect_0_memory_s1_address;                               // mm_interconnect_0:MEMORY_s1_address -> MEMORY:address
 	wire   [3:0] mm_interconnect_0_memory_s1_byteenable;                            // mm_interconnect_0:MEMORY_s1_byteenable -> MEMORY:byteenable
 	wire         mm_interconnect_0_memory_s1_write;                                 // mm_interconnect_0:MEMORY_s1_write -> MEMORY:write
 	wire  [31:0] mm_interconnect_0_memory_s1_writedata;                             // mm_interconnect_0:MEMORY_s1_writedata -> MEMORY:writedata

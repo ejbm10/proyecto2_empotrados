@@ -4,7 +4,7 @@
  * Machine generated for CPU 'NIOSII' in SOPC Builder design 'reloj_soc'
  * SOPC Builder design path: ../../reloj_soc.sopcinfo
  *
- * Generated: Sun Jun 08 23:53:47 CST 2025
+ * Generated: Mon Jun 09 01:02:38 CST 2025
  */
 
 /*
@@ -61,7 +61,7 @@
  */
 
 #define ALT_MODULE_CLASS_AUDIO altera_up_avalon_audio
-#define AUDIO_BASE 0x4060
+#define AUDIO_BASE 0x4850
 #define AUDIO_IRQ 1
 #define AUDIO_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define AUDIO_NAME "/dev/AUDIO"
@@ -75,7 +75,7 @@
  */
 
 #define ALT_MODULE_CLASS_AUDIO_CONFIG altera_up_avalon_audio_and_video_config
-#define AUDIO_CONFIG_BASE 0x4070
+#define AUDIO_CONFIG_BASE 0x4860
 #define AUDIO_CONFIG_IRQ -1
 #define AUDIO_CONFIG_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define AUDIO_CONFIG_NAME "/dev/AUDIO_CONFIG"
@@ -90,7 +90,7 @@
 
 #define ALT_CPU_ARCHITECTURE "altera_nios2_gen2"
 #define ALT_CPU_BIG_ENDIAN 0
-#define ALT_CPU_BREAK_ADDR 0x00002020
+#define ALT_CPU_BREAK_ADDR 0x00004020
 #define ALT_CPU_CPU_ARCH_NIOS2_R1
 #define ALT_CPU_CPU_FREQ 50000000u
 #define ALT_CPU_CPU_ID_SIZE 1
@@ -127,7 +127,7 @@
  */
 
 #define NIOS2_BIG_ENDIAN 0
-#define NIOS2_BREAK_ADDR 0x00002020
+#define NIOS2_BREAK_ADDR 0x00004020
 #define NIOS2_CPU_ARCH_NIOS2_R1
 #define NIOS2_CPU_FREQ 50000000u
 #define NIOS2_CPU_ID_SIZE 1
@@ -193,8 +193,8 @@
 #define MEMORY_READ_DURING_WRITE_MODE "DONT_CARE"
 #define MEMORY_SINGLE_CLOCK_OP 0
 #define MEMORY_SIZE_MULTIPLE 1
-#define MEMORY_SIZE_VALUE 8192
-#define MEMORY_SPAN 8192
+#define MEMORY_SIZE_VALUE 16384
+#define MEMORY_SPAN 16384
 #define MEMORY_TYPE "altera_avalon_onchip_memory2"
 #define MEMORY_WRITABLE 1
 
@@ -205,7 +205,7 @@
  */
 
 #define ALT_MODULE_CLASS_REG_BUTTONS altera_avalon_pio
-#define REG_BUTTONS_BASE 0x4010
+#define REG_BUTTONS_BASE 0x4810
 #define REG_BUTTONS_BIT_CLEARING_EDGE_REGISTER 1
 #define REG_BUTTONS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define REG_BUTTONS_CAPTURE 1
@@ -232,7 +232,7 @@
  */
 
 #define ALT_MODULE_CLASS_REG_SEGMENTS altera_avalon_pio
-#define REG_SEGMENTS_BASE 0x4000
+#define REG_SEGMENTS_BASE 0x4800
 #define REG_SEGMENTS_BIT_CLEARING_EDGE_REGISTER 0
 #define REG_SEGMENTS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define REG_SEGMENTS_CAPTURE 0
@@ -269,19 +269,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/UART"
-#define ALT_STDERR_BASE 0x4080
+#define ALT_STDERR_BASE 0x4840
 #define ALT_STDERR_DEV UART
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/UART"
-#define ALT_STDIN_BASE 0x4080
+#define ALT_STDIN_BASE 0x4840
 #define ALT_STDIN_DEV UART
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/UART"
-#define ALT_STDOUT_BASE 0x4080
+#define ALT_STDOUT_BASE 0x4840
 #define ALT_STDOUT_DEV UART
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -296,7 +296,7 @@
 
 #define ALT_MODULE_CLASS_TIMER altera_avalon_timer
 #define TIMER_ALWAYS_RUN 0
-#define TIMER_BASE 0x4020
+#define TIMER_BASE 0x4820
 #define TIMER_COUNTER_SIZE 32
 #define TIMER_FIXED_PERIOD 1
 #define TIMER_FREQ 50000000
@@ -321,7 +321,7 @@
  */
 
 #define ALT_MODULE_CLASS_UART altera_avalon_jtag_uart
-#define UART_BASE 0x4080
+#define UART_BASE 0x4840
 #define UART_IRQ 0
 #define UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define UART_NAME "/dev/UART"
