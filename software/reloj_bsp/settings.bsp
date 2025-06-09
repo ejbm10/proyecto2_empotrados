@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jun 9, 2025 1:02:37 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1749452557376</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jun 9, 2025 2:01:30 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1749456090522</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\eboli\Documents\Github\proyecto2_empotrados\software\reloj_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\reloj_soc.sopcinfo</SopcDesignFile>
@@ -900,44 +900,56 @@
         </Setting>
         <MemoryMap>
                 <slaveDescriptor>MEMORY</slaveDescriptor>
-                <addressRange>0x00000000 - 0x00003FFF</addressRange>
-                <addressSpan>16384</addressSpan>
+                <addressRange>0x00000000 - 0x00001FFF</addressRange>
+                <addressSpan>8192</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>REG_SEGMENTS</slaveDescriptor>
-                <addressRange>0x00004800 - 0x0000480F</addressRange>
+                <addressRange>0x00002800 - 0x0000280F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>REG_BUTTONS</slaveDescriptor>
-                <addressRange>0x00004810 - 0x0000481F</addressRange>
+                <addressRange>0x00002810 - 0x0000281F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>TIMER</slaveDescriptor>
-                <addressRange>0x00004820 - 0x0000483F</addressRange>
+                <addressRange>0x00002820 - 0x0000283F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>UART</slaveDescriptor>
-                <addressRange>0x00004840 - 0x00004847</addressRange>
+                <addressRange>0x00002840 - 0x00002847</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>AUDIO</slaveDescriptor>
-                <addressRange>0x00004850 - 0x0000485F</addressRange>
+                <addressRange>0x00002850 - 0x0000285F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>AUDIO_CONFIG</slaveDescriptor>
-                <addressRange>0x00004860 - 0x0000486F</addressRange>
+                <addressRange>0x00002860 - 0x0000286F</addressRange>
                 <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>video_character_buffer_with_dma_0_avalon_char_control_slave</slaveDescriptor>
+                <addressRange>0x01000100 - 0x01000107</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>video_character_buffer_with_dma_0_avalon_char_buffer_slave</slaveDescriptor>
+                <addressRange>0x01020000 - 0x01021FFF</addressRange>
+                <addressSpan>8192</addressSpan>
                 <attributes/>
         </MemoryMap>
         <LinkerSection>

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'NIOSII' in SOPC Builder design 'reloj_soc'
  * SOPC Builder design path: ../../reloj_soc.sopcinfo
  *
- * Generated: Mon Jun 09 01:02:38 CST 2025
+ * Generated: Mon Jun 09 01:41:00 CST 2025
  */
 
 /*
@@ -61,7 +61,7 @@
  */
 
 #define ALT_MODULE_CLASS_AUDIO altera_up_avalon_audio
-#define AUDIO_BASE 0x4850
+#define AUDIO_BASE 0x2850
 #define AUDIO_IRQ 1
 #define AUDIO_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define AUDIO_NAME "/dev/AUDIO"
@@ -75,7 +75,7 @@
  */
 
 #define ALT_MODULE_CLASS_AUDIO_CONFIG altera_up_avalon_audio_and_video_config
-#define AUDIO_CONFIG_BASE 0x4860
+#define AUDIO_CONFIG_BASE 0x2860
 #define AUDIO_CONFIG_IRQ -1
 #define AUDIO_CONFIG_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define AUDIO_CONFIG_NAME "/dev/AUDIO_CONFIG"
@@ -90,13 +90,13 @@
 
 #define ALT_CPU_ARCHITECTURE "altera_nios2_gen2"
 #define ALT_CPU_BIG_ENDIAN 0
-#define ALT_CPU_BREAK_ADDR 0x00004020
+#define ALT_CPU_BREAK_ADDR 0x00002020
 #define ALT_CPU_CPU_ARCH_NIOS2_R1
 #define ALT_CPU_CPU_FREQ 50000000u
 #define ALT_CPU_CPU_ID_SIZE 1
 #define ALT_CPU_CPU_ID_VALUE 0x00000000
 #define ALT_CPU_CPU_IMPLEMENTATION "tiny"
-#define ALT_CPU_DATA_ADDR_WIDTH 0xf
+#define ALT_CPU_DATA_ADDR_WIDTH 0x19
 #define ALT_CPU_DCACHE_LINE_SIZE 0
 #define ALT_CPU_DCACHE_LINE_SIZE_LOG2 0
 #define ALT_CPU_DCACHE_SIZE 0
@@ -115,7 +115,7 @@
 #define ALT_CPU_ICACHE_LINE_SIZE 0
 #define ALT_CPU_ICACHE_LINE_SIZE_LOG2 0
 #define ALT_CPU_ICACHE_SIZE 0
-#define ALT_CPU_INST_ADDR_WIDTH 0xf
+#define ALT_CPU_INST_ADDR_WIDTH 0xe
 #define ALT_CPU_NAME "NIOSII"
 #define ALT_CPU_OCI_VERSION 1
 #define ALT_CPU_RESET_ADDR 0x00000000
@@ -127,13 +127,13 @@
  */
 
 #define NIOS2_BIG_ENDIAN 0
-#define NIOS2_BREAK_ADDR 0x00004020
+#define NIOS2_BREAK_ADDR 0x00002020
 #define NIOS2_CPU_ARCH_NIOS2_R1
 #define NIOS2_CPU_FREQ 50000000u
 #define NIOS2_CPU_ID_SIZE 1
 #define NIOS2_CPU_ID_VALUE 0x00000000
 #define NIOS2_CPU_IMPLEMENTATION "tiny"
-#define NIOS2_DATA_ADDR_WIDTH 0xf
+#define NIOS2_DATA_ADDR_WIDTH 0x19
 #define NIOS2_DCACHE_LINE_SIZE 0
 #define NIOS2_DCACHE_LINE_SIZE_LOG2 0
 #define NIOS2_DCACHE_SIZE 0
@@ -151,7 +151,7 @@
 #define NIOS2_ICACHE_LINE_SIZE 0
 #define NIOS2_ICACHE_LINE_SIZE_LOG2 0
 #define NIOS2_ICACHE_SIZE 0
-#define NIOS2_INST_ADDR_WIDTH 0xf
+#define NIOS2_INST_ADDR_WIDTH 0xe
 #define NIOS2_OCI_VERSION 1
 #define NIOS2_RESET_ADDR 0x00000000
 
@@ -168,6 +168,7 @@
 #define __ALTERA_NIOS2_GEN2
 #define __ALTERA_UP_AVALON_AUDIO
 #define __ALTERA_UP_AVALON_AUDIO_AND_VIDEO_CONFIG
+#define __ALTERA_UP_AVALON_VIDEO_CHARACTER_BUFFER_WITH_DMA
 
 
 /*
@@ -193,8 +194,8 @@
 #define MEMORY_READ_DURING_WRITE_MODE "DONT_CARE"
 #define MEMORY_SINGLE_CLOCK_OP 0
 #define MEMORY_SIZE_MULTIPLE 1
-#define MEMORY_SIZE_VALUE 16384
-#define MEMORY_SPAN 16384
+#define MEMORY_SIZE_VALUE 8192
+#define MEMORY_SPAN 8192
 #define MEMORY_TYPE "altera_avalon_onchip_memory2"
 #define MEMORY_WRITABLE 1
 
@@ -205,7 +206,7 @@
  */
 
 #define ALT_MODULE_CLASS_REG_BUTTONS altera_avalon_pio
-#define REG_BUTTONS_BASE 0x4810
+#define REG_BUTTONS_BASE 0x2810
 #define REG_BUTTONS_BIT_CLEARING_EDGE_REGISTER 1
 #define REG_BUTTONS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define REG_BUTTONS_CAPTURE 1
@@ -232,7 +233,7 @@
  */
 
 #define ALT_MODULE_CLASS_REG_SEGMENTS altera_avalon_pio
-#define REG_SEGMENTS_BASE 0x4800
+#define REG_SEGMENTS_BASE 0x2800
 #define REG_SEGMENTS_BIT_CLEARING_EDGE_REGISTER 0
 #define REG_SEGMENTS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define REG_SEGMENTS_CAPTURE 0
@@ -269,19 +270,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/UART"
-#define ALT_STDERR_BASE 0x4840
+#define ALT_STDERR_BASE 0x2840
 #define ALT_STDERR_DEV UART
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/UART"
-#define ALT_STDIN_BASE 0x4840
+#define ALT_STDIN_BASE 0x2840
 #define ALT_STDIN_DEV UART
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/UART"
-#define ALT_STDOUT_BASE 0x4840
+#define ALT_STDOUT_BASE 0x2840
 #define ALT_STDOUT_DEV UART
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -296,7 +297,7 @@
 
 #define ALT_MODULE_CLASS_TIMER altera_avalon_timer
 #define TIMER_ALWAYS_RUN 0
-#define TIMER_BASE 0x4820
+#define TIMER_BASE 0x2820
 #define TIMER_COUNTER_SIZE 32
 #define TIMER_FIXED_PERIOD 1
 #define TIMER_FREQ 50000000
@@ -321,7 +322,7 @@
  */
 
 #define ALT_MODULE_CLASS_UART altera_avalon_jtag_uart
-#define UART_BASE 0x4840
+#define UART_BASE 0x2840
 #define UART_IRQ 0
 #define UART_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define UART_NAME "/dev/UART"
@@ -342,5 +343,33 @@
 #define ALT_MAX_FD 4
 #define ALT_SYS_CLK none
 #define ALT_TIMESTAMP_CLK none
+
+
+/*
+ * video_character_buffer_with_dma_0_avalon_char_buffer_slave configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_video_character_buffer_with_dma_0_avalon_char_buffer_slave altera_up_avalon_video_character_buffer_with_dma
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_BASE 0x1020000
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_IRQ -1
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_NAME "/dev/video_character_buffer_with_dma_0_avalon_char_buffer_slave"
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_SPAN 8192
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_BUFFER_SLAVE_TYPE "altera_up_avalon_video_character_buffer_with_dma"
+
+
+/*
+ * video_character_buffer_with_dma_0_avalon_char_control_slave configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_video_character_buffer_with_dma_0_avalon_char_control_slave altera_up_avalon_video_character_buffer_with_dma
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_BASE 0x1000100
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_IRQ -1
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_NAME "/dev/video_character_buffer_with_dma_0_avalon_char_control_slave"
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_SPAN 8
+#define VIDEO_CHARACTER_BUFFER_WITH_DMA_0_AVALON_CHAR_CONTROL_SLAVE_TYPE "altera_up_avalon_video_character_buffer_with_dma"
 
 #endif /* __SYSTEM_H_ */

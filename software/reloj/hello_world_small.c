@@ -3,10 +3,12 @@
 #include "sys/alt_irq.h"
 #include "priv/alt_legacy_irq.h"
 #include "altera_avalon_pio_regs.h"
-#include "math.h"  // para sin()
+#include "io.h"
 
-#define SAMPLE_RATE 48000
-#define PI 3.14159265
+#define CHAR_BUFFER_BASE  0x01020000
+#define CHAR_CONTROL_BASE 0x01000100
+#define CLEAR_COMMAND     0x01
+#define ENABLE_COMMAND    0x02
 
 int minutos = 0;
 int segundos = 0;
@@ -38,6 +40,46 @@ volatile unsigned int* config_status = (unsigned int *) (AUDIO_CONFIG_BASE + 0x0
 volatile unsigned int* config_address = (unsigned int *) (AUDIO_CONFIG_BASE + 0x08);
 volatile unsigned int* config_data = (unsigned int *) (AUDIO_CONFIG_BASE + 0x0C);
 
+void vga_clear()
+{
+    IOWR_32DIRECT(CHAR_CONTROL_BASE, 0, CLEAR_COMMAND);
+}
+
+void vga_enable()
+{
+    IOWR_32DIRECT(CHAR_CONTROL_BASE, 0, ENABLE_COMMAND);
+}
+
+void vga_write_char(int x, int y, char c)
+{
+    IOWR_8DIRECT(CHAR_BUFFER_BASE, (y * 80 + x), c);
+}
+
+void message_to_vga(const char* msg) {
+	// Clear
+	vga_clear();
+	delay();
+	vga_enable();
+	delay();
+
+	// Escribir la oración en pantalla
+	for (int i = 0; i < strlen(msg); i++)
+	{
+		vga_clear();
+		delay();
+		vga_enable();
+		delay();
+		vga_write_char(5 + i, 1, msg[i]);  // fila Y=10
+	}
+}
+
+
+void delay()
+{
+    volatile int i;
+    for (i = 0; i < 1000000; i++);
+}
+
 void wait() {
 	while ((*config_status & 0x102) == 0);
 }
@@ -66,22 +108,6 @@ void init_wm8731() {
 	config_wm8731(0x07, 0x009); // A bunch of config
 	config_wm8731(0x08, 0x000); // Sampling rate 48kHz normal
 	config_wm8731(0x09, 0x001); // Activate
-}
-
-void generar_seno(float frecuencia, float duracion_segundos) {
-    int total_muestras = duracion_segundos * SAMPLE_RATE;
-
-    for (int n = 0; n < total_muestras; n++) {
-        while ((*audio_control & 0x200) == 0); // Esperar FIFO disponible
-
-        float t = (float)n / SAMPLE_RATE;
-        float valor_seno = sinf(2 * PI * frecuencia * t);
-
-        int muestra = (int)(valor_seno * 32767);  // 16-bit PCM
-
-        *audio_leftdata  = muestra;
-        *audio_rightdata = muestra;
-    }
 }
 
 unsigned int segmentos(int digito) {
@@ -153,9 +179,6 @@ void mostrar_duracion(int minutos, int segundos) {
 
 // Main
 int main() {
-    alt_putstr("Inicio del programa\n");
-
-    // Config botones
     *buttons_edge_ptr = 0;
     *buttons_mask_ptr = 0xF; // Habilitar interrupciones botones 0-3
 
@@ -182,10 +205,9 @@ int main() {
             actualizar_display = 0;
         }
         if ((*audio_control & 0x200) != 0) {
-        	alt_putstr("Listo para recibir audio\n");
-        	generar_seno(1000.0, 1.0);
+
         }
     }
-
-    return 0;
 }
+
+

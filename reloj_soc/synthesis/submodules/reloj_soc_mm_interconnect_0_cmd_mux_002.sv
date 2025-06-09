@@ -43,9 +43,9 @@
 //   ARBITRATION_SHARES:  1
 //   ARBITRATION_SCHEME   "round-robin"
 //   PIPELINE_ARB:        1
-//   PKT_TRANS_LOCK:      53 (arbitration locking enabled)
-//   ST_DATA_W:           89
-//   ST_CHANNEL_W:        8
+//   PKT_TRANS_LOCK:      65 (arbitration locking enabled)
+//   ST_DATA_W:           103
+//   ST_CHANNEL_W:        10
 // ------------------------------------------
 
 module reloj_soc_mm_interconnect_0_cmd_mux_002
@@ -54,8 +54,8 @@ module reloj_soc_mm_interconnect_0_cmd_mux_002
     // Sinks
     // ----------------------
     input                       sink0_valid,
-    input [89-1   : 0]  sink0_data,
-    input [8-1: 0]  sink0_channel,
+    input [103-1   : 0]  sink0_data,
+    input [10-1: 0]  sink0_channel,
     input                       sink0_startofpacket,
     input                       sink0_endofpacket,
     output                      sink0_ready,
@@ -65,8 +65,8 @@ module reloj_soc_mm_interconnect_0_cmd_mux_002
     // Source
     // ----------------------
     output                      src_valid,
-    output [89-1    : 0] src_data,
-    output [8-1 : 0] src_channel,
+    output [103-1    : 0] src_data,
+    output [10-1 : 0] src_channel,
     output                      src_startofpacket,
     output                      src_endofpacket,
     input                       src_ready,
@@ -77,13 +77,13 @@ module reloj_soc_mm_interconnect_0_cmd_mux_002
     input clk,
     input reset
 );
-    localparam PAYLOAD_W        = 89 + 8 + 2;
+    localparam PAYLOAD_W        = 103 + 10 + 2;
     localparam NUM_INPUTS       = 1;
     localparam SHARE_COUNTER_W  = 1;
     localparam PIPELINE_ARB     = 1;
-    localparam ST_DATA_W        = 89;
-    localparam ST_CHANNEL_W     = 8;
-    localparam PKT_TRANS_LOCK   = 53;
+    localparam ST_DATA_W        = 103;
+    localparam ST_CHANNEL_W     = 10;
+    localparam PKT_TRANS_LOCK   = 65;
 
     assign	src_valid			=  sink0_valid;
     assign	src_data			=  sink0_data;
