@@ -23,6 +23,7 @@
 			memory_mem_odt                                  : out   std_logic;                                        -- mem_odt
 			memory_mem_dm                                   : out   std_logic;                                        -- mem_dm
 			memory_oct_rzqin                                : in    std_logic                     := 'X';             -- oct_rzqin
+			reset_n_reset_n                                 : in    std_logic                     := 'X';             -- reset_n
 			segments_export                                 : out   std_logic_vector(27 downto 0);                    -- export
 			video_vga_controller_0_external_interface_CLK   : out   std_logic;                                        -- CLK
 			video_vga_controller_0_external_interface_HS    : out   std_logic;                                        -- HS
@@ -31,8 +32,7 @@
 			video_vga_controller_0_external_interface_SYNC  : out   std_logic;                                        -- SYNC
 			video_vga_controller_0_external_interface_R     : out   std_logic_vector(7 downto 0);                     -- R
 			video_vga_controller_0_external_interface_G     : out   std_logic_vector(7 downto 0);                     -- G
-			video_vga_controller_0_external_interface_B     : out   std_logic_vector(7 downto 0);                     -- B
-			reset_n_reset_n                                 : in    std_logic                     := 'X'              -- reset_n
+			video_vga_controller_0_external_interface_B     : out   std_logic_vector(7 downto 0)                      -- B
 		);
 	end component reloj_soc;
 
@@ -61,6 +61,7 @@
 			memory_mem_odt                                  => CONNECTED_TO_memory_mem_odt,                                  --                                          .mem_odt
 			memory_mem_dm                                   => CONNECTED_TO_memory_mem_dm,                                   --                                          .mem_dm
 			memory_oct_rzqin                                => CONNECTED_TO_memory_oct_rzqin,                                --                                          .oct_rzqin
+			reset_n_reset_n                                 => CONNECTED_TO_reset_n_reset_n,                                 --                                   reset_n.reset_n
 			segments_export                                 => CONNECTED_TO_segments_export,                                 --                                  segments.export
 			video_vga_controller_0_external_interface_CLK   => CONNECTED_TO_video_vga_controller_0_external_interface_CLK,   -- video_vga_controller_0_external_interface.CLK
 			video_vga_controller_0_external_interface_HS    => CONNECTED_TO_video_vga_controller_0_external_interface_HS,    --                                          .HS
@@ -69,7 +70,6 @@
 			video_vga_controller_0_external_interface_SYNC  => CONNECTED_TO_video_vga_controller_0_external_interface_SYNC,  --                                          .SYNC
 			video_vga_controller_0_external_interface_R     => CONNECTED_TO_video_vga_controller_0_external_interface_R,     --                                          .R
 			video_vga_controller_0_external_interface_G     => CONNECTED_TO_video_vga_controller_0_external_interface_G,     --                                          .G
-			video_vga_controller_0_external_interface_B     => CONNECTED_TO_video_vga_controller_0_external_interface_B,     --                                          .B
-			reset_n_reset_n                                 => CONNECTED_TO_reset_n_reset_n                                  --                                   reset_n.reset_n
+			video_vga_controller_0_external_interface_B     => CONNECTED_TO_video_vga_controller_0_external_interface_B      --                                          .B
 		);
 

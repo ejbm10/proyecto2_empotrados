@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jun 12, 2025 5:44:57 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1749771897438</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jun 13, 2025 3:41:52 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1749807712289</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\eboli\Documents\Github\proyecto2_empotrados\software\reloj_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\reloj_soc.sopcinfo</SopcDesignFile>
@@ -938,6 +938,18 @@
                 <slaveDescriptor>AUDIO_CONFIG</slaveDescriptor>
                 <addressRange>0x00002860 - 0x0000286F</addressRange>
                 <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>fifo_0</slaveDescriptor>
+                <addressRange>0x00002870 - 0x00002873</addressRange>
+                <addressSpan>4</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>fifo_1</slaveDescriptor>
+                <addressRange>0x00002874 - 0x00002874</addressRange>
+                <addressSpan>1</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>

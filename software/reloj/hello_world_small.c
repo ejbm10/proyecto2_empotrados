@@ -40,6 +40,9 @@ volatile unsigned int* config_status = (unsigned int *) (AUDIO_CONFIG_BASE + 0x0
 volatile unsigned int* config_address = (unsigned int *) (AUDIO_CONFIG_BASE + 0x08);
 volatile unsigned int* config_data = (unsigned int *) (AUDIO_CONFIG_BASE + 0x0C);
 
+volatile unsigned int* shared_fifo = (unsigned int *) FIFO_0_BASE;
+volatile unsigned int* buttons_fifo = (unsigned int *) FIFO_1_BASE;
+
 void vga_clear()
 {
     IOWR_32DIRECT(CHAR_CONTROL_BASE, 0, CLEAR_COMMAND);
@@ -123,8 +126,12 @@ void button_isr_handler(void* context, alt_u32 id) {
     unsigned int buttons = *buttons_edge_ptr;
     *buttons_edge_ptr = buttons;
 
+    alt_printf("Interrupcion: %x\n", buttons);
+
+    *buttons_fifo = buttons;
+
     if (buttons == 0x8) paused = !paused;
-    else if (buttons == 0x1) {
+    else if (buttons == 0x2 || buttons == 0x1) {
     	minutos = 0;
     	segundos = 0;
     }
@@ -149,11 +156,6 @@ void timer_isr_handler(void* context, alt_u32 id) {
     actualizar_display = 1;
 }
 
-void audio_isr_handler() {
-	*audio_leftdata = 0x7000;
-	*audio_rightdata = 0x7000;
-}
-
 void mostrar_duracion(int minutos, int segundos) {
     int min_dec = minutos / 10;
     int min_uni = minutos % 10;
@@ -171,8 +173,7 @@ void mostrar_duracion(int minutos, int segundos) {
 
 // Main
 int main() {
-
-	alt_putstr("\nInicio del programa\n");
+	alt_putstr("Hello from Nios\n");
 
     *buttons_edge_ptr = 0;
     *buttons_mask_ptr = 0xF; // Habilitar interrupciones botones 0-3
@@ -192,22 +193,20 @@ int main() {
 
 	*config_control = 0x0;	// Reset 0 for normal flow
 
-	init_wm8731();	// Initialize Wolfson WM8731 chip
-
-	*audio_control = 0xE;	// Set clears to 1 and enable write interrupts
-	*audio_control = 0x2;	// Set clears to 0 for normal flow and maintain write interrupts
+	*audio_control = 0xC;	// Set clears to 1
+	*audio_control = 0x0;	// Set clears to 0 for normal	 flow
 
     while (1) {
-        if (actualizar_display) {
-            mostrar_duracion(minutos, segundos);
-            actualizar_display = 0;
-        }
-        if ((*audio_control >> 9) != 0) {
-        	audio_isr_handler();
-        }
-        if ((*audio_fifospace >> 16) != 0x5F5F) {
-        	alt_printf("%x\n", *audio_fifospace);
-        }
+
+    	if (actualizar_display) {
+    		mostrar_duracion(minutos, segundos);
+    		actualizar_display = 0;
+    	}
+
+        unsigned int sample = *shared_fifo;
+        alt_printf("Received: %x\n", sample);
+
+    	usleep(10000);
     }
 }
 

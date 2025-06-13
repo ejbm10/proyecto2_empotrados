@@ -22,6 +22,7 @@
 		.memory_mem_odt                                  (<connected-to-memory_mem_odt>),                                  //                                          .mem_odt
 		.memory_mem_dm                                   (<connected-to-memory_mem_dm>),                                   //                                          .mem_dm
 		.memory_oct_rzqin                                (<connected-to-memory_oct_rzqin>),                                //                                          .oct_rzqin
+		.reset_n_reset_n                                 (<connected-to-reset_n_reset_n>),                                 //                                   reset_n.reset_n
 		.segments_export                                 (<connected-to-segments_export>),                                 //                                  segments.export
 		.video_vga_controller_0_external_interface_CLK   (<connected-to-video_vga_controller_0_external_interface_CLK>),   // video_vga_controller_0_external_interface.CLK
 		.video_vga_controller_0_external_interface_HS    (<connected-to-video_vga_controller_0_external_interface_HS>),    //                                          .HS
@@ -30,7 +31,6 @@
 		.video_vga_controller_0_external_interface_SYNC  (<connected-to-video_vga_controller_0_external_interface_SYNC>),  //                                          .SYNC
 		.video_vga_controller_0_external_interface_R     (<connected-to-video_vga_controller_0_external_interface_R>),     //                                          .R
 		.video_vga_controller_0_external_interface_G     (<connected-to-video_vga_controller_0_external_interface_G>),     //                                          .G
-		.video_vga_controller_0_external_interface_B     (<connected-to-video_vga_controller_0_external_interface_B>),     //                                          .B
-		.reset_n_reset_n                                 (<connected-to-reset_n_reset_n>)                                  //                                   reset_n.reset_n
+		.video_vga_controller_0_external_interface_B     (<connected-to-video_vga_controller_0_external_interface_B>)      //                                          .B
 	);
 

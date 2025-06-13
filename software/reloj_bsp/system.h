@@ -4,7 +4,7 @@
  * Machine generated for CPU 'NIOSII' in SOPC Builder design 'reloj_soc'
  * SOPC Builder design path: ../../reloj_soc.sopcinfo
  *
- * Generated: Thu Jun 12 17:45:00 CST 2025
+ * Generated: Fri Jun 13 03:21:50 CST 2025
  */
 
 /*
@@ -161,6 +161,7 @@
  *
  */
 
+#define __ALTERA_AVALON_FIFO
 #define __ALTERA_AVALON_JTAG_UART
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
 #define __ALTERA_AVALON_PIO
@@ -218,8 +219,8 @@
 #define REG_BUTTONS_HAS_IN 1
 #define REG_BUTTONS_HAS_OUT 0
 #define REG_BUTTONS_HAS_TRI 0
-#define REG_BUTTONS_IRQ -1
-#define REG_BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define REG_BUTTONS_IRQ 3
+#define REG_BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define REG_BUTTONS_IRQ_TYPE "EDGE"
 #define REG_BUTTONS_NAME "/dev/REG_BUTTONS"
 #define REG_BUTTONS_RESET_VALUE 0
@@ -332,6 +333,70 @@
 #define UART_TYPE "altera_avalon_jtag_uart"
 #define UART_WRITE_DEPTH 64
 #define UART_WRITE_THRESHOLD 8
+
+
+/*
+ * fifo_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_fifo_0 altera_avalon_fifo
+#define FIFO_0_AVALONMM_AVALONMM_DATA_WIDTH 32
+#define FIFO_0_AVALONMM_AVALONST_DATA_WIDTH 32
+#define FIFO_0_BASE 0x2870
+#define FIFO_0_BITS_PER_SYMBOL 16
+#define FIFO_0_CHANNEL_WIDTH 8
+#define FIFO_0_ERROR_WIDTH 8
+#define FIFO_0_FIFO_DEPTH 16
+#define FIFO_0_IRQ -1
+#define FIFO_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define FIFO_0_NAME "/dev/fifo_0"
+#define FIFO_0_SINGLE_CLOCK_MODE 1
+#define FIFO_0_SPAN 4
+#define FIFO_0_SYMBOLS_PER_BEAT 2
+#define FIFO_0_TYPE "altera_avalon_fifo"
+#define FIFO_0_USE_AVALONMM_READ_SLAVE 1
+#define FIFO_0_USE_AVALONMM_WRITE_SLAVE 1
+#define FIFO_0_USE_AVALONST_SINK 0
+#define FIFO_0_USE_AVALONST_SOURCE 0
+#define FIFO_0_USE_BACKPRESSURE 1
+#define FIFO_0_USE_IRQ 0
+#define FIFO_0_USE_PACKET 1
+#define FIFO_0_USE_READ_CONTROL 0
+#define FIFO_0_USE_REGISTER 0
+#define FIFO_0_USE_WRITE_CONTROL 0
+
+
+/*
+ * fifo_1 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_fifo_1 altera_avalon_fifo
+#define FIFO_1_AVALONMM_AVALONMM_DATA_WIDTH 8
+#define FIFO_1_AVALONMM_AVALONST_DATA_WIDTH 32
+#define FIFO_1_BASE 0x2874
+#define FIFO_1_BITS_PER_SYMBOL 16
+#define FIFO_1_CHANNEL_WIDTH 8
+#define FIFO_1_ERROR_WIDTH 8
+#define FIFO_1_FIFO_DEPTH 8
+#define FIFO_1_IRQ -1
+#define FIFO_1_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define FIFO_1_NAME "/dev/fifo_1"
+#define FIFO_1_SINGLE_CLOCK_MODE 1
+#define FIFO_1_SPAN 1
+#define FIFO_1_SYMBOLS_PER_BEAT 2
+#define FIFO_1_TYPE "altera_avalon_fifo"
+#define FIFO_1_USE_AVALONMM_READ_SLAVE 1
+#define FIFO_1_USE_AVALONMM_WRITE_SLAVE 1
+#define FIFO_1_USE_AVALONST_SINK 0
+#define FIFO_1_USE_AVALONST_SOURCE 0
+#define FIFO_1_USE_BACKPRESSURE 1
+#define FIFO_1_USE_IRQ 0
+#define FIFO_1_USE_PACKET 1
+#define FIFO_1_USE_READ_CONTROL 0
+#define FIFO_1_USE_REGISTER 0
+#define FIFO_1_USE_WRITE_CONTROL 0
 
 
 /*

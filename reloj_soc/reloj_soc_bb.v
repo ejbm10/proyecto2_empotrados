@@ -23,6 +23,7 @@ module reloj_soc (
 	memory_mem_odt,
 	memory_mem_dm,
 	memory_oct_rzqin,
+	reset_n_reset_n,
 	segments_export,
 	video_vga_controller_0_external_interface_CLK,
 	video_vga_controller_0_external_interface_HS,
@@ -31,8 +32,7 @@ module reloj_soc (
 	video_vga_controller_0_external_interface_SYNC,
 	video_vga_controller_0_external_interface_R,
 	video_vga_controller_0_external_interface_G,
-	video_vga_controller_0_external_interface_B,
-	reset_n_reset_n);	
+	video_vga_controller_0_external_interface_B);	
 
 	input		audio_BCLK;
 	output		audio_DACDAT;
@@ -57,6 +57,7 @@ module reloj_soc (
 	output		memory_mem_odt;
 	output		memory_mem_dm;
 	input		memory_oct_rzqin;
+	input		reset_n_reset_n;
 	output	[27:0]	segments_export;
 	output		video_vga_controller_0_external_interface_CLK;
 	output		video_vga_controller_0_external_interface_HS;
@@ -66,5 +67,4 @@ module reloj_soc (
 	output	[7:0]	video_vga_controller_0_external_interface_R;
 	output	[7:0]	video_vga_controller_0_external_interface_G;
 	output	[7:0]	video_vga_controller_0_external_interface_B;
-	input		reset_n_reset_n;
 endmodule
