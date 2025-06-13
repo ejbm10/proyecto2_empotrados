@@ -80,34 +80,25 @@ void delay()
     for (i = 0; i < 1000000; i++);
 }
 
-void wait() {
-	while ((*config_status & 0x102) == 0);
-}
-
 void config_wm8731(alt_u8 addr, alt_u16 data) {
-	wait();
-
 	*config_address = addr;
 	*config_data = data;
 
-	*config_control = 0x340002;
+	while ((*config_status & 0x2) == 0);
 }
 
 void init_wm8731() {
-	config_wm8731(0x0F, 0x000); // Reset CODEC
-
-	wait();
-
-	config_wm8731(0x00, 0x097); // Left Line In default
-	config_wm8731(0x01, 0x097); // Right Line In default
-	config_wm8731(0x02, 0x07F);	// Left output full volume
-	config_wm8731(0x03, 0x07F);	// Right output full volume
-	config_wm8731(0x04, 0x012);	// Analog Audio Config: Using DAC, Line In
-	config_wm8731(0x05, 0x000); // Digital Audio Config: Output unmuted, no filter
-	config_wm8731(0x06, 0x047); // Power off inputs and clock output (not needed)
-	config_wm8731(0x07, 0x009); // A bunch of config
-	config_wm8731(0x08, 0x000); // Sampling rate 48kHz normal
-	config_wm8731(0x09, 0x001); // Activate
+	config_wm8731(0xF, 0x0); // Reset CODEC
+	config_wm8731(0x0, 0x37); // Left Line In default
+	config_wm8731(0x1, 0x37); // Right Line In default
+	config_wm8731(0x2, 0x7F);	// Left output full volume
+	config_wm8731(0x3, 0x7F);	// Right output full volume
+	config_wm8731(0x4, 0x02);	// Analog Audio Config: Using DAC, Line In
+	config_wm8731(0x5, 0xE); // Digital Audio Config: Output unmuted, no filter
+	config_wm8731(0x6, 0x7); // Power off inputs and clock output (not needed)
+	config_wm8731(0x7, 0x89); // A bunch of config
+	config_wm8731(0x8, 0x0); // Sampling rate 48kHz normal
+	config_wm8731(0x9, 0x1); // Activate
 }
 
 unsigned int segmentos(int digito) {
@@ -133,10 +124,7 @@ void button_isr_handler(void* context, alt_u32 id) {
     *buttons_edge_ptr = buttons;
 
     if (buttons == 0x8) paused = !paused;
-    else if (buttons == 0x2) {
-    	minutos = 0;
-    	segundos = 0;
-    } else if (buttons == 0x1) {
+    else if (buttons == 0x1) {
     	minutos = 0;
     	segundos = 0;
     }
@@ -161,6 +149,10 @@ void timer_isr_handler(void* context, alt_u32 id) {
     actualizar_display = 1;
 }
 
+void audio_isr_handler() {
+	*audio_leftdata = 0x7000;
+	*audio_rightdata = 0x7000;
+}
 
 void mostrar_duracion(int minutos, int segundos) {
     int min_dec = minutos / 10;
@@ -179,6 +171,9 @@ void mostrar_duracion(int minutos, int segundos) {
 
 // Main
 int main() {
+
+	alt_putstr("\nInicio del programa\n");
+
     *buttons_edge_ptr = 0;
     *buttons_mask_ptr = 0xF; // Habilitar interrupciones botones 0-3
 
@@ -191,21 +186,27 @@ int main() {
 
     alt_irq_register(TIMER_IRQ, NULL, timer_isr_handler);
 
-	*config_control = 0x340003;
-	*config_control = 0x340002;
+	*config_control = 0x1;	// Reset 1 for auto-initializing core
 
-	init_wm8731();
+	while ((*config_status >> 8 & 0x1) == 0);	// Wait auto-initializing
 
-	*audio_control = 0xE;	// Set clears to 1
-	*audio_control = 0x2;	// Set clears to 0 for normal flow
+	*config_control = 0x0;	// Reset 0 for normal flow
+
+	init_wm8731();	// Initialize Wolfson WM8731 chip
+
+	*audio_control = 0xE;	// Set clears to 1 and enable write interrupts
+	*audio_control = 0x2;	// Set clears to 0 for normal flow and maintain write interrupts
 
     while (1) {
         if (actualizar_display) {
             mostrar_duracion(minutos, segundos);
             actualizar_display = 0;
         }
-        if ((*audio_control & 0x200) != 0) {
-
+        if ((*audio_control >> 9) != 0) {
+        	audio_isr_handler();
+        }
+        if ((*audio_fifospace >> 16) != 0x5F5F) {
+        	alt_printf("%x\n", *audio_fifospace);
         }
     }
 }

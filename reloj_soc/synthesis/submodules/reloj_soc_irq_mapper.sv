@@ -20,9 +20,9 @@
 // Altera IRQ Mapper
 //
 // Parameters
-//   NUM_RCVRS        : 4
+//   NUM_RCVRS        : 1
 //   SENDER_IRW_WIDTH : 32
-//   IRQ_MAP          : 0:1,1:2,2:0,3:3
+//   IRQ_MAP          : 0:0
 //
 // -------------------------------------------------------
 
@@ -40,9 +40,6 @@ module reloj_soc_irq_mapper
     // IRQ Receivers
     // -------------------
     input                receiver0_irq,
-    input                receiver1_irq,
-    input                receiver2_irq,
-    input                receiver3_irq,
 
     // -------------------
     // Command Source (Output)
@@ -54,10 +51,7 @@ module reloj_soc_irq_mapper
     always @* begin
 	sender_irq = 0;
 
-        sender_irq[1] = receiver0_irq;
-        sender_irq[2] = receiver1_irq;
-        sender_irq[0] = receiver2_irq;
-        sender_irq[3] = receiver3_irq;
+        sender_irq[0] = receiver0_irq;
     end
 
 endmodule

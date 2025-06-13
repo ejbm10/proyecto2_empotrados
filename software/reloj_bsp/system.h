@@ -4,7 +4,7 @@
  * Machine generated for CPU 'NIOSII' in SOPC Builder design 'reloj_soc'
  * SOPC Builder design path: ../../reloj_soc.sopcinfo
  *
- * Generated: Mon Jun 09 01:41:00 CST 2025
+ * Generated: Thu Jun 12 17:45:00 CST 2025
  */
 
 /*
@@ -192,7 +192,7 @@
 #define MEMORY_NON_DEFAULT_INIT_FILE_ENABLED 0
 #define MEMORY_RAM_BLOCK_TYPE "AUTO"
 #define MEMORY_READ_DURING_WRITE_MODE "DONT_CARE"
-#define MEMORY_SINGLE_CLOCK_OP 0
+#define MEMORY_SINGLE_CLOCK_OP 1
 #define MEMORY_SIZE_MULTIPLE 1
 #define MEMORY_SIZE_VALUE 8192
 #define MEMORY_SPAN 8192
@@ -218,8 +218,8 @@
 #define REG_BUTTONS_HAS_IN 1
 #define REG_BUTTONS_HAS_OUT 0
 #define REG_BUTTONS_HAS_TRI 0
-#define REG_BUTTONS_IRQ 3
-#define REG_BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define REG_BUTTONS_IRQ -1
+#define REG_BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define REG_BUTTONS_IRQ_TYPE "EDGE"
 #define REG_BUTTONS_NAME "/dev/REG_BUTTONS"
 #define REG_BUTTONS_RESET_VALUE 0

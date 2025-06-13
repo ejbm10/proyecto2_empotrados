@@ -28,7 +28,7 @@
 // ------------------------------------------
 // Generation parameters:
 //   output_name:         reloj_soc_mm_interconnect_0_rsp_demux_004
-//   ST_DATA_W:           103
+//   ST_DATA_W:           122
 //   ST_CHANNEL_W:        10
 //   NUM_OUTPUTS:         1
 //   VALID_WIDTH:         1
@@ -46,7 +46,7 @@ module reloj_soc_mm_interconnect_0_rsp_demux_004
     // Sink
     // -------------------
     input  [1-1      : 0]   sink_valid,
-    input  [103-1    : 0]   sink_data, // ST_DATA_W=103
+    input  [122-1    : 0]   sink_data, // ST_DATA_W=122
     input  [10-1 : 0]   sink_channel, // ST_CHANNEL_W=10
     input                         sink_startofpacket,
     input                         sink_endofpacket,
@@ -56,7 +56,7 @@ module reloj_soc_mm_interconnect_0_rsp_demux_004
     // Sources 
     // -------------------
     output reg                      src0_valid,
-    output reg [103-1    : 0] src0_data, // ST_DATA_W=103
+    output reg [122-1    : 0] src0_data, // ST_DATA_W=122
     output reg [10-1 : 0] src0_channel, // ST_CHANNEL_W=10
     output reg                      src0_startofpacket,
     output reg                      src0_endofpacket,

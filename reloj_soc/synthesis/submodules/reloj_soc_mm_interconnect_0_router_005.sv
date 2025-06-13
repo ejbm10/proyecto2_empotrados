@@ -47,16 +47,16 @@ module reloj_soc_mm_interconnect_0_router_005_default_decode
      parameter DEFAULT_CHANNEL = 0,
                DEFAULT_WR_CHANNEL = -1,
                DEFAULT_RD_CHANNEL = -1,
-               DEFAULT_DESTID = 0 
+               DEFAULT_DESTID = 1 
    )
-  (output [89 - 86 : 0] default_destination_id,
+  (output [97 - 94 : 0] default_destination_id,
    output [10-1 : 0] default_wr_channel,
    output [10-1 : 0] default_rd_channel,
    output [10-1 : 0] default_src_channel
   );
 
   assign default_destination_id = 
-    DEFAULT_DESTID[89 - 86 : 0];
+    DEFAULT_DESTID[97 - 94 : 0];
 
   generate
     if (DEFAULT_CHANNEL == -1) begin : no_default_channel_assignment
@@ -93,7 +93,7 @@ module reloj_soc_mm_interconnect_0_router_005
     // Command Sink (Input)
     // -------------------
     input                       sink_valid,
-    input  [103-1 : 0]    sink_data,
+    input  [122-1 : 0]    sink_data,
     input                       sink_startofpacket,
     input                       sink_endofpacket,
     output                      sink_ready,
@@ -102,7 +102,7 @@ module reloj_soc_mm_interconnect_0_router_005
     // Command Source (Output)
     // -------------------
     output                          src_valid,
-    output reg [103-1    : 0] src_data,
+    output reg [122-1    : 0] src_data,
     output reg [10-1 : 0] src_channel,
     output                          src_startofpacket,
     output                          src_endofpacket,
@@ -114,11 +114,11 @@ module reloj_soc_mm_interconnect_0_router_005
     // -------------------------------------------------------
     localparam PKT_ADDR_H = 60;
     localparam PKT_ADDR_L = 36;
-    localparam PKT_DEST_ID_H = 89;
-    localparam PKT_DEST_ID_L = 86;
-    localparam PKT_PROTECTION_H = 93;
-    localparam PKT_PROTECTION_L = 91;
-    localparam ST_DATA_W = 103;
+    localparam PKT_DEST_ID_H = 97;
+    localparam PKT_DEST_ID_L = 94;
+    localparam PKT_PROTECTION_H = 112;
+    localparam PKT_PROTECTION_L = 110;
+    localparam ST_DATA_W = 122;
     localparam ST_CHANNEL_W = 10;
     localparam DECODER_TYPE = 1;
 
@@ -163,6 +163,11 @@ module reloj_soc_mm_interconnect_0_router_005
 
 
 
+    // -------------------------------------------------------
+    // Write and read transaction signals
+    // -------------------------------------------------------
+    wire read_transaction;
+    assign read_transaction  = sink_data[PKT_TRANS_READ];
 
 
     reloj_soc_mm_interconnect_0_router_005_default_decode the_default_decode(
@@ -184,8 +189,12 @@ module reloj_soc_mm_interconnect_0_router_005
 
 
 
-        if (destid == 0 ) begin
-            src_channel = 10'b1;
+        if (destid == 1 ) begin
+            src_channel = 10'b01;
+        end
+
+        if (destid == 2  && read_transaction) begin
+            src_channel = 10'b10;
         end
 
 
