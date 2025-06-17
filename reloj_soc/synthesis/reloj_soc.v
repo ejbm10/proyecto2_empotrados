@@ -7,6 +7,7 @@ module reloj_soc (
 		input  wire        audio_BCLK,                                      //                                     audio.BCLK
 		output wire        audio_DACDAT,                                    //                                          .DACDAT
 		input  wire        audio_DACLRCK,                                   //                                          .DACLRCK
+		output wire        audio_clock_clk,                                 //                               audio_clock.clk
 		input  wire [3:0]  buttons_export,                                  //                                   buttons.export
 		input  wire        clk_clk,                                         //                                       clk.clk
 		inout  wire        config_SDAT,                                     //                                    config.SDAT
@@ -44,8 +45,7 @@ module reloj_soc (
 	wire         video_character_buffer_with_dma_0_avalon_char_source_ready;                               // video_vga_controller_0:ready -> video_character_buffer_with_dma_0:stream_ready
 	wire         video_character_buffer_with_dma_0_avalon_char_source_startofpacket;                       // video_character_buffer_with_dma_0:stream_startofpacket -> video_vga_controller_0:startofpacket
 	wire         video_character_buffer_with_dma_0_avalon_char_source_endofpacket;                         // video_character_buffer_with_dma_0:stream_endofpacket -> video_vga_controller_0:endofpacket
-	wire         audio_clk_audio_clk_clk;                                                                  // AUDIO_CLK:audio_clk_clk -> [AUDIO:clk, AUDIO_CONFIG:clk, irq_synchronizer:receiver_clk, mm_interconnect_0:AUDIO_CLK_audio_clk_clk, rst_controller:clk]
-	wire         pll_0_outclk0_clk;                                                                        // pll_0:outclk_0 -> [mm_interconnect_0:pll_0_outclk0_clk, rst_controller_002:clk, video_character_buffer_with_dma_0:clk, video_vga_controller_0:clk]
+	wire         pll_0_outclk0_clk;                                                                        // pll_0:outclk_0 -> [mm_interconnect_0:pll_0_outclk0_clk, rst_controller_001:clk, video_character_buffer_with_dma_0:clk, video_vga_controller_0:clk]
 	wire  [31:0] niosii_data_master_readdata;                                                              // mm_interconnect_0:NIOSII_data_master_readdata -> NIOSII:d_readdata
 	wire         niosii_data_master_waitrequest;                                                           // mm_interconnect_0:NIOSII_data_master_waitrequest -> NIOSII:d_waitrequest
 	wire         niosii_data_master_debugaccess;                                                           // NIOSII:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:NIOSII_data_master_debugaccess
@@ -171,22 +171,19 @@ module reloj_soc (
 	wire   [7:0] mm_interconnect_1_fifo_1_out_readdata;                                                    // fifo_1:avalonmm_read_slave_readdata -> mm_interconnect_1:fifo_1_out_readdata
 	wire         mm_interconnect_1_fifo_1_out_waitrequest;                                                 // fifo_1:avalonmm_read_slave_waitrequest -> mm_interconnect_1:fifo_1_out_waitrequest
 	wire         mm_interconnect_1_fifo_1_out_read;                                                        // mm_interconnect_1:fifo_1_out_read -> fifo_1:avalonmm_read_slave_read
+	wire         irq_mapper_receiver0_irq;                                                                 // AUDIO:irq -> irq_mapper:receiver0_irq
 	wire         irq_mapper_receiver1_irq;                                                                 // TIMER:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                                                 // UART:av_irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                                                 // REG_BUTTONS:irq -> irq_mapper:receiver3_irq
 	wire  [31:0] niosii_irq_irq;                                                                           // irq_mapper:sender_irq -> NIOSII:irq
-	wire         irq_mapper_receiver0_irq;                                                                 // irq_synchronizer:sender_irq -> irq_mapper:receiver0_irq
-	wire   [0:0] irq_synchronizer_receiver_irq;                                                            // AUDIO:irq -> irq_synchronizer:receiver_irq
-	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [AUDIO:reset, AUDIO_CONFIG:reset, irq_synchronizer:receiver_reset, mm_interconnect_0:AUDIO_reset_reset_bridge_in_reset_reset]
-	wire         audio_clk_reset_source_reset;                                                             // AUDIO_CLK:reset_source_reset -> rst_controller:reset_in0
-	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [MEMORY:reset, NIOSII:reset_n, REG_BUTTONS:reset_n, REG_SEGMENTS:reset_n, TIMER:reset_n, UART:rst_n, fifo_0:reset_n, fifo_1:reset_n, irq_mapper:reset, irq_synchronizer:sender_reset, mm_interconnect_0:NIOSII_reset_reset_bridge_in_reset_reset, mm_interconnect_1:fifo_0_reset_in_reset_bridge_in_reset_reset, rst_translator:in_reset]
-	wire         rst_controller_001_reset_out_reset_req;                                                   // rst_controller_001:reset_req -> [MEMORY:reset_req, NIOSII:reset_req, rst_translator:reset_req_in]
-	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> [mm_interconnect_0:video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset, video_character_buffer_with_dma_0:reset, video_vga_controller_0:reset]
-	wire         rst_controller_003_reset_out_reset;                                                       // rst_controller_003:reset_out -> mm_interconnect_1:HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset
-	wire         hps_h2f_reset_reset;                                                                      // HPS:h2f_rst_n -> rst_controller_003:reset_in0
+	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [AUDIO:reset, AUDIO_CONFIG:reset, MEMORY:reset, NIOSII:reset_n, REG_BUTTONS:reset_n, REG_SEGMENTS:reset_n, TIMER:reset_n, UART:rst_n, fifo_0:reset_n, fifo_1:reset_n, irq_mapper:reset, mm_interconnect_0:NIOSII_reset_reset_bridge_in_reset_reset, mm_interconnect_1:fifo_0_reset_in_reset_bridge_in_reset_reset, rst_translator:in_reset]
+	wire         rst_controller_reset_out_reset_req;                                                       // rst_controller:reset_req -> [MEMORY:reset_req, NIOSII:reset_req, rst_translator:reset_req_in]
+	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [mm_interconnect_0:video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset, video_character_buffer_with_dma_0:reset, video_vga_controller_0:reset]
+	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> mm_interconnect_1:HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset
+	wire         hps_h2f_reset_reset;                                                                      // HPS:h2f_rst_n -> rst_controller_002:reset_in0
 
 	reloj_soc_AUDIO audio (
-		.clk         (audio_clk_audio_clk_clk),                               //                clk.clk
+		.clk         (clk_clk),                                               //                clk.clk
 		.reset       (rst_controller_reset_out_reset),                        //              reset.reset
 		.address     (mm_interconnect_0_audio_avalon_audio_slave_address),    // avalon_audio_slave.address
 		.chipselect  (mm_interconnect_0_audio_avalon_audio_slave_chipselect), //                   .chipselect
@@ -194,21 +191,21 @@ module reloj_soc (
 		.write       (mm_interconnect_0_audio_avalon_audio_slave_write),      //                   .write
 		.writedata   (mm_interconnect_0_audio_avalon_audio_slave_writedata),  //                   .writedata
 		.readdata    (mm_interconnect_0_audio_avalon_audio_slave_readdata),   //                   .readdata
-		.irq         (irq_synchronizer_receiver_irq),                         //          interrupt.irq
+		.irq         (irq_mapper_receiver0_irq),                              //          interrupt.irq
 		.AUD_BCLK    (audio_BCLK),                                            // external_interface.export
 		.AUD_DACDAT  (audio_DACDAT),                                          //                   .export
 		.AUD_DACLRCK (audio_DACLRCK)                                          //                   .export
 	);
 
 	reloj_soc_AUDIO_CLK audio_clk (
-		.ref_clk_clk        (clk_clk),                      //      ref_clk.clk
-		.ref_reset_reset    (~reset_n_reset_n),             //    ref_reset.reset
-		.audio_clk_clk      (audio_clk_audio_clk_clk),      //    audio_clk.clk
-		.reset_source_reset (audio_clk_reset_source_reset)  // reset_source.reset
+		.ref_clk_clk        (clk_clk),          //      ref_clk.clk
+		.ref_reset_reset    (~reset_n_reset_n), //    ref_reset.reset
+		.audio_clk_clk      (audio_clock_clk),  //    audio_clk.clk
+		.reset_source_reset ()                  // reset_source.reset
 	);
 
 	reloj_soc_AUDIO_CONFIG audio_config (
-		.clk         (audio_clk_audio_clk_clk),                                           //                    clk.clk
+		.clk         (clk_clk),                                                           //                    clk.clk
 		.reset       (rst_controller_reset_out_reset),                                    //                  reset.reset
 		.address     (mm_interconnect_0_audio_config_avalon_av_config_slave_address),     // avalon_av_config_slave.address
 		.byteenable  (mm_interconnect_0_audio_config_avalon_av_config_slave_byteenable),  //                       .byteenable
@@ -290,15 +287,15 @@ module reloj_soc (
 		.readdata   (mm_interconnect_0_memory_s1_readdata),   //       .readdata
 		.writedata  (mm_interconnect_0_memory_s1_writedata),  //       .writedata
 		.byteenable (mm_interconnect_0_memory_s1_byteenable), //       .byteenable
-		.reset      (rst_controller_001_reset_out_reset),     // reset1.reset
-		.reset_req  (rst_controller_001_reset_out_reset_req), //       .reset_req
+		.reset      (rst_controller_reset_out_reset),         // reset1.reset
+		.reset_req  (rst_controller_reset_out_reset_req),     //       .reset_req
 		.freeze     (1'b0)                                    // (terminated)
 	);
 
 	reloj_soc_NIOSII niosii (
 		.clk                                 (clk_clk),                                              //                       clk.clk
-		.reset_n                             (~rst_controller_001_reset_out_reset),                  //                     reset.reset_n
-		.reset_req                           (rst_controller_001_reset_out_reset_req),               //                          .reset_req
+		.reset_n                             (~rst_controller_reset_out_reset),                      //                     reset.reset_n
+		.reset_req                           (rst_controller_reset_out_reset_req),                   //                          .reset_req
 		.d_address                           (niosii_data_master_address),                           //               data_master.address
 		.d_byteenable                        (niosii_data_master_byteenable),                        //                          .byteenable
 		.d_read                              (niosii_data_master_read),                              //                          .read
@@ -326,7 +323,7 @@ module reloj_soc (
 
 	reloj_soc_REG_BUTTONS reg_buttons (
 		.clk        (clk_clk),                                     //                 clk.clk
-		.reset_n    (~rst_controller_001_reset_out_reset),         //               reset.reset_n
+		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
 		.address    (mm_interconnect_0_reg_buttons_s1_address),    //                  s1.address
 		.write_n    (~mm_interconnect_0_reg_buttons_s1_write),     //                    .write_n
 		.writedata  (mm_interconnect_0_reg_buttons_s1_writedata),  //                    .writedata
@@ -338,7 +335,7 @@ module reloj_soc (
 
 	reloj_soc_REG_SEGMENTS reg_segments (
 		.clk        (clk_clk),                                      //                 clk.clk
-		.reset_n    (~rst_controller_001_reset_out_reset),          //               reset.reset_n
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
 		.address    (mm_interconnect_0_reg_segments_s1_address),    //                  s1.address
 		.write_n    (~mm_interconnect_0_reg_segments_s1_write),     //                    .write_n
 		.writedata  (mm_interconnect_0_reg_segments_s1_writedata),  //                    .writedata
@@ -349,7 +346,7 @@ module reloj_soc (
 
 	reloj_soc_TIMER timer (
 		.clk        (clk_clk),                               //   clk.clk
-		.reset_n    (~rst_controller_001_reset_out_reset),   // reset.reset_n
+		.reset_n    (~rst_controller_reset_out_reset),       // reset.reset_n
 		.address    (mm_interconnect_0_timer_s1_address),    //    s1.address
 		.writedata  (mm_interconnect_0_timer_s1_writedata),  //      .writedata
 		.readdata   (mm_interconnect_0_timer_s1_readdata),   //      .readdata
@@ -360,7 +357,7 @@ module reloj_soc (
 
 	reloj_soc_UART uart (
 		.clk            (clk_clk),                                              //               clk.clk
-		.rst_n          (~rst_controller_001_reset_out_reset),                  //             reset.reset_n
+		.rst_n          (~rst_controller_reset_out_reset),                      //             reset.reset_n
 		.av_chipselect  (mm_interconnect_0_uart_avalon_jtag_slave_chipselect),  // avalon_jtag_slave.chipselect
 		.av_address     (mm_interconnect_0_uart_avalon_jtag_slave_address),     //                  .address
 		.av_read_n      (~mm_interconnect_0_uart_avalon_jtag_slave_read),       //                  .read_n
@@ -373,7 +370,7 @@ module reloj_soc (
 
 	reloj_soc_fifo_0 fifo_0 (
 		.wrclock                          (clk_clk),                                  //   clk_in.clk
-		.reset_n                          (~rst_controller_001_reset_out_reset),      // reset_in.reset_n
+		.reset_n                          (~rst_controller_reset_out_reset),          // reset_in.reset_n
 		.avalonmm_write_slave_writedata   (mm_interconnect_1_fifo_0_in_writedata),    //       in.writedata
 		.avalonmm_write_slave_write       (mm_interconnect_1_fifo_0_in_write),        //         .write
 		.avalonmm_write_slave_waitrequest (mm_interconnect_1_fifo_0_in_waitrequest),  //         .waitrequest
@@ -384,7 +381,7 @@ module reloj_soc (
 
 	reloj_soc_fifo_1 fifo_1 (
 		.wrclock                          (clk_clk),                                  //   clk_in.clk
-		.reset_n                          (~rst_controller_001_reset_out_reset),      // reset_in.reset_n
+		.reset_n                          (~rst_controller_reset_out_reset),          // reset_in.reset_n
 		.avalonmm_write_slave_writedata   (mm_interconnect_0_fifo_1_in_writedata),    //       in.writedata
 		.avalonmm_write_slave_write       (mm_interconnect_0_fifo_1_in_write),        //         .write
 		.avalonmm_write_slave_waitrequest (mm_interconnect_0_fifo_1_in_waitrequest),  //         .waitrequest
@@ -402,7 +399,7 @@ module reloj_soc (
 
 	reloj_soc_video_character_buffer_with_dma_0 video_character_buffer_with_dma_0 (
 		.clk                  (pll_0_outclk0_clk),                                                                        //                       clk.clk
-		.reset                (rst_controller_002_reset_out_reset),                                                       //                     reset.reset
+		.reset                (rst_controller_001_reset_out_reset),                                                       //                     reset.reset
 		.ctrl_address         (mm_interconnect_0_video_character_buffer_with_dma_0_avalon_char_control_slave_address),    // avalon_char_control_slave.address
 		.ctrl_byteenable      (mm_interconnect_0_video_character_buffer_with_dma_0_avalon_char_control_slave_byteenable), //                          .byteenable
 		.ctrl_chipselect      (mm_interconnect_0_video_character_buffer_with_dma_0_avalon_char_control_slave_chipselect), //                          .chipselect
@@ -427,7 +424,7 @@ module reloj_soc (
 
 	reloj_soc_video_vga_controller_0 video_vga_controller_0 (
 		.clk           (pll_0_outclk0_clk),                                                  //                clk.clk
-		.reset         (rst_controller_002_reset_out_reset),                                 //              reset.reset
+		.reset         (rst_controller_001_reset_out_reset),                                 //              reset.reset
 		.data          (video_character_buffer_with_dma_0_avalon_char_source_data),          //    avalon_vga_sink.data
 		.startofpacket (video_character_buffer_with_dma_0_avalon_char_source_startofpacket), //                   .startofpacket
 		.endofpacket   (video_character_buffer_with_dma_0_avalon_char_source_endofpacket),   //                   .endofpacket
@@ -444,12 +441,10 @@ module reloj_soc (
 	);
 
 	reloj_soc_mm_interconnect_0 mm_interconnect_0 (
-		.AUDIO_CLK_audio_clk_clk                                                (audio_clk_audio_clk_clk),                                                                  //                                           AUDIO_CLK_audio_clk.clk
 		.CLK_clk_clk                                                            (clk_clk),                                                                                  //                                                       CLK_clk.clk
 		.pll_0_outclk0_clk                                                      (pll_0_outclk0_clk),                                                                        //                                                 pll_0_outclk0.clk
-		.AUDIO_reset_reset_bridge_in_reset_reset                                (rst_controller_reset_out_reset),                                                           //                             AUDIO_reset_reset_bridge_in_reset.reset
-		.NIOSII_reset_reset_bridge_in_reset_reset                               (rst_controller_001_reset_out_reset),                                                       //                            NIOSII_reset_reset_bridge_in_reset.reset
-		.video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset    (rst_controller_002_reset_out_reset),                                                       // video_character_buffer_with_dma_0_reset_reset_bridge_in_reset.reset
+		.NIOSII_reset_reset_bridge_in_reset_reset                               (rst_controller_reset_out_reset),                                                           //                            NIOSII_reset_reset_bridge_in_reset.reset
+		.video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset    (rst_controller_001_reset_out_reset),                                                       // video_character_buffer_with_dma_0_reset_reset_bridge_in_reset.reset
 		.NIOSII_data_master_address                                             (niosii_data_master_address),                                                               //                                            NIOSII_data_master.address
 		.NIOSII_data_master_waitrequest                                         (niosii_data_master_waitrequest),                                                           //                                                              .waitrequest
 		.NIOSII_data_master_byteenable                                          (niosii_data_master_byteenable),                                                            //                                                              .byteenable
@@ -573,8 +568,8 @@ module reloj_soc (
 		.HPS_h2f_lw_axi_master_rvalid                                      (hps_h2f_lw_axi_master_rvalid),             //                                                            .rvalid
 		.HPS_h2f_lw_axi_master_rready                                      (hps_h2f_lw_axi_master_rready),             //                                                            .rready
 		.CLK_clk_clk                                                       (clk_clk),                                  //                                                     CLK_clk.clk
-		.fifo_0_reset_in_reset_bridge_in_reset_reset                       (rst_controller_001_reset_out_reset),       //                       fifo_0_reset_in_reset_bridge_in_reset.reset
-		.HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset (rst_controller_003_reset_out_reset),       // HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
+		.fifo_0_reset_in_reset_bridge_in_reset_reset                       (rst_controller_reset_out_reset),           //                       fifo_0_reset_in_reset_bridge_in_reset.reset
+		.HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset (rst_controller_002_reset_out_reset),       // HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
 		.fifo_0_in_write                                                   (mm_interconnect_1_fifo_0_in_write),        //                                                   fifo_0_in.write
 		.fifo_0_in_writedata                                               (mm_interconnect_1_fifo_0_in_writedata),    //                                                            .writedata
 		.fifo_0_in_waitrequest                                             (mm_interconnect_1_fifo_0_in_waitrequest),  //                                                            .waitrequest
@@ -584,87 +579,13 @@ module reloj_soc (
 	);
 
 	reloj_soc_irq_mapper irq_mapper (
-		.clk           (clk_clk),                            //       clk.clk
-		.reset         (rst_controller_001_reset_out_reset), // clk_reset.reset
-		.receiver0_irq (irq_mapper_receiver0_irq),           // receiver0.irq
-		.receiver1_irq (irq_mapper_receiver1_irq),           // receiver1.irq
-		.receiver2_irq (irq_mapper_receiver2_irq),           // receiver2.irq
-		.receiver3_irq (irq_mapper_receiver3_irq),           // receiver3.irq
-		.sender_irq    (niosii_irq_irq)                      //    sender.irq
-	);
-
-	altera_irq_clock_crosser #(
-		.IRQ_WIDTH (1)
-	) irq_synchronizer (
-		.receiver_clk   (audio_clk_audio_clk_clk),            //       receiver_clk.clk
-		.sender_clk     (clk_clk),                            //         sender_clk.clk
-		.receiver_reset (rst_controller_reset_out_reset),     // receiver_clk_reset.reset
-		.sender_reset   (rst_controller_001_reset_out_reset), //   sender_clk_reset.reset
-		.receiver_irq   (irq_synchronizer_receiver_irq),      //           receiver.irq
-		.sender_irq     (irq_mapper_receiver0_irq)            //             sender.irq
-	);
-
-	altera_reset_controller #(
-		.NUM_RESET_INPUTS          (1),
-		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
-		.SYNC_DEPTH                (2),
-		.RESET_REQUEST_PRESENT     (0),
-		.RESET_REQ_WAIT_TIME       (1),
-		.MIN_RST_ASSERTION_TIME    (3),
-		.RESET_REQ_EARLY_DSRT_TIME (1),
-		.USE_RESET_REQUEST_IN0     (0),
-		.USE_RESET_REQUEST_IN1     (0),
-		.USE_RESET_REQUEST_IN2     (0),
-		.USE_RESET_REQUEST_IN3     (0),
-		.USE_RESET_REQUEST_IN4     (0),
-		.USE_RESET_REQUEST_IN5     (0),
-		.USE_RESET_REQUEST_IN6     (0),
-		.USE_RESET_REQUEST_IN7     (0),
-		.USE_RESET_REQUEST_IN8     (0),
-		.USE_RESET_REQUEST_IN9     (0),
-		.USE_RESET_REQUEST_IN10    (0),
-		.USE_RESET_REQUEST_IN11    (0),
-		.USE_RESET_REQUEST_IN12    (0),
-		.USE_RESET_REQUEST_IN13    (0),
-		.USE_RESET_REQUEST_IN14    (0),
-		.USE_RESET_REQUEST_IN15    (0),
-		.ADAPT_RESET_REQUEST       (0)
-	) rst_controller (
-		.reset_in0      (audio_clk_reset_source_reset),   // reset_in0.reset
-		.clk            (audio_clk_audio_clk_clk),        //       clk.clk
-		.reset_out      (rst_controller_reset_out_reset), // reset_out.reset
-		.reset_req      (),                               // (terminated)
-		.reset_req_in0  (1'b0),                           // (terminated)
-		.reset_in1      (1'b0),                           // (terminated)
-		.reset_req_in1  (1'b0),                           // (terminated)
-		.reset_in2      (1'b0),                           // (terminated)
-		.reset_req_in2  (1'b0),                           // (terminated)
-		.reset_in3      (1'b0),                           // (terminated)
-		.reset_req_in3  (1'b0),                           // (terminated)
-		.reset_in4      (1'b0),                           // (terminated)
-		.reset_req_in4  (1'b0),                           // (terminated)
-		.reset_in5      (1'b0),                           // (terminated)
-		.reset_req_in5  (1'b0),                           // (terminated)
-		.reset_in6      (1'b0),                           // (terminated)
-		.reset_req_in6  (1'b0),                           // (terminated)
-		.reset_in7      (1'b0),                           // (terminated)
-		.reset_req_in7  (1'b0),                           // (terminated)
-		.reset_in8      (1'b0),                           // (terminated)
-		.reset_req_in8  (1'b0),                           // (terminated)
-		.reset_in9      (1'b0),                           // (terminated)
-		.reset_req_in9  (1'b0),                           // (terminated)
-		.reset_in10     (1'b0),                           // (terminated)
-		.reset_req_in10 (1'b0),                           // (terminated)
-		.reset_in11     (1'b0),                           // (terminated)
-		.reset_req_in11 (1'b0),                           // (terminated)
-		.reset_in12     (1'b0),                           // (terminated)
-		.reset_req_in12 (1'b0),                           // (terminated)
-		.reset_in13     (1'b0),                           // (terminated)
-		.reset_req_in13 (1'b0),                           // (terminated)
-		.reset_in14     (1'b0),                           // (terminated)
-		.reset_req_in14 (1'b0),                           // (terminated)
-		.reset_in15     (1'b0),                           // (terminated)
-		.reset_req_in15 (1'b0)                            // (terminated)
+		.clk           (clk_clk),                        //       clk.clk
+		.reset         (rst_controller_reset_out_reset), // clk_reset.reset
+		.receiver0_irq (irq_mapper_receiver0_irq),       // receiver0.irq
+		.receiver1_irq (irq_mapper_receiver1_irq),       // receiver1.irq
+		.receiver2_irq (irq_mapper_receiver2_irq),       // receiver2.irq
+		.receiver3_irq (irq_mapper_receiver3_irq),       // receiver3.irq
+		.sender_irq    (niosii_irq_irq)                  //    sender.irq
 	);
 
 	altera_reset_controller #(
@@ -692,42 +613,42 @@ module reloj_soc (
 		.USE_RESET_REQUEST_IN14    (0),
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
-	) rst_controller_001 (
-		.reset_in0      (~reset_n_reset_n),                       // reset_in0.reset
-		.clk            (clk_clk),                                //       clk.clk
-		.reset_out      (rst_controller_001_reset_out_reset),     // reset_out.reset
-		.reset_req      (rst_controller_001_reset_out_reset_req), //          .reset_req
-		.reset_req_in0  (1'b0),                                   // (terminated)
-		.reset_in1      (1'b0),                                   // (terminated)
-		.reset_req_in1  (1'b0),                                   // (terminated)
-		.reset_in2      (1'b0),                                   // (terminated)
-		.reset_req_in2  (1'b0),                                   // (terminated)
-		.reset_in3      (1'b0),                                   // (terminated)
-		.reset_req_in3  (1'b0),                                   // (terminated)
-		.reset_in4      (1'b0),                                   // (terminated)
-		.reset_req_in4  (1'b0),                                   // (terminated)
-		.reset_in5      (1'b0),                                   // (terminated)
-		.reset_req_in5  (1'b0),                                   // (terminated)
-		.reset_in6      (1'b0),                                   // (terminated)
-		.reset_req_in6  (1'b0),                                   // (terminated)
-		.reset_in7      (1'b0),                                   // (terminated)
-		.reset_req_in7  (1'b0),                                   // (terminated)
-		.reset_in8      (1'b0),                                   // (terminated)
-		.reset_req_in8  (1'b0),                                   // (terminated)
-		.reset_in9      (1'b0),                                   // (terminated)
-		.reset_req_in9  (1'b0),                                   // (terminated)
-		.reset_in10     (1'b0),                                   // (terminated)
-		.reset_req_in10 (1'b0),                                   // (terminated)
-		.reset_in11     (1'b0),                                   // (terminated)
-		.reset_req_in11 (1'b0),                                   // (terminated)
-		.reset_in12     (1'b0),                                   // (terminated)
-		.reset_req_in12 (1'b0),                                   // (terminated)
-		.reset_in13     (1'b0),                                   // (terminated)
-		.reset_req_in13 (1'b0),                                   // (terminated)
-		.reset_in14     (1'b0),                                   // (terminated)
-		.reset_req_in14 (1'b0),                                   // (terminated)
-		.reset_in15     (1'b0),                                   // (terminated)
-		.reset_req_in15 (1'b0)                                    // (terminated)
+	) rst_controller (
+		.reset_in0      (~reset_n_reset_n),                   // reset_in0.reset
+		.clk            (clk_clk),                            //       clk.clk
+		.reset_out      (rst_controller_reset_out_reset),     // reset_out.reset
+		.reset_req      (rst_controller_reset_out_reset_req), //          .reset_req
+		.reset_req_in0  (1'b0),                               // (terminated)
+		.reset_in1      (1'b0),                               // (terminated)
+		.reset_req_in1  (1'b0),                               // (terminated)
+		.reset_in2      (1'b0),                               // (terminated)
+		.reset_req_in2  (1'b0),                               // (terminated)
+		.reset_in3      (1'b0),                               // (terminated)
+		.reset_req_in3  (1'b0),                               // (terminated)
+		.reset_in4      (1'b0),                               // (terminated)
+		.reset_req_in4  (1'b0),                               // (terminated)
+		.reset_in5      (1'b0),                               // (terminated)
+		.reset_req_in5  (1'b0),                               // (terminated)
+		.reset_in6      (1'b0),                               // (terminated)
+		.reset_req_in6  (1'b0),                               // (terminated)
+		.reset_in7      (1'b0),                               // (terminated)
+		.reset_req_in7  (1'b0),                               // (terminated)
+		.reset_in8      (1'b0),                               // (terminated)
+		.reset_req_in8  (1'b0),                               // (terminated)
+		.reset_in9      (1'b0),                               // (terminated)
+		.reset_req_in9  (1'b0),                               // (terminated)
+		.reset_in10     (1'b0),                               // (terminated)
+		.reset_req_in10 (1'b0),                               // (terminated)
+		.reset_in11     (1'b0),                               // (terminated)
+		.reset_req_in11 (1'b0),                               // (terminated)
+		.reset_in12     (1'b0),                               // (terminated)
+		.reset_req_in12 (1'b0),                               // (terminated)
+		.reset_in13     (1'b0),                               // (terminated)
+		.reset_req_in13 (1'b0),                               // (terminated)
+		.reset_in14     (1'b0),                               // (terminated)
+		.reset_req_in14 (1'b0),                               // (terminated)
+		.reset_in15     (1'b0),                               // (terminated)
+		.reset_req_in15 (1'b0)                                // (terminated)
 	);
 
 	altera_reset_controller #(
@@ -755,10 +676,10 @@ module reloj_soc (
 		.USE_RESET_REQUEST_IN14    (0),
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
-	) rst_controller_002 (
+	) rst_controller_001 (
 		.reset_in0      (~reset_n_reset_n),                   // reset_in0.reset
 		.clk            (pll_0_outclk0_clk),                  //       clk.clk
-		.reset_out      (rst_controller_002_reset_out_reset), // reset_out.reset
+		.reset_out      (rst_controller_001_reset_out_reset), // reset_out.reset
 		.reset_req      (),                                   // (terminated)
 		.reset_req_in0  (1'b0),                               // (terminated)
 		.reset_in1      (1'b0),                               // (terminated)
@@ -818,10 +739,10 @@ module reloj_soc (
 		.USE_RESET_REQUEST_IN14    (0),
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
-	) rst_controller_003 (
+	) rst_controller_002 (
 		.reset_in0      (~hps_h2f_reset_reset),               // reset_in0.reset
 		.clk            (clk_clk),                            //       clk.clk
-		.reset_out      (rst_controller_003_reset_out_reset), // reset_out.reset
+		.reset_out      (rst_controller_002_reset_out_reset), // reset_out.reset
 		.reset_req      (),                                   // (terminated)
 		.reset_req_in0  (1'b0),                               // (terminated)
 		.reset_in1      (1'b0),                               // (terminated)

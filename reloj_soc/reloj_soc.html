@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2025.06.13.03:07:45</td>
+    <td class="l">2025.06.17.05:38:37</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -1322,15 +1322,15 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </tr>
      <tr>
       <td class="neighbor" rowspan="4">
-       <a href="#module_AUDIO_CLK">AUDIO_CLK</a>
+       <a href="#module_CLK">CLK</a>
       </td>
-      <td class="from">audio_clk&#160;&#160;</td>
+      <td class="from">clk&#160;&#160;</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
      </tr>
      <tr>
-      <td class="from">reset_source&#160;&#160;</td>
+      <td class="from">clk_reset&#160;&#160;</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;reset</td>
@@ -1366,7 +1366,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">AUTO_CLK_CLOCK_RATE</td>
-        <td class="parametervalue">12288135</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -1399,7 +1399,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <a href="#module_CLK">CLK</a>
       </td>
       <td class="from">clk&#160;&#160;</td>
-      <td class="main" rowspan="13">AUDIO_CLK</td>
+      <td class="main" rowspan="4">AUDIO_CLK</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;ref_clk</td>
@@ -1409,55 +1409,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </tr>
      <tr>
       <td class="to">&#160;&#160;ref_reset</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">audio_clk&#160;&#160;</td>
-      <td class="neighbor" rowspan="4">
-       <a href="#module_AUDIO_CONFIG">AUDIO_CONFIG</a>
-      </td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;clk</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">reset_source&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;reset</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">audio_clk&#160;&#160;</td>
-      <td class="neighbor" rowspan="4">
-       <a href="#module_AUDIO">AUDIO</a>
-      </td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;clk</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="from">reset_source&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td></td>
-      <td></td>
-      <td class="to">&#160;&#160;reset</td>
      </tr>
     </table>
    </div>
@@ -1533,15 +1484,15 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </tr>
      <tr>
       <td class="neighbor" rowspan="4">
-       <a href="#module_AUDIO_CLK">AUDIO_CLK</a>
+       <a href="#module_CLK">CLK</a>
       </td>
-      <td class="from">audio_clk&#160;&#160;</td>
+      <td class="from">clk&#160;&#160;</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;clk</td>
      </tr>
      <tr>
-      <td class="from">reset_source&#160;&#160;</td>
+      <td class="from">clk_reset&#160;&#160;</td>
      </tr>
      <tr>
       <td class="to">&#160;&#160;reset</td>
@@ -1625,7 +1576,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">AUTO_CLK_CLOCK_RATE</td>
-        <td class="parametervalue">12288135</td>
+        <td class="parametervalue">50000000</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -29311,11 +29262,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">AUTO_CLK_CLOCK_DOMAIN</td>
-        <td class="parametervalue">3</td>
+        <td class="parametervalue">1</td>
        </tr>
        <tr>
         <td class="parametername">AUTO_CLK_RESET_DOMAIN</td>
-        <td class="parametervalue">3</td>
+        <td class="parametervalue">1</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -32861,7 +32812,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.02 seconds</td>
-    <td class="r">rendering took 0.57 seconds</td>
+    <td class="r">rendering took 0.44 seconds</td>
    </tr>
   </table>
  </body>

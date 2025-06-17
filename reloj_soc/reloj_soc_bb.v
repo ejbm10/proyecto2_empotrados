@@ -3,6 +3,7 @@ module reloj_soc (
 	audio_BCLK,
 	audio_DACDAT,
 	audio_DACLRCK,
+	audio_clock_clk,
 	buttons_export,
 	clk_clk,
 	config_SDAT,
@@ -37,6 +38,7 @@ module reloj_soc (
 	input		audio_BCLK;
 	output		audio_DACDAT;
 	input		audio_DACLRCK;
+	output		audio_clock_clk;
 	input	[3:0]	buttons_export;
 	input		clk_clk;
 	inout		config_SDAT;

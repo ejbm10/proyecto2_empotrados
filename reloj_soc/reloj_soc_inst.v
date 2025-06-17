@@ -2,6 +2,7 @@
 		.audio_BCLK                                      (<connected-to-audio_BCLK>),                                      //                                     audio.BCLK
 		.audio_DACDAT                                    (<connected-to-audio_DACDAT>),                                    //                                          .DACDAT
 		.audio_DACLRCK                                   (<connected-to-audio_DACLRCK>),                                   //                                          .DACLRCK
+		.audio_clock_clk                                 (<connected-to-audio_clock_clk>),                                 //                               audio_clock.clk
 		.buttons_export                                  (<connected-to-buttons_export>),                                  //                                   buttons.export
 		.clk_clk                                         (<connected-to-clk_clk>),                                         //                                       clk.clk
 		.config_SDAT                                     (<connected-to-config_SDAT>),                                     //                                    config.SDAT

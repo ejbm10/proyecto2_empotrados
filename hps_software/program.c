@@ -13,28 +13,12 @@
 volatile uint32_t *fifo0_ptr;
 volatile uint32_t *fifo1_ptr;
 
-int paused = 0;
-int current = 0;
-int running = 1;  // Asegúrate de definir running
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        printf("Uso: %s <archivo>", argv[1]);
+    }
 
-void next_song() {
-    current = (current + 1) % 3;
-}
-
-void prev_song() {
-    current = (current + 2) % 3;  // Para evitar números negativos
-}
-
-void play_pause() {
-    paused = !paused;
-}
-
-int main() {
-    char* songs[3] = {
-        "Kiss-I Was Made For Lovin You-1979.wav",
-        "Haddaway-What is Love-1993.wav",
-        "Alan Walker-Faded-2016.wav"
-    };
+    const char* song = argv[1];
 
     int fd = open("/dev/mem", O_RDWR | O_SYNC);
     if (fd < 0) {
@@ -61,45 +45,52 @@ int main() {
     }
     fifo1_ptr = (volatile uint32_t *) ((uint8_t*)map_base1 + (FIFO_1_BASE & (MAP_SIZE - 1)));
 
-    while (running) {
-        printf("Escuchando: %s\n", songs[current]);
+    int paused = 0;
+    int current = 0;
+    
+    while (1) {
+        printf("Escuchando: %s\n", song);
 
-        FILE *fp = fopen(songs[current], "rb");
+        FILE *fp = fopen(song, "rb");
         if (!fp) {
-            perror("fopen wav");
+            perror("Nombre incorrecto del archivo");
             munmap(map_base0, MAP_SIZE);
             munmap(map_base1, MAP_SIZE);
             close(fd);
             return -1;
         }
 
-        fseek(fp, 44, SEEK_SET); // Saltar cabecera WAV
+        printf("Archivo abierto correctamente\n"); fflush(stdout);
+
+        int r = fseek(fp, 44, SEEK_SET); // Saltar cabecera WAV
+        
+        printf("Resultado de fseek: %d\n", r); fflush(stdout);
 
         uint16_t sample;
-        int local = current;
+
+        printf("Current: %d\n", current);
 
         while (fread(&sample, sizeof(uint16_t), 1, fp) == 1) {
+            unsigned int cmd = fifo1_ptr[0];
 
-            if ((fifo1_ptr[0] & 0xf) != 0) {
-                if (fifo1_ptr[0] == 0x8) play_pause();
-                else if (fifo1_ptr[0] == 0x2) prev_song();
-                else if (fifo1_ptr[0] == 0x1) next_song();
-            }
-
-            if (current != local) break;
-
-            while (paused) {
-                if (current != local)
-                    break;
+            if (cmd == 0x8 || cmd == 0x4) {
+                paused = !paused;
+            } else if (cmd == 0x2) {
+                current--;
+                if (current < 0) current = 2;
+                break;
+            } else if (cmd == 0x1) {
+                current++;
+                if (current > 2) current = 0;
+                break; 
             }
 
             fifo0_ptr[0] = (uint32_t) sample;
-            printf("Sent: %x\n", sample);
+            printf("Sent: 0x%X\n", sample);
             usleep(10000);
         }
 
         fclose(fp);
-        next_song();
     }
 
     munmap(map_base0, MAP_SIZE);

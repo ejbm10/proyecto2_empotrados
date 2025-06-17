@@ -83,27 +83,6 @@ void delay()
     for (i = 0; i < 1000000; i++);
 }
 
-void config_wm8731(alt_u8 addr, alt_u16 data) {
-	*config_address = addr;
-	*config_data = data;
-
-	while ((*config_status & 0x2) == 0);
-}
-
-void init_wm8731() {
-	config_wm8731(0xF, 0x0); // Reset CODEC
-	config_wm8731(0x0, 0x37); // Left Line In default
-	config_wm8731(0x1, 0x37); // Right Line In default
-	config_wm8731(0x2, 0x7F);	// Left output full volume
-	config_wm8731(0x3, 0x7F);	// Right output full volume
-	config_wm8731(0x4, 0x02);	// Analog Audio Config: Using DAC, Line In
-	config_wm8731(0x5, 0xE); // Digital Audio Config: Output unmuted, no filter
-	config_wm8731(0x6, 0x7); // Power off inputs and clock output (not needed)
-	config_wm8731(0x7, 0x89); // A bunch of config
-	config_wm8731(0x8, 0x0); // Sampling rate 48kHz normal
-	config_wm8731(0x9, 0x1); // Activate
-}
-
 unsigned int segmentos(int digito) {
     switch (digito) {
     case 0: return 0x40;
@@ -125,8 +104,6 @@ unsigned int segmentos(int digito) {
 void button_isr_handler(void* context, alt_u32 id) {
     unsigned int buttons = *buttons_edge_ptr;
     *buttons_edge_ptr = buttons;
-
-    alt_printf("Interrupcion: %x\n", buttons);
 
     *buttons_fifo = buttons;
 
@@ -196,17 +173,26 @@ int main() {
 	*audio_control = 0xC;	// Set clears to 1
 	*audio_control = 0x0;	// Set clears to 0 for normal	 flow
 
+	unsigned int sample;
     while (1) {
+    	sample = *shared_fifo;
+
+    	alt_printf("Received: 0x%x, fifo: %x\n", sample, *audio_fifospace);
 
     	if (actualizar_display) {
     		mostrar_duracion(minutos, segundos);
     		actualizar_display = 0;
     	}
 
-        unsigned int sample = *shared_fifo;
-        alt_printf("Received: %x\n", sample);
+    	if (*audio_fifospace == 0) {
+    		*audio_control = 0xC;
+    		*audio_control = 0x0;
+    	}
 
-    	usleep(10000);
+    	*audio_leftdata = sample;
+    	*audio_rightdata = sample;
+
+    	delay();
     }
 }
 

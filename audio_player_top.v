@@ -2,11 +2,12 @@ module audio_player_top (
     input wire clk,
     input wire rst,
     input wire [3:0] buttons,
-    input wire audio_BCLK,
-    input wire audio_DACLRCK,
+    output wire audio_BCLK,
+    output wire audio_DACLRCK,
     inout wire config_SDAT,
     output wire audio_DACDAT,
     output wire config_SCLK,
+	 output wire audio_clk,
     output wire [27:0] segments,
 	 output wire vga_clk,
     output wire vga_hs,
@@ -67,9 +68,10 @@ module audio_player_top (
 		.video_vga_controller_0_external_interface_SYNC  (vga_sync_n),  //                                          .SYNC
 		.video_vga_controller_0_external_interface_R     (vga_r),     //                                          .R
 		.video_vga_controller_0_external_interface_G     (vga_g),     //                                          .G
-		.video_vga_controller_0_external_interface_B     (vga_b)      //                                          .B
+		.video_vga_controller_0_external_interface_B     (vga_b),      //                                          .B
+		.audio_clock_clk                                 (audio_clk)                                  //                               audio_clock.clk
 	);
-
+	
 endmodule
 
 

@@ -284,6 +284,11 @@
    type="conduit"
    dir="end" />
  <interface
+   name="audio_clock"
+   internal="AUDIO_CLK.audio_clk"
+   type="clock"
+   dir="start" />
+ <interface
    name="buttons"
    internal="REG_BUTTONS.external_connection"
    type="conduit"
@@ -307,7 +312,7 @@
    type="conduit"
    dir="end" />
  <module name="AUDIO" kind="altera_up_avalon_audio" version="18.0" enabled="1">
-  <parameter name="AUTO_CLK_CLOCK_RATE" value="12288135" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="audio_in" value="false" />
   <parameter name="audio_out" value="true" />
@@ -330,7 +335,7 @@
    kind="altera_up_avalon_audio_and_video_config"
    version="18.0"
    enabled="1">
-  <parameter name="AUTO_CLK_CLOCK_RATE" value="12288135" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="audio_in" value="Line In to ADC" />
   <parameter name="bit_length" value="24" />
@@ -916,8 +921,8 @@
   <parameter name="writable" value="true" />
  </module>
  <module name="NIOSII" kind="altera_nios2_gen2" version="18.1" enabled="1">
-  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
-  <parameter name="AUTO_CLK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="2" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="2" />
   <parameter name="AUTO_DEVICE" value="5CSEMA5F31C6" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6" />
   <parameter name="bht_ramBlockType" value="Automatic" />
@@ -1574,21 +1579,13 @@
    version="18.1"
    start="video_character_buffer_with_dma_0.avalon_char_source"
    end="video_vga_controller_0.avalon_vga_sink" />
- <connection
-   kind="clock"
-   version="18.1"
-   start="AUDIO_CLK.audio_clk"
-   end="AUDIO_CONFIG.clk" />
- <connection
-   kind="clock"
-   version="18.1"
-   start="AUDIO_CLK.audio_clk"
-   end="AUDIO.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="NIOSII.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="REG_SEGMENTS.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="REG_BUTTONS.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="TIMER.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="UART.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="AUDIO.clk" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="AUDIO_CONFIG.clk" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="MEMORY.clk1" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="fifo_0.clk_in" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="fifo_1.clk_in" />
@@ -1658,6 +1655,12 @@
    version="18.1"
    start="CLK.clk_reset"
    end="video_character_buffer_with_dma_0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="CLK.clk_reset"
+   end="AUDIO_CONFIG.reset" />
+ <connection kind="reset" version="18.1" start="CLK.clk_reset" end="AUDIO.reset" />
  <connection kind="reset" version="18.1" start="CLK.clk_reset" end="MEMORY.reset1" />
  <connection
    kind="reset"
@@ -1669,16 +1672,6 @@
    version="18.1"
    start="CLK.clk_reset"
    end="fifo_1.reset_in" />
- <connection
-   kind="reset"
-   version="18.1"
-   start="AUDIO_CLK.reset_source"
-   end="AUDIO_CONFIG.reset" />
- <connection
-   kind="reset"
-   version="18.1"
-   start="AUDIO_CLK.reset_source"
-   end="AUDIO.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
