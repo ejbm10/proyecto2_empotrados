@@ -4,7 +4,9 @@
 
 `timescale 1 ps / 1 ps
 module reloj_soc (
-		input  wire        audio_BCLK,                                      //                                     audio.BCLK
+		input  wire        audio_ADCDAT,                                    //                                     audio.ADCDAT
+		input  wire        audio_ADCLRCK,                                   //                                          .ADCLRCK
+		input  wire        audio_BCLK,                                      //                                          .BCLK
 		output wire        audio_DACDAT,                                    //                                          .DACDAT
 		input  wire        audio_DACLRCK,                                   //                                          .DACLRCK
 		output wire        audio_clock_clk,                                 //                               audio_clock.clk
@@ -103,10 +105,18 @@ module reloj_soc (
 	wire  [31:0] mm_interconnect_0_niosii_debug_mem_slave_writedata;                                       // mm_interconnect_0:NIOSII_debug_mem_slave_writedata -> NIOSII:debug_mem_slave_writedata
 	wire         mm_interconnect_0_fifo_1_in_waitrequest;                                                  // fifo_1:avalonmm_write_slave_waitrequest -> mm_interconnect_0:fifo_1_in_waitrequest
 	wire         mm_interconnect_0_fifo_1_in_write;                                                        // mm_interconnect_0:fifo_1_in_write -> fifo_1:avalonmm_write_slave_write
-	wire   [7:0] mm_interconnect_0_fifo_1_in_writedata;                                                    // mm_interconnect_0:fifo_1_in_writedata -> fifo_1:avalonmm_write_slave_writedata
+	wire  [31:0] mm_interconnect_0_fifo_1_in_writedata;                                                    // mm_interconnect_0:fifo_1_in_writedata -> fifo_1:avalonmm_write_slave_writedata
+	wire  [31:0] mm_interconnect_0_fifo_1_in_csr_readdata;                                                 // fifo_1:wrclk_control_slave_readdata -> mm_interconnect_0:fifo_1_in_csr_readdata
+	wire   [2:0] mm_interconnect_0_fifo_1_in_csr_address;                                                  // mm_interconnect_0:fifo_1_in_csr_address -> fifo_1:wrclk_control_slave_address
+	wire         mm_interconnect_0_fifo_1_in_csr_read;                                                     // mm_interconnect_0:fifo_1_in_csr_read -> fifo_1:wrclk_control_slave_read
+	wire         mm_interconnect_0_fifo_1_in_csr_write;                                                    // mm_interconnect_0:fifo_1_in_csr_write -> fifo_1:wrclk_control_slave_write
+	wire  [31:0] mm_interconnect_0_fifo_1_in_csr_writedata;                                                // mm_interconnect_0:fifo_1_in_csr_writedata -> fifo_1:wrclk_control_slave_writedata
 	wire  [31:0] mm_interconnect_0_fifo_0_out_readdata;                                                    // fifo_0:avalonmm_read_slave_readdata -> mm_interconnect_0:fifo_0_out_readdata
 	wire         mm_interconnect_0_fifo_0_out_waitrequest;                                                 // fifo_0:avalonmm_read_slave_waitrequest -> mm_interconnect_0:fifo_0_out_waitrequest
 	wire         mm_interconnect_0_fifo_0_out_read;                                                        // mm_interconnect_0:fifo_0_out_read -> fifo_0:avalonmm_read_slave_read
+	wire  [31:0] mm_interconnect_0_fifo_2_out_readdata;                                                    // fifo_2:avalonmm_read_slave_readdata -> mm_interconnect_0:fifo_2_out_readdata
+	wire         mm_interconnect_0_fifo_2_out_waitrequest;                                                 // fifo_2:avalonmm_read_slave_waitrequest -> mm_interconnect_0:fifo_2_out_waitrequest
+	wire         mm_interconnect_0_fifo_2_out_read;                                                        // mm_interconnect_0:fifo_2_out_read -> fifo_2:avalonmm_read_slave_read
 	wire         mm_interconnect_0_memory_s1_chipselect;                                                   // mm_interconnect_0:MEMORY_s1_chipselect -> MEMORY:chipselect
 	wire  [31:0] mm_interconnect_0_memory_s1_readdata;                                                     // MEMORY:readdata -> mm_interconnect_0:MEMORY_s1_readdata
 	wire  [10:0] mm_interconnect_0_memory_s1_address;                                                      // mm_interconnect_0:MEMORY_s1_address -> MEMORY:address
@@ -168,7 +178,20 @@ module reloj_soc (
 	wire         mm_interconnect_1_fifo_0_in_waitrequest;                                                  // fifo_0:avalonmm_write_slave_waitrequest -> mm_interconnect_1:fifo_0_in_waitrequest
 	wire         mm_interconnect_1_fifo_0_in_write;                                                        // mm_interconnect_1:fifo_0_in_write -> fifo_0:avalonmm_write_slave_write
 	wire  [31:0] mm_interconnect_1_fifo_0_in_writedata;                                                    // mm_interconnect_1:fifo_0_in_writedata -> fifo_0:avalonmm_write_slave_writedata
-	wire   [7:0] mm_interconnect_1_fifo_1_out_readdata;                                                    // fifo_1:avalonmm_read_slave_readdata -> mm_interconnect_1:fifo_1_out_readdata
+	wire         mm_interconnect_1_fifo_2_in_waitrequest;                                                  // fifo_2:avalonmm_write_slave_waitrequest -> mm_interconnect_1:fifo_2_in_waitrequest
+	wire         mm_interconnect_1_fifo_2_in_write;                                                        // mm_interconnect_1:fifo_2_in_write -> fifo_2:avalonmm_write_slave_write
+	wire  [31:0] mm_interconnect_1_fifo_2_in_writedata;                                                    // mm_interconnect_1:fifo_2_in_writedata -> fifo_2:avalonmm_write_slave_writedata
+	wire  [31:0] mm_interconnect_1_fifo_2_in_csr_readdata;                                                 // fifo_2:wrclk_control_slave_readdata -> mm_interconnect_1:fifo_2_in_csr_readdata
+	wire   [2:0] mm_interconnect_1_fifo_2_in_csr_address;                                                  // mm_interconnect_1:fifo_2_in_csr_address -> fifo_2:wrclk_control_slave_address
+	wire         mm_interconnect_1_fifo_2_in_csr_read;                                                     // mm_interconnect_1:fifo_2_in_csr_read -> fifo_2:wrclk_control_slave_read
+	wire         mm_interconnect_1_fifo_2_in_csr_write;                                                    // mm_interconnect_1:fifo_2_in_csr_write -> fifo_2:wrclk_control_slave_write
+	wire  [31:0] mm_interconnect_1_fifo_2_in_csr_writedata;                                                // mm_interconnect_1:fifo_2_in_csr_writedata -> fifo_2:wrclk_control_slave_writedata
+	wire  [31:0] mm_interconnect_1_fifo_0_in_csr_readdata;                                                 // fifo_0:wrclk_control_slave_readdata -> mm_interconnect_1:fifo_0_in_csr_readdata
+	wire   [2:0] mm_interconnect_1_fifo_0_in_csr_address;                                                  // mm_interconnect_1:fifo_0_in_csr_address -> fifo_0:wrclk_control_slave_address
+	wire         mm_interconnect_1_fifo_0_in_csr_read;                                                     // mm_interconnect_1:fifo_0_in_csr_read -> fifo_0:wrclk_control_slave_read
+	wire         mm_interconnect_1_fifo_0_in_csr_write;                                                    // mm_interconnect_1:fifo_0_in_csr_write -> fifo_0:wrclk_control_slave_write
+	wire  [31:0] mm_interconnect_1_fifo_0_in_csr_writedata;                                                // mm_interconnect_1:fifo_0_in_csr_writedata -> fifo_0:wrclk_control_slave_writedata
+	wire  [31:0] mm_interconnect_1_fifo_1_out_readdata;                                                    // fifo_1:avalonmm_read_slave_readdata -> mm_interconnect_1:fifo_1_out_readdata
 	wire         mm_interconnect_1_fifo_1_out_waitrequest;                                                 // fifo_1:avalonmm_read_slave_waitrequest -> mm_interconnect_1:fifo_1_out_waitrequest
 	wire         mm_interconnect_1_fifo_1_out_read;                                                        // mm_interconnect_1:fifo_1_out_read -> fifo_1:avalonmm_read_slave_read
 	wire         irq_mapper_receiver0_irq;                                                                 // AUDIO:irq -> irq_mapper:receiver0_irq
@@ -176,7 +199,7 @@ module reloj_soc (
 	wire         irq_mapper_receiver2_irq;                                                                 // UART:av_irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                                                 // REG_BUTTONS:irq -> irq_mapper:receiver3_irq
 	wire  [31:0] niosii_irq_irq;                                                                           // irq_mapper:sender_irq -> NIOSII:irq
-	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [AUDIO:reset, AUDIO_CONFIG:reset, MEMORY:reset, NIOSII:reset_n, REG_BUTTONS:reset_n, REG_SEGMENTS:reset_n, TIMER:reset_n, UART:rst_n, fifo_0:reset_n, fifo_1:reset_n, irq_mapper:reset, mm_interconnect_0:NIOSII_reset_reset_bridge_in_reset_reset, mm_interconnect_1:fifo_0_reset_in_reset_bridge_in_reset_reset, rst_translator:in_reset]
+	wire         rst_controller_reset_out_reset;                                                           // rst_controller:reset_out -> [AUDIO:reset, AUDIO_CONFIG:reset, MEMORY:reset, NIOSII:reset_n, REG_BUTTONS:reset_n, REG_SEGMENTS:reset_n, TIMER:reset_n, UART:rst_n, fifo_0:reset_n, fifo_1:reset_n, fifo_2:reset_n, irq_mapper:reset, mm_interconnect_0:NIOSII_reset_reset_bridge_in_reset_reset, mm_interconnect_1:fifo_0_reset_in_reset_bridge_in_reset_reset, rst_translator:in_reset]
 	wire         rst_controller_reset_out_reset_req;                                                       // rst_controller:reset_req -> [MEMORY:reset_req, NIOSII:reset_req, rst_translator:reset_req_in]
 	wire         rst_controller_001_reset_out_reset;                                                       // rst_controller_001:reset_out -> [mm_interconnect_0:video_character_buffer_with_dma_0_reset_reset_bridge_in_reset_reset, video_character_buffer_with_dma_0:reset, video_vga_controller_0:reset]
 	wire         rst_controller_002_reset_out_reset;                                                       // rst_controller_002:reset_out -> mm_interconnect_1:HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset
@@ -192,7 +215,9 @@ module reloj_soc (
 		.writedata   (mm_interconnect_0_audio_avalon_audio_slave_writedata),  //                   .writedata
 		.readdata    (mm_interconnect_0_audio_avalon_audio_slave_readdata),   //                   .readdata
 		.irq         (irq_mapper_receiver0_irq),                              //          interrupt.irq
-		.AUD_BCLK    (audio_BCLK),                                            // external_interface.export
+		.AUD_ADCDAT  (audio_ADCDAT),                                          // external_interface.export
+		.AUD_ADCLRCK (audio_ADCLRCK),                                         //                   .export
+		.AUD_BCLK    (audio_BCLK),                                            //                   .export
 		.AUD_DACDAT  (audio_DACDAT),                                          //                   .export
 		.AUD_DACLRCK (audio_DACLRCK)                                          //                   .export
 	);
@@ -369,25 +394,51 @@ module reloj_soc (
 	);
 
 	reloj_soc_fifo_0 fifo_0 (
-		.wrclock                          (clk_clk),                                  //   clk_in.clk
-		.reset_n                          (~rst_controller_reset_out_reset),          // reset_in.reset_n
-		.avalonmm_write_slave_writedata   (mm_interconnect_1_fifo_0_in_writedata),    //       in.writedata
-		.avalonmm_write_slave_write       (mm_interconnect_1_fifo_0_in_write),        //         .write
-		.avalonmm_write_slave_waitrequest (mm_interconnect_1_fifo_0_in_waitrequest),  //         .waitrequest
-		.avalonmm_read_slave_readdata     (mm_interconnect_0_fifo_0_out_readdata),    //      out.readdata
-		.avalonmm_read_slave_read         (mm_interconnect_0_fifo_0_out_read),        //         .read
-		.avalonmm_read_slave_waitrequest  (mm_interconnect_0_fifo_0_out_waitrequest)  //         .waitrequest
+		.wrclock                          (clk_clk),                                   //   clk_in.clk
+		.reset_n                          (~rst_controller_reset_out_reset),           // reset_in.reset_n
+		.avalonmm_write_slave_writedata   (mm_interconnect_1_fifo_0_in_writedata),     //       in.writedata
+		.avalonmm_write_slave_write       (mm_interconnect_1_fifo_0_in_write),         //         .write
+		.avalonmm_write_slave_waitrequest (mm_interconnect_1_fifo_0_in_waitrequest),   //         .waitrequest
+		.avalonmm_read_slave_readdata     (mm_interconnect_0_fifo_0_out_readdata),     //      out.readdata
+		.avalonmm_read_slave_read         (mm_interconnect_0_fifo_0_out_read),         //         .read
+		.avalonmm_read_slave_waitrequest  (mm_interconnect_0_fifo_0_out_waitrequest),  //         .waitrequest
+		.wrclk_control_slave_address      (mm_interconnect_1_fifo_0_in_csr_address),   //   in_csr.address
+		.wrclk_control_slave_read         (mm_interconnect_1_fifo_0_in_csr_read),      //         .read
+		.wrclk_control_slave_writedata    (mm_interconnect_1_fifo_0_in_csr_writedata), //         .writedata
+		.wrclk_control_slave_write        (mm_interconnect_1_fifo_0_in_csr_write),     //         .write
+		.wrclk_control_slave_readdata     (mm_interconnect_1_fifo_0_in_csr_readdata)   //         .readdata
 	);
 
-	reloj_soc_fifo_1 fifo_1 (
-		.wrclock                          (clk_clk),                                  //   clk_in.clk
-		.reset_n                          (~rst_controller_reset_out_reset),          // reset_in.reset_n
-		.avalonmm_write_slave_writedata   (mm_interconnect_0_fifo_1_in_writedata),    //       in.writedata
-		.avalonmm_write_slave_write       (mm_interconnect_0_fifo_1_in_write),        //         .write
-		.avalonmm_write_slave_waitrequest (mm_interconnect_0_fifo_1_in_waitrequest),  //         .waitrequest
-		.avalonmm_read_slave_readdata     (mm_interconnect_1_fifo_1_out_readdata),    //      out.readdata
-		.avalonmm_read_slave_read         (mm_interconnect_1_fifo_1_out_read),        //         .read
-		.avalonmm_read_slave_waitrequest  (mm_interconnect_1_fifo_1_out_waitrequest)  //         .waitrequest
+	reloj_soc_fifo_0 fifo_1 (
+		.wrclock                          (clk_clk),                                   //   clk_in.clk
+		.reset_n                          (~rst_controller_reset_out_reset),           // reset_in.reset_n
+		.avalonmm_write_slave_writedata   (mm_interconnect_0_fifo_1_in_writedata),     //       in.writedata
+		.avalonmm_write_slave_write       (mm_interconnect_0_fifo_1_in_write),         //         .write
+		.avalonmm_write_slave_waitrequest (mm_interconnect_0_fifo_1_in_waitrequest),   //         .waitrequest
+		.avalonmm_read_slave_readdata     (mm_interconnect_1_fifo_1_out_readdata),     //      out.readdata
+		.avalonmm_read_slave_read         (mm_interconnect_1_fifo_1_out_read),         //         .read
+		.avalonmm_read_slave_waitrequest  (mm_interconnect_1_fifo_1_out_waitrequest),  //         .waitrequest
+		.wrclk_control_slave_address      (mm_interconnect_0_fifo_1_in_csr_address),   //   in_csr.address
+		.wrclk_control_slave_read         (mm_interconnect_0_fifo_1_in_csr_read),      //         .read
+		.wrclk_control_slave_writedata    (mm_interconnect_0_fifo_1_in_csr_writedata), //         .writedata
+		.wrclk_control_slave_write        (mm_interconnect_0_fifo_1_in_csr_write),     //         .write
+		.wrclk_control_slave_readdata     (mm_interconnect_0_fifo_1_in_csr_readdata)   //         .readdata
+	);
+
+	reloj_soc_fifo_0 fifo_2 (
+		.wrclock                          (clk_clk),                                   //   clk_in.clk
+		.reset_n                          (~rst_controller_reset_out_reset),           // reset_in.reset_n
+		.avalonmm_write_slave_writedata   (mm_interconnect_1_fifo_2_in_writedata),     //       in.writedata
+		.avalonmm_write_slave_write       (mm_interconnect_1_fifo_2_in_write),         //         .write
+		.avalonmm_write_slave_waitrequest (mm_interconnect_1_fifo_2_in_waitrequest),   //         .waitrequest
+		.avalonmm_read_slave_readdata     (mm_interconnect_0_fifo_2_out_readdata),     //      out.readdata
+		.avalonmm_read_slave_read         (mm_interconnect_0_fifo_2_out_read),         //         .read
+		.avalonmm_read_slave_waitrequest  (mm_interconnect_0_fifo_2_out_waitrequest),  //         .waitrequest
+		.wrclk_control_slave_address      (mm_interconnect_1_fifo_2_in_csr_address),   //   in_csr.address
+		.wrclk_control_slave_read         (mm_interconnect_1_fifo_2_in_csr_read),      //         .read
+		.wrclk_control_slave_writedata    (mm_interconnect_1_fifo_2_in_csr_writedata), //         .writedata
+		.wrclk_control_slave_write        (mm_interconnect_1_fifo_2_in_csr_write),     //         .write
+		.wrclk_control_slave_readdata     (mm_interconnect_1_fifo_2_in_csr_readdata)   //         .readdata
 	);
 
 	reloj_soc_pll_0 pll_0 (
@@ -476,6 +527,14 @@ module reloj_soc (
 		.fifo_1_in_write                                                        (mm_interconnect_0_fifo_1_in_write),                                                        //                                                     fifo_1_in.write
 		.fifo_1_in_writedata                                                    (mm_interconnect_0_fifo_1_in_writedata),                                                    //                                                              .writedata
 		.fifo_1_in_waitrequest                                                  (mm_interconnect_0_fifo_1_in_waitrequest),                                                  //                                                              .waitrequest
+		.fifo_1_in_csr_address                                                  (mm_interconnect_0_fifo_1_in_csr_address),                                                  //                                                 fifo_1_in_csr.address
+		.fifo_1_in_csr_write                                                    (mm_interconnect_0_fifo_1_in_csr_write),                                                    //                                                              .write
+		.fifo_1_in_csr_read                                                     (mm_interconnect_0_fifo_1_in_csr_read),                                                     //                                                              .read
+		.fifo_1_in_csr_readdata                                                 (mm_interconnect_0_fifo_1_in_csr_readdata),                                                 //                                                              .readdata
+		.fifo_1_in_csr_writedata                                                (mm_interconnect_0_fifo_1_in_csr_writedata),                                                //                                                              .writedata
+		.fifo_2_out_read                                                        (mm_interconnect_0_fifo_2_out_read),                                                        //                                                    fifo_2_out.read
+		.fifo_2_out_readdata                                                    (mm_interconnect_0_fifo_2_out_readdata),                                                    //                                                              .readdata
+		.fifo_2_out_waitrequest                                                 (mm_interconnect_0_fifo_2_out_waitrequest),                                                 //                                                              .waitrequest
 		.MEMORY_s1_address                                                      (mm_interconnect_0_memory_s1_address),                                                      //                                                     MEMORY_s1.address
 		.MEMORY_s1_write                                                        (mm_interconnect_0_memory_s1_write),                                                        //                                                              .write
 		.MEMORY_s1_readdata                                                     (mm_interconnect_0_memory_s1_readdata),                                                     //                                                              .readdata
@@ -531,51 +590,64 @@ module reloj_soc (
 	);
 
 	reloj_soc_mm_interconnect_1 mm_interconnect_1 (
-		.HPS_h2f_lw_axi_master_awid                                        (hps_h2f_lw_axi_master_awid),               //                                       HPS_h2f_lw_axi_master.awid
-		.HPS_h2f_lw_axi_master_awaddr                                      (hps_h2f_lw_axi_master_awaddr),             //                                                            .awaddr
-		.HPS_h2f_lw_axi_master_awlen                                       (hps_h2f_lw_axi_master_awlen),              //                                                            .awlen
-		.HPS_h2f_lw_axi_master_awsize                                      (hps_h2f_lw_axi_master_awsize),             //                                                            .awsize
-		.HPS_h2f_lw_axi_master_awburst                                     (hps_h2f_lw_axi_master_awburst),            //                                                            .awburst
-		.HPS_h2f_lw_axi_master_awlock                                      (hps_h2f_lw_axi_master_awlock),             //                                                            .awlock
-		.HPS_h2f_lw_axi_master_awcache                                     (hps_h2f_lw_axi_master_awcache),            //                                                            .awcache
-		.HPS_h2f_lw_axi_master_awprot                                      (hps_h2f_lw_axi_master_awprot),             //                                                            .awprot
-		.HPS_h2f_lw_axi_master_awvalid                                     (hps_h2f_lw_axi_master_awvalid),            //                                                            .awvalid
-		.HPS_h2f_lw_axi_master_awready                                     (hps_h2f_lw_axi_master_awready),            //                                                            .awready
-		.HPS_h2f_lw_axi_master_wid                                         (hps_h2f_lw_axi_master_wid),                //                                                            .wid
-		.HPS_h2f_lw_axi_master_wdata                                       (hps_h2f_lw_axi_master_wdata),              //                                                            .wdata
-		.HPS_h2f_lw_axi_master_wstrb                                       (hps_h2f_lw_axi_master_wstrb),              //                                                            .wstrb
-		.HPS_h2f_lw_axi_master_wlast                                       (hps_h2f_lw_axi_master_wlast),              //                                                            .wlast
-		.HPS_h2f_lw_axi_master_wvalid                                      (hps_h2f_lw_axi_master_wvalid),             //                                                            .wvalid
-		.HPS_h2f_lw_axi_master_wready                                      (hps_h2f_lw_axi_master_wready),             //                                                            .wready
-		.HPS_h2f_lw_axi_master_bid                                         (hps_h2f_lw_axi_master_bid),                //                                                            .bid
-		.HPS_h2f_lw_axi_master_bresp                                       (hps_h2f_lw_axi_master_bresp),              //                                                            .bresp
-		.HPS_h2f_lw_axi_master_bvalid                                      (hps_h2f_lw_axi_master_bvalid),             //                                                            .bvalid
-		.HPS_h2f_lw_axi_master_bready                                      (hps_h2f_lw_axi_master_bready),             //                                                            .bready
-		.HPS_h2f_lw_axi_master_arid                                        (hps_h2f_lw_axi_master_arid),               //                                                            .arid
-		.HPS_h2f_lw_axi_master_araddr                                      (hps_h2f_lw_axi_master_araddr),             //                                                            .araddr
-		.HPS_h2f_lw_axi_master_arlen                                       (hps_h2f_lw_axi_master_arlen),              //                                                            .arlen
-		.HPS_h2f_lw_axi_master_arsize                                      (hps_h2f_lw_axi_master_arsize),             //                                                            .arsize
-		.HPS_h2f_lw_axi_master_arburst                                     (hps_h2f_lw_axi_master_arburst),            //                                                            .arburst
-		.HPS_h2f_lw_axi_master_arlock                                      (hps_h2f_lw_axi_master_arlock),             //                                                            .arlock
-		.HPS_h2f_lw_axi_master_arcache                                     (hps_h2f_lw_axi_master_arcache),            //                                                            .arcache
-		.HPS_h2f_lw_axi_master_arprot                                      (hps_h2f_lw_axi_master_arprot),             //                                                            .arprot
-		.HPS_h2f_lw_axi_master_arvalid                                     (hps_h2f_lw_axi_master_arvalid),            //                                                            .arvalid
-		.HPS_h2f_lw_axi_master_arready                                     (hps_h2f_lw_axi_master_arready),            //                                                            .arready
-		.HPS_h2f_lw_axi_master_rid                                         (hps_h2f_lw_axi_master_rid),                //                                                            .rid
-		.HPS_h2f_lw_axi_master_rdata                                       (hps_h2f_lw_axi_master_rdata),              //                                                            .rdata
-		.HPS_h2f_lw_axi_master_rresp                                       (hps_h2f_lw_axi_master_rresp),              //                                                            .rresp
-		.HPS_h2f_lw_axi_master_rlast                                       (hps_h2f_lw_axi_master_rlast),              //                                                            .rlast
-		.HPS_h2f_lw_axi_master_rvalid                                      (hps_h2f_lw_axi_master_rvalid),             //                                                            .rvalid
-		.HPS_h2f_lw_axi_master_rready                                      (hps_h2f_lw_axi_master_rready),             //                                                            .rready
-		.CLK_clk_clk                                                       (clk_clk),                                  //                                                     CLK_clk.clk
-		.fifo_0_reset_in_reset_bridge_in_reset_reset                       (rst_controller_reset_out_reset),           //                       fifo_0_reset_in_reset_bridge_in_reset.reset
-		.HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset (rst_controller_002_reset_out_reset),       // HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
-		.fifo_0_in_write                                                   (mm_interconnect_1_fifo_0_in_write),        //                                                   fifo_0_in.write
-		.fifo_0_in_writedata                                               (mm_interconnect_1_fifo_0_in_writedata),    //                                                            .writedata
-		.fifo_0_in_waitrequest                                             (mm_interconnect_1_fifo_0_in_waitrequest),  //                                                            .waitrequest
-		.fifo_1_out_read                                                   (mm_interconnect_1_fifo_1_out_read),        //                                                  fifo_1_out.read
-		.fifo_1_out_readdata                                               (mm_interconnect_1_fifo_1_out_readdata),    //                                                            .readdata
-		.fifo_1_out_waitrequest                                            (mm_interconnect_1_fifo_1_out_waitrequest)  //                                                            .waitrequest
+		.HPS_h2f_lw_axi_master_awid                                        (hps_h2f_lw_axi_master_awid),                //                                       HPS_h2f_lw_axi_master.awid
+		.HPS_h2f_lw_axi_master_awaddr                                      (hps_h2f_lw_axi_master_awaddr),              //                                                            .awaddr
+		.HPS_h2f_lw_axi_master_awlen                                       (hps_h2f_lw_axi_master_awlen),               //                                                            .awlen
+		.HPS_h2f_lw_axi_master_awsize                                      (hps_h2f_lw_axi_master_awsize),              //                                                            .awsize
+		.HPS_h2f_lw_axi_master_awburst                                     (hps_h2f_lw_axi_master_awburst),             //                                                            .awburst
+		.HPS_h2f_lw_axi_master_awlock                                      (hps_h2f_lw_axi_master_awlock),              //                                                            .awlock
+		.HPS_h2f_lw_axi_master_awcache                                     (hps_h2f_lw_axi_master_awcache),             //                                                            .awcache
+		.HPS_h2f_lw_axi_master_awprot                                      (hps_h2f_lw_axi_master_awprot),              //                                                            .awprot
+		.HPS_h2f_lw_axi_master_awvalid                                     (hps_h2f_lw_axi_master_awvalid),             //                                                            .awvalid
+		.HPS_h2f_lw_axi_master_awready                                     (hps_h2f_lw_axi_master_awready),             //                                                            .awready
+		.HPS_h2f_lw_axi_master_wid                                         (hps_h2f_lw_axi_master_wid),                 //                                                            .wid
+		.HPS_h2f_lw_axi_master_wdata                                       (hps_h2f_lw_axi_master_wdata),               //                                                            .wdata
+		.HPS_h2f_lw_axi_master_wstrb                                       (hps_h2f_lw_axi_master_wstrb),               //                                                            .wstrb
+		.HPS_h2f_lw_axi_master_wlast                                       (hps_h2f_lw_axi_master_wlast),               //                                                            .wlast
+		.HPS_h2f_lw_axi_master_wvalid                                      (hps_h2f_lw_axi_master_wvalid),              //                                                            .wvalid
+		.HPS_h2f_lw_axi_master_wready                                      (hps_h2f_lw_axi_master_wready),              //                                                            .wready
+		.HPS_h2f_lw_axi_master_bid                                         (hps_h2f_lw_axi_master_bid),                 //                                                            .bid
+		.HPS_h2f_lw_axi_master_bresp                                       (hps_h2f_lw_axi_master_bresp),               //                                                            .bresp
+		.HPS_h2f_lw_axi_master_bvalid                                      (hps_h2f_lw_axi_master_bvalid),              //                                                            .bvalid
+		.HPS_h2f_lw_axi_master_bready                                      (hps_h2f_lw_axi_master_bready),              //                                                            .bready
+		.HPS_h2f_lw_axi_master_arid                                        (hps_h2f_lw_axi_master_arid),                //                                                            .arid
+		.HPS_h2f_lw_axi_master_araddr                                      (hps_h2f_lw_axi_master_araddr),              //                                                            .araddr
+		.HPS_h2f_lw_axi_master_arlen                                       (hps_h2f_lw_axi_master_arlen),               //                                                            .arlen
+		.HPS_h2f_lw_axi_master_arsize                                      (hps_h2f_lw_axi_master_arsize),              //                                                            .arsize
+		.HPS_h2f_lw_axi_master_arburst                                     (hps_h2f_lw_axi_master_arburst),             //                                                            .arburst
+		.HPS_h2f_lw_axi_master_arlock                                      (hps_h2f_lw_axi_master_arlock),              //                                                            .arlock
+		.HPS_h2f_lw_axi_master_arcache                                     (hps_h2f_lw_axi_master_arcache),             //                                                            .arcache
+		.HPS_h2f_lw_axi_master_arprot                                      (hps_h2f_lw_axi_master_arprot),              //                                                            .arprot
+		.HPS_h2f_lw_axi_master_arvalid                                     (hps_h2f_lw_axi_master_arvalid),             //                                                            .arvalid
+		.HPS_h2f_lw_axi_master_arready                                     (hps_h2f_lw_axi_master_arready),             //                                                            .arready
+		.HPS_h2f_lw_axi_master_rid                                         (hps_h2f_lw_axi_master_rid),                 //                                                            .rid
+		.HPS_h2f_lw_axi_master_rdata                                       (hps_h2f_lw_axi_master_rdata),               //                                                            .rdata
+		.HPS_h2f_lw_axi_master_rresp                                       (hps_h2f_lw_axi_master_rresp),               //                                                            .rresp
+		.HPS_h2f_lw_axi_master_rlast                                       (hps_h2f_lw_axi_master_rlast),               //                                                            .rlast
+		.HPS_h2f_lw_axi_master_rvalid                                      (hps_h2f_lw_axi_master_rvalid),              //                                                            .rvalid
+		.HPS_h2f_lw_axi_master_rready                                      (hps_h2f_lw_axi_master_rready),              //                                                            .rready
+		.CLK_clk_clk                                                       (clk_clk),                                   //                                                     CLK_clk.clk
+		.fifo_0_reset_in_reset_bridge_in_reset_reset                       (rst_controller_reset_out_reset),            //                       fifo_0_reset_in_reset_bridge_in_reset.reset
+		.HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset (rst_controller_002_reset_out_reset),        // HPS_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
+		.fifo_0_in_write                                                   (mm_interconnect_1_fifo_0_in_write),         //                                                   fifo_0_in.write
+		.fifo_0_in_writedata                                               (mm_interconnect_1_fifo_0_in_writedata),     //                                                            .writedata
+		.fifo_0_in_waitrequest                                             (mm_interconnect_1_fifo_0_in_waitrequest),   //                                                            .waitrequest
+		.fifo_0_in_csr_address                                             (mm_interconnect_1_fifo_0_in_csr_address),   //                                               fifo_0_in_csr.address
+		.fifo_0_in_csr_write                                               (mm_interconnect_1_fifo_0_in_csr_write),     //                                                            .write
+		.fifo_0_in_csr_read                                                (mm_interconnect_1_fifo_0_in_csr_read),      //                                                            .read
+		.fifo_0_in_csr_readdata                                            (mm_interconnect_1_fifo_0_in_csr_readdata),  //                                                            .readdata
+		.fifo_0_in_csr_writedata                                           (mm_interconnect_1_fifo_0_in_csr_writedata), //                                                            .writedata
+		.fifo_1_out_read                                                   (mm_interconnect_1_fifo_1_out_read),         //                                                  fifo_1_out.read
+		.fifo_1_out_readdata                                               (mm_interconnect_1_fifo_1_out_readdata),     //                                                            .readdata
+		.fifo_1_out_waitrequest                                            (mm_interconnect_1_fifo_1_out_waitrequest),  //                                                            .waitrequest
+		.fifo_2_in_write                                                   (mm_interconnect_1_fifo_2_in_write),         //                                                   fifo_2_in.write
+		.fifo_2_in_writedata                                               (mm_interconnect_1_fifo_2_in_writedata),     //                                                            .writedata
+		.fifo_2_in_waitrequest                                             (mm_interconnect_1_fifo_2_in_waitrequest),   //                                                            .waitrequest
+		.fifo_2_in_csr_address                                             (mm_interconnect_1_fifo_2_in_csr_address),   //                                               fifo_2_in_csr.address
+		.fifo_2_in_csr_write                                               (mm_interconnect_1_fifo_2_in_csr_write),     //                                                            .write
+		.fifo_2_in_csr_read                                                (mm_interconnect_1_fifo_2_in_csr_read),      //                                                            .read
+		.fifo_2_in_csr_readdata                                            (mm_interconnect_1_fifo_2_in_csr_readdata),  //                                                            .readdata
+		.fifo_2_in_csr_writedata                                           (mm_interconnect_1_fifo_2_in_csr_writedata)  //                                                            .writedata
 	);
 
 	reloj_soc_irq_mapper irq_mapper (

@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jun 17, 2025 6:07:55 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1750162075814</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jun 19, 2025 2:26:12 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1750364772933</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\eboli\Documents\Github\proyecto2_empotrados\software\reloj_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\reloj_soc.sopcinfo</SopcDesignFile>
@@ -942,14 +942,26 @@
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>fifo_0</slaveDescriptor>
-                <addressRange>0x00002870 - 0x00002873</addressRange>
+                <addressRange>0x00002874 - 0x00002877</addressRange>
                 <addressSpan>4</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>fifo_1</slaveDescriptor>
-                <addressRange>0x00002874 - 0x00002874</addressRange>
-                <addressSpan>1</addressSpan>
+                <slaveDescriptor>fifo_1_in</slaveDescriptor>
+                <addressRange>0x00002900 - 0x00002903</addressRange>
+                <addressSpan>4</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>fifo_1_in_csr</slaveDescriptor>
+                <addressRange>0x00002920 - 0x0000293F</addressRange>
+                <addressSpan>32</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>fifo_2</slaveDescriptor>
+                <addressRange>0x00003004 - 0x00003007</addressRange>
+                <addressSpan>4</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>

@@ -1,5 +1,7 @@
 	reloj_soc u0 (
-		.audio_BCLK                                      (<connected-to-audio_BCLK>),                                      //                                     audio.BCLK
+		.audio_ADCDAT                                    (<connected-to-audio_ADCDAT>),                                    //                                     audio.ADCDAT
+		.audio_ADCLRCK                                   (<connected-to-audio_ADCLRCK>),                                   //                                          .ADCLRCK
+		.audio_BCLK                                      (<connected-to-audio_BCLK>),                                      //                                          .BCLK
 		.audio_DACDAT                                    (<connected-to-audio_DACDAT>),                                    //                                          .DACDAT
 		.audio_DACLRCK                                   (<connected-to-audio_DACLRCK>),                                   //                                          .DACLRCK
 		.audio_clock_clk                                 (<connected-to-audio_clock_clk>),                                 //                               audio_clock.clk

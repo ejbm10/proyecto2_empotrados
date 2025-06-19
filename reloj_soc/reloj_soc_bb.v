@@ -1,5 +1,7 @@
 
 module reloj_soc (
+	audio_ADCDAT,
+	audio_ADCLRCK,
 	audio_BCLK,
 	audio_DACDAT,
 	audio_DACLRCK,
@@ -35,6 +37,8 @@ module reloj_soc (
 	video_vga_controller_0_external_interface_G,
 	video_vga_controller_0_external_interface_B);	
 
+	input		audio_ADCDAT;
+	input		audio_ADCLRCK;
 	input		audio_BCLK;
 	output		audio_DACDAT;
 	input		audio_DACLRCK;

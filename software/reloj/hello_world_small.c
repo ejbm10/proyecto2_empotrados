@@ -3,6 +3,7 @@
 #include "sys/alt_irq.h"
 #include "priv/alt_legacy_irq.h"
 #include "altera_avalon_pio_regs.h"
+#include "altera_up_avalon_audio_and_video_config.h"
 #include "io.h"
 
 #define CHAR_BUFFER_BASE  0x01020000
@@ -14,6 +15,9 @@ int minutos = 0;
 int segundos = 0;
 int paused = 0;
 int actualizar_display = 0;
+
+char metadata[256];
+int new_song = 0;
 
 volatile unsigned int* segments_ptr = (unsigned int *) REG_SEGMENTS_BASE;
 
@@ -40,8 +44,9 @@ volatile unsigned int* config_status = (unsigned int *) (AUDIO_CONFIG_BASE + 0x0
 volatile unsigned int* config_address = (unsigned int *) (AUDIO_CONFIG_BASE + 0x08);
 volatile unsigned int* config_data = (unsigned int *) (AUDIO_CONFIG_BASE + 0x0C);
 
-volatile unsigned int* shared_fifo = (unsigned int *) FIFO_0_BASE;
-volatile unsigned int* buttons_fifo = (unsigned int *) FIFO_1_BASE;
+volatile unsigned int* song_fifo = (unsigned int *) FIFO_0_BASE;
+volatile unsigned int* buttons_fifo = (unsigned int *) FIFO_1_IN_BASE;
+volatile unsigned int* metadata_fifo = (unsigned int *) FIFO_2_BASE;
 
 void vga_clear()
 {
@@ -148,6 +153,16 @@ void mostrar_duracion(int minutos, int segundos) {
     *segments_ptr = display_value;
 }
 
+void receive_metadata() {
+	int i = 0;
+	char val = '0';
+	while (val != '/') {
+		val = *metadata_fifo;
+		metadata[i++] = val;
+	}
+	metadata[i] = '\0';
+	alt_printf("%s\n", metadata);
+}
 // Main
 int main() {
 	alt_putstr("Hello from Nios\n");
@@ -165,34 +180,23 @@ int main() {
     alt_irq_register(TIMER_IRQ, NULL, timer_isr_handler);
 
 	*config_control = 0x1;	// Reset 1 for auto-initializing core
-
-	while ((*config_status >> 8 & 0x1) == 0);	// Wait auto-initializing
-
 	*config_control = 0x0;	// Reset 0 for normal flow
+
+	while (((*config_status >> 8) & 0x1) == 0 &&
+			((*config_status >> 1) & 0x1) == 0);	// Wait auto-initializing
+
+	alt_printf("Audio status: %x\n", *config_status);
 
 	*audio_control = 0xC;	// Set clears to 1
 	*audio_control = 0x0;	// Set clears to 0 for normal	 flow
 
-	unsigned int sample;
+	new_song = 1;
+
     while (1) {
-    	sample = *shared_fifo;
-
-    	alt_printf("Received: 0x%x, fifo: %x\n", sample, *audio_fifospace);
-
-    	if (actualizar_display) {
-    		mostrar_duracion(minutos, segundos);
-    		actualizar_display = 0;
+    	if (new_song) {
+    		receive_metadata();
+    		new_song = 0;
     	}
-
-    	if (*audio_fifospace == 0) {
-    		*audio_control = 0xC;
-    		*audio_control = 0x0;
-    	}
-
-    	*audio_leftdata = sample;
-    	*audio_rightdata = sample;
-
-    	delay();
     }
 }
 
