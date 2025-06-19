@@ -17,6 +17,20 @@ volatile uint32_t *fifo0_ptr;
 volatile uint32_t *fifo1_ptr;
 volatile uint32_t *fifo2_ptr;
 
+void* button_receiver(void* args) {
+    while (1) {
+        unsigned int button = fifo1_ptr[0];
+
+        if ((button & 8) || (button & 4)) {
+            printf("Pausa\n");
+        } else if (button & 2) {
+            printf("Anterior\n");
+        } else if (button & 1) {
+            printf("Siguiente\n");
+        }
+    }
+}
+
 void send_string(const char* str) {
     while (*str) {
         fifo2_ptr[0] = (uint32_t)(*str);  // Enviar byte
@@ -55,60 +69,12 @@ char* read_chunk_data(FILE *f, uint32_t size) {
     return data;
 }
 
-int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Uso: %s archivo.wav\n", argv[0]);
-        return 1;
-    }
-
-    // Abre la memoria
-    int fd = open("/dev/mem", O_RDWR | O_SYNC);
-    if (fd < 0) {
-        perror("open /dev/mem");
-        return -1;
-    }
-
-    // Mapeo para FIFO 0
-    void *map_base0 = mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, FIFO_0_BASE & ~(MAP_SIZE - 1));
-    if (map_base0 == MAP_FAILED) {
-        perror("mmap fifo0");
-        close(fd);
-        return -1;
-    }
-    fifo0_ptr = (volatile uint32_t *) ((uint8_t*)map_base0 + (FIFO_0_BASE & (MAP_SIZE - 1)));
-
-    // Mapeo para FIFO 1
-    void *map_base1 = mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, FIFO_1_BASE & ~(MAP_SIZE - 1));
-    if (map_base1 == MAP_FAILED) {
-        perror("mmap fifo1");
-        munmap(map_base0, MAP_SIZE);
-        close(fd);
-        return -1;
-    }
-    fifo1_ptr = (volatile uint32_t *) ((uint8_t*)map_base1 + (FIFO_1_BASE & (MAP_SIZE - 1)));
-
-    // Mapeo para FIFO 2
-    void *map_base2 = mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, FIFO_2_BASE & ~(MAP_SIZE - 1));
-    if (map_base2 == MAP_FAILED) {
-        perror("mmap fifo2");
-        munmap(map_base1, MAP_SIZE);
-        close(fd);
-        return -1;
-    }
-    fifo2_ptr = (volatile uint32_t *) ((uint8_t*)map_base2 + (FIFO_2_BASE & (MAP_SIZE - 1)));
-
-    FILE *f = fopen(argv[1], "rb");
-    if (!f) {
-        perror("No se pudo abrir el archivo");
-        return 1;
-    }
-
+void read_wav_metadata(FILE* f) {
     char id[5] = {0};
     fread(id, 1, 4, f); // "RIFF"
     if (strncmp(id, "RIFF", 4) != 0) {
         printf("No es un archivo RIFF válido\n");
         fclose(f);
-        return 1;
     }
 
     fseek(f, 4, SEEK_CUR); // skip chunk size
@@ -116,7 +82,6 @@ int main(int argc, char *argv[]) {
     if (strncmp(id, "WAVE", 4) != 0) {
         printf("No es un archivo WAVE válido\n");
         fclose(f);
-        return 1;
     }
 
     // Variables para guardar metadata
@@ -165,8 +130,6 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    fclose(f);
-
     // Enviar metadata recogida
     if (title) {
         send_string(title);
@@ -201,6 +164,107 @@ int main(int argc, char *argv[]) {
     free(album);
     free(genre);
     free(software);
+}
 
+void send_audio_data(FILE *f) {
+    char id[5] = {0};
+    uint32_t size = 0;
+    long pos = 0;
+
+    // Saltar encabezado RIFF y WAVE
+    fseek(f, 12, SEEK_SET); // RIFF (4) + size (4) + WAVE (4)
+
+    while (fread(id, 1, 4, f) == 4) {
+        size = read_uint32_le(f);
+        id[4] = '\0';
+
+        if (strcmp(id, "data") == 0) {
+            printf("Encontrado chunk 'data', tamaño: %u bytes\n", size);
+            pos = ftell(f);
+            break;
+        } else {
+            // Saltar este chunk
+            fseek(f, size, SEEK_CUR);
+        }
+    }
+
+    if (pos == 0) {
+        printf("No se encontró el chunk 'data'\n");
+        return;
+    }
+
+    // Volver al inicio del chunk data
+    fseek(f, pos, SEEK_SET);
+
+    // Enviar muestras 16-bit (2 bytes por muestra)
+    int i;
+    for (i = 0; i < size; i += 2) {
+        uint8_t buf[2];
+        if (fread(buf, 1, 2, f) != 2) break;
+
+        uint16_t sample = buf[0] | (buf[1] << 8);
+        fifo0_ptr[0] = sample;
+    }
+
+    printf("Se enviaron %u muestras de audio\n", size / 2);
+}
+
+int main() {
+
+    char* songs[3] = {
+        "song1.wav",
+        "song2.wav",
+        "song3.wav"
+    };
+
+    // Abre la memoria
+    int fd = open("/dev/mem", O_RDWR | O_SYNC);
+    if (fd < 0) {
+        perror("open /dev/mem");
+        return -1;
+    }
+
+    // Mapeo para FIFO 0
+    void *map_base0 = mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, FIFO_0_BASE & ~(MAP_SIZE - 1));
+    if (map_base0 == MAP_FAILED) {
+        perror("mmap fifo0");
+        close(fd);
+        return -1;
+    }
+    fifo0_ptr = (volatile uint32_t *) ((uint8_t*)map_base0 + (FIFO_0_BASE & (MAP_SIZE - 1)));
+
+    // Mapeo para FIFO 1
+    void *map_base1 = mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, FIFO_1_BASE & ~(MAP_SIZE - 1));
+    if (map_base1 == MAP_FAILED) {
+        perror("mmap fifo1");
+        munmap(map_base0, MAP_SIZE);
+        close(fd);
+        return -1;
+    }
+    fifo1_ptr = (volatile uint32_t *) ((uint8_t*)map_base1 + (FIFO_1_BASE & (MAP_SIZE - 1)));
+
+    // Mapeo para FIFO 2
+    void *map_base2 = mmap(NULL, MAP_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, FIFO_2_BASE & ~(MAP_SIZE - 1));
+    if (map_base2 == MAP_FAILED) {
+        perror("mmap fifo2");
+        munmap(map_base1, MAP_SIZE);
+        close(fd);
+        return -1;
+    }
+    fifo2_ptr = (volatile uint32_t *) ((uint8_t*)map_base2 + (FIFO_2_BASE & (MAP_SIZE - 1)));
+
+    FILE* f = fopen(songs[0], "rb");
+    read_wav_metadata(f);
+    send_audio_data(f);
+    fclose(f);
+
+    /*
+    pthread_t t1, t2;
+
+    pthread_create(&t1, NULL, button_receiver, NULL);
+    pthread_create(&t2, NULL, send_song, NULL);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);*/
     return 0;
 }

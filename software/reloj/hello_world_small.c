@@ -160,8 +160,14 @@ void receive_metadata() {
 		val = *metadata_fifo;
 		metadata[i++] = val;
 	}
-	metadata[i] = '\0';
+	metadata[i--] = '\0';
 	alt_printf("%s\n", metadata);
+}
+
+void receive_audio_data() {
+	unsigned int sample = *song_fifo;
+
+	alt_printf("%x\n", sample);
 }
 // Main
 int main() {
@@ -191,11 +197,17 @@ int main() {
 	*audio_control = 0x0;	// Set clears to 0 for normal	 flow
 
 	new_song = 1;
+	int song_active = 0;
 
     while (1) {
     	if (new_song) {
     		receive_metadata();
+    		song_active = 1;
     		new_song = 0;
+    	}
+
+    	if (song_active) {
+    		receive_audio_data();
     	}
     }
 }
