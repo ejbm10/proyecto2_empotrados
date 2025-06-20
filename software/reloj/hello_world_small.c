@@ -7,6 +7,7 @@
 #include "altera_up_avalon_audio_and_video_config.h"
 #include "io.h"
 #include "unistd.h"
+#include "string.h"
 
 #define CHAR_BUFFER_BASE  0x01020000
 #define CHAR_CONTROL_BASE 0x01000100
@@ -20,6 +21,7 @@ int actualizar_display = 0;
 char metadata[256];
 int new_song = 0;
 int song_active = 0;
+int totalSamples = 0;
 
 volatile unsigned int* segments_ptr = (unsigned int *) REG_SEGMENTS_BASE;
 
@@ -155,11 +157,11 @@ void mostrar_duracion(int minutos, int segundos) {
 void receive_metadata() {
 	int i = 0;
 	char val = '0';
+	memset(metadata, 0, sizeof(metadata));
 	while (val != '/') {
 		val = *metadata_fifo;
 		metadata[i++] = val;
 	}
-	metadata[i--] = '\0';
 	alt_printf("%s\n", metadata);
 }
 
@@ -171,7 +173,15 @@ void receive_audio_data() {
 		*audio_leftdata = sample32;
 		*audio_rightdata = sample32;
 	}
+	totalSamples -= 2;
 
+	if (totalSamples <= 0) {
+		song_active = 0;
+		new_song = 1;
+		totalSamples = 0;
+		alt_putstr("Fin de la cancion\n");
+		return;
+	}
 	usleep(0);
 }
 // Main
@@ -200,15 +210,19 @@ int main() {
 	*audio_control = 0x0;	// Set clears to 0 for normal	 flow
 
 	new_song = 1;
+	totalSamples = 0;
 
     while (1) {
     	if (new_song) {
     		receive_metadata();
     		song_active = 1;
     		new_song = 0;
+    		minutos = 0;
+    		segundos = 0;
     	}
 
     	if (song_active) {
+    		if (totalSamples == 0) totalSamples = *song_fifo;
     		receive_audio_data();
     	}
 

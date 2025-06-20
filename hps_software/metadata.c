@@ -8,7 +8,7 @@
 #include <pthread.h>
 
 #define FIFO_0_BASE   0xFF202870
-#define FIFO_1_BASE   0xC0002904
+#define FIFO_1_BASE   0xFF202904
 #define FIFO_2_BASE   0xFF203000
 
 #define MAP_SIZE 4096
@@ -25,20 +25,6 @@ char* songs[3] = {
     "song2.wav",
     "song3.wav"
 };
-
-void* button_listener(void* args) {
-    while (1) {
-        pthread_mutex_lock(&mux);
-        unsigned int pressed = fifo1_ptr[0];
-        pthread_mutex_unlock(&mux);
-
-        printf("Button pressed: %x\n", pressed);
-
-        if (pressed == 8 || pressed == 4) printf("Pausa\n");
-        else if (pressed == 2) printf("Previous\n");
-        else if (pressed == 1) printf("Next\n");
-    }
-}
 
 void send_string(const char* str) {
     while (*str) {
@@ -89,12 +75,16 @@ void read_wav_metadata(FILE* f) {
         fclose(f);
     }
 
+    printf("Lei el RIFF\n");
+
     fseek(f, 4, SEEK_CUR); // skip chunk size
     fread(id, 1, 4, f);    // "WAVE"
     if (strncmp(id, "WAVE", 4) != 0) {
         printf("No es un archivo WAVE válido\n");
         fclose(f);
     }
+
+    printf("Lei el WAVE\n");
 
     // Variables para guardar metadata
     char *title = NULL;
@@ -103,6 +93,8 @@ void read_wav_metadata(FILE* f) {
     char *album = NULL;
     char *genre = NULL;
     char *software = NULL;
+
+    printf("Cree las variables\n");
 
     // Buscar chunk LIST con tipo INFO
     while (fread(id, 1, 4, f) == 4) {
@@ -113,6 +105,8 @@ void read_wav_metadata(FILE* f) {
             char type[5] = {0};
             fread(type, 1, 4, f);
             size -= 4; // ya leímos parte del chunk
+
+            printf("Salto LIST\n");
 
             if (strncmp(type, "INFO", 4) == 0) {
                 long list_end = ftell(f) + size;
@@ -133,6 +127,8 @@ void read_wav_metadata(FILE* f) {
                     else if (strcmp(sub_id, "IGNR") == 0) genre = data;
                     else if (strcmp(sub_id, "ISFT") == 0) software = data;
                     else free(data); // chunk no usado
+
+                    printf("Asigno chunks\n");
                 }
             } else {
                 fseek(f, size, SEEK_CUR);
@@ -168,6 +164,8 @@ void read_wav_metadata(FILE* f) {
     }
     send_string("/");
 
+    printf("Ya envie la metadata\n");
+
     // Liberar memoria
     free(title);
     free(artist);
@@ -175,6 +173,8 @@ void read_wav_metadata(FILE* f) {
     free(album);
     free(genre);
     free(software);
+
+    printf("Ya libere la memoria\n");
 }
 
 void send_audio_data(FILE *f) {
@@ -209,6 +209,7 @@ void send_audio_data(FILE *f) {
 
     // Enviar muestras 16-bit (2 bytes por muestra)
     int i;
+    fifo0_ptr[0] = size;
     for (i = 0; i < size; i += 2) {
         uint8_t buf[2];
         if (fread(buf, 1, 2, f) != 2) break;
@@ -227,10 +228,14 @@ void* songs_handler(void* args) {
         read_wav_metadata(f);
         send_audio_data(f);
         fclose(f);
+
+        current = (current + 1) % 3;
     }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    current = atoi(argv[1]);
+
     // Abre la memoria
     int fd = open("/dev/mem", O_RDWR | O_SYNC);
     if (fd < 0) {
