@@ -8,7 +8,7 @@
 #include <pthread.h>
 
 #define FIFO_0_BASE   0xFF202870
-#define FIFO_1_BASE   0xFF202904
+#define FIFO_1_BASE   0xC0002904
 #define FIFO_2_BASE   0xFF203000
 
 #define MAP_SIZE 4096
@@ -17,23 +17,35 @@ volatile uint32_t *fifo0_ptr;
 volatile uint32_t *fifo1_ptr;
 volatile uint32_t *fifo2_ptr;
 
-void* button_receiver(void* args) {
-    while (1) {
-        unsigned int button = fifo1_ptr[0];
+pthread_mutex_t mux = PTHREAD_MUTEX_INITIALIZER;
 
-        if ((button & 8) || (button & 4)) {
-            printf("Pausa\n");
-        } else if (button & 2) {
-            printf("Anterior\n");
-        } else if (button & 1) {
-            printf("Siguiente\n");
-        }
+int current = 0;
+char* songs[3] = {
+    "song1.wav",
+    "song2.wav",
+    "song3.wav"
+};
+
+void* button_listener(void* args) {
+    while (1) {
+        pthread_mutex_lock(&mux);
+        unsigned int pressed = fifo1_ptr[0];
+        pthread_mutex_unlock(&mux);
+
+        printf("Button pressed: %x\n", pressed);
+
+        if (pressed == 8 || pressed == 4) printf("Pausa\n");
+        else if (pressed == 2) printf("Previous\n");
+        else if (pressed == 1) printf("Next\n");
     }
 }
 
 void send_string(const char* str) {
     while (*str) {
+        pthread_mutex_lock(&mux);
         fifo2_ptr[0] = (uint32_t)(*str);  // Enviar byte
+        pthread_mutex_unlock(&mux);
+
         str++;
     }
 }
@@ -133,27 +145,26 @@ void read_wav_metadata(FILE* f) {
     // Enviar metadata recogida
     if (title) {
         send_string(title);
-        send_string("\n");
+        send_string("-");
     }
     if (artist) {
         send_string(artist);
-        send_string("\n");
+        send_string("-");
     }
     if (year) {
         send_string(year);
-        send_string("\n");
+        send_string("-");
     }
     if (album) {
         send_string(album);
-        send_string("\n");
+        send_string("-");
     }
     if (genre) {
         send_string(genre);
-        send_string("\n");
+        send_string("-");
     }
     if (software) {
         send_string(software);
-        send_string("\n");
     }
     send_string("/");
 
@@ -203,20 +214,23 @@ void send_audio_data(FILE *f) {
         if (fread(buf, 1, 2, f) != 2) break;
 
         uint16_t sample = buf[0] | (buf[1] << 8);
+
         fifo0_ptr[0] = sample;
     }
 
     printf("Se enviaron %u muestras de audio\n", size / 2);
 }
 
+void* songs_handler(void* args) {
+    while (1) {
+        FILE* f = fopen(songs[current], "rb");
+        read_wav_metadata(f);
+        send_audio_data(f);
+        fclose(f);
+    }
+}
+
 int main() {
-
-    char* songs[3] = {
-        "song1.wav",
-        "song2.wav",
-        "song3.wav"
-    };
-
     // Abre la memoria
     int fd = open("/dev/mem", O_RDWR | O_SYNC);
     if (fd < 0) {
@@ -253,18 +267,14 @@ int main() {
     }
     fifo2_ptr = (volatile uint32_t *) ((uint8_t*)map_base2 + (FIFO_2_BASE & (MAP_SIZE - 1)));
 
-    FILE* f = fopen(songs[0], "rb");
-    read_wav_metadata(f);
-    send_audio_data(f);
-    fclose(f);
-
-    /*
-    pthread_t t1, t2;
-
-    pthread_create(&t1, NULL, button_receiver, NULL);
-    pthread_create(&t2, NULL, send_song, NULL);
+    // Crea el thread que constantemente listen el FIFO de botones
+    pthread_t t1;//, t2;
+    
+    pthread_create(&t1, NULL, songs_handler, NULL);
+    //pthread_create(&t2, NULL, button_listener, NULL);
 
     pthread_join(t1, NULL);
-    pthread_join(t2, NULL);*/
+    //pthread_join(t2, NULL);
+
     return 0;
 }

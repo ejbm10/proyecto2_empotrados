@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jun 19, 2025 2:26:12 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1750364772933</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jun 19, 2025 10:15:50 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1750392950610</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\eboli\Documents\Github\proyecto2_empotrados\software\reloj_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\reloj_soc.sopcinfo</SopcDesignFile>

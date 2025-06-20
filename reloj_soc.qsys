@@ -398,7 +398,7 @@
   <parameter name="board" value="DE1-SoC" />
   <parameter name="d5m_resolution" value="2592 x 1944" />
   <parameter name="dac_enable" value="true" />
-  <parameter name="data_format" value="I2S Format" />
+  <parameter name="data_format" value="Left Justified" />
   <parameter name="device">On-Board Peripherals</parameter>
   <parameter name="eai" value="true" />
   <parameter name="exposure" value="false" />
@@ -565,7 +565,7 @@
   <parameter name="FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_SPIM1_SCLK_OUT" value="100" />
   <parameter name="GPIO_Enable">No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No</parameter>
   <parameter name="GP_Enable" value="false" />
-  <parameter name="H2F_AXI_CLOCK_FREQ" value="100" />
+  <parameter name="H2F_AXI_CLOCK_FREQ" value="50000000" />
   <parameter name="H2F_CTI_CLOCK_FREQ" value="100" />
   <parameter name="H2F_DEBUG_APB_CLOCK_FREQ" value="100" />
   <parameter name="H2F_LW_AXI_CLOCK_FREQ" value="50000000" />
@@ -786,7 +786,7 @@
   <parameter name="S2FINTERRUPT_UART_Enable" value="false" />
   <parameter name="S2FINTERRUPT_USB_Enable" value="false" />
   <parameter name="S2FINTERRUPT_WATCHDOG_Enable" value="false" />
-  <parameter name="S2F_Width" value="0" />
+  <parameter name="S2F_Width" value="1" />
   <parameter name="SDIO_Mode" value="N/A" />
   <parameter name="SDIO_PinMuxing" value="Unused" />
   <parameter name="SEQUENCER_TYPE" value="NIOS" />
@@ -1636,6 +1636,15 @@
  <connection
    kind="avalon"
    version="18.1"
+   start="HPS.h2f_axi_master"
+   end="fifo_1.out">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x2904" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
    start="HPS.h2f_lw_axi_master"
    end="fifo_0.in">
   <parameter name="arbitrationPriority" value="1" />
@@ -1672,15 +1681,6 @@
  <connection
    kind="avalon"
    version="18.1"
-   start="HPS.h2f_lw_axi_master"
-   end="fifo_1.out">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2904" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="18.1"
    start="NIOSII.instruction_master"
    end="NIOSII.debug_mem_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1712,6 +1712,7 @@
  <connection kind="clock" version="18.1" start="CLK.clk" end="fifo_0.clk_in" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="fifo_1.clk_in" />
  <connection kind="clock" version="18.1" start="CLK.clk" end="fifo_2.clk_in" />
+ <connection kind="clock" version="18.1" start="CLK.clk" end="HPS.h2f_axi_clock" />
  <connection
    kind="clock"
    version="18.1"

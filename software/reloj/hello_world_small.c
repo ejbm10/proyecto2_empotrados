@@ -1,10 +1,12 @@
 #include "system.h"
+#include "stdint.h"
 #include "sys/alt_stdio.h"
 #include "sys/alt_irq.h"
 #include "priv/alt_legacy_irq.h"
 #include "altera_avalon_pio_regs.h"
 #include "altera_up_avalon_audio_and_video_config.h"
 #include "io.h"
+#include "unistd.h"
 
 #define CHAR_BUFFER_BASE  0x01020000
 #define CHAR_CONTROL_BASE 0x01000100
@@ -112,11 +114,13 @@ void button_isr_handler(void* context, alt_u32 id) {
 
     *buttons_fifo = buttons;
 
+    /*
     if (buttons == 0x8) paused = !paused;
     else if (buttons == 0x2 || buttons == 0x1) {
     	minutos = 0;
     	segundos = 0;
     }
+    */
 }
 
 
@@ -165,9 +169,15 @@ void receive_metadata() {
 }
 
 void receive_audio_data() {
-	unsigned int sample = *song_fifo;
+	int16_t sample16 = (int16_t) (*song_fifo & 0xFFFF);
+	int32_t sample32 = sample16 << 8;
 
-	alt_printf("%x\n", sample);
+	if ((((*audio_fifospace >> 24) & 0xFF) > 0) && ((*audio_fifospace >> 16) & 0xFF) > 0) {
+		*audio_leftdata = sample32;
+		*audio_rightdata = sample32;
+	}
+
+	usleep(0);
 }
 // Main
 int main() {
@@ -191,8 +201,6 @@ int main() {
 	while (((*config_status >> 8) & 0x1) == 0 &&
 			((*config_status >> 1) & 0x1) == 0);	// Wait auto-initializing
 
-	alt_printf("Audio status: %x\n", *config_status);
-
 	*audio_control = 0xC;	// Set clears to 1
 	*audio_control = 0x0;	// Set clears to 0 for normal	 flow
 
@@ -208,6 +216,11 @@ int main() {
 
     	if (song_active) {
     		receive_audio_data();
+    	}
+
+    	if (actualizar_display) {
+    		mostrar_duracion(minutos, segundos);
+    		actualizar_display = 0;
     	}
     }
 }
