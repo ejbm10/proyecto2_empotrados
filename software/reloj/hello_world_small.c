@@ -14,6 +14,14 @@ void vga_clear() {
     IOWR_32DIRECT(CHAR_CONTROL_BASE, 0, CLEAR_COMMAND);
 }
 
+void vga_clear_manual() {
+    for (int y = 0; y < MAX_ROWS; y++) {
+        for (int x = 0; x < MAX_COLS; x++) {
+            IOWR_8DIRECT(CHAR_BUFFER_BASE, (y * MAX_COLS + x), ' ');
+        }
+    }
+}
+
 void vga_enable() {
     IOWR_32DIRECT(CHAR_CONTROL_BASE, 0, ENABLE_COMMAND);
 }
@@ -33,64 +41,63 @@ void vga_write_string(int x, int y, const char *text) {
     }
 }
 
-void update_info(const char *cantante, const char *titulo, const char *anio) {
-    char linea[81];
-    snprintf(linea, sizeof(linea), "Cantante: %.64s", cantante);
-    vga_write_string(8, 2, linea);
-
-    snprintf(linea, sizeof(linea), "Titulo  : %.64s", titulo);
-    vga_write_string(16, 4, linea);
-
-    snprintf(linea, sizeof(linea), "Ano     : %.64s", anio);
-    vga_write_string(24, 6, linea);
-}
-
-// --- NUEVA FUNCION PARA EXTRAER DATOS ---
-void extraer_info(const char *filename, char *cantante, char *titulo, char *anio) {
-    // Copia el nombre porque strtok modifica la cadena
-    char temp[128];
-    strncpy(temp, filename, sizeof(temp) - 1);
+// Separador de campos por "-" y elimina el "/" final del último campo
+void extraer_campos(const char *info, char campos[][64], int *num_campos) {
+    char temp[256];
+    strncpy(temp, info, sizeof(temp) - 1);
     temp[sizeof(temp) - 1] = '\0';
 
-    // Extrae con strtok
-    char *token = strtok(temp, "-");
-    if (token) strncpy(cantante, token, 64); else cantante[0] = '\0';
+    char *token;
+    int idx = 0;
 
-    token = strtok(NULL, "-");
-    if (token) strncpy(titulo, token, 64); else titulo[0] = '\0';
+    token = strtok(temp, "-");
+    while (token != NULL && idx < 6) {
+        // Quita "/" final si es el último campo
+        char *slash = strchr(token, '/');
+        if (slash) *slash = '\0';
+        strncpy(campos[idx], token, 63);
+        campos[idx][63] = '\0';
+        idx++;
+        token = strtok(NULL, "-");
+    }
+    *num_campos = idx;
+}
 
-    token = strtok(NULL, "-");
-    if (token) {
-        // Quita extensión ".wav" si la tiene
-        char *dot = strchr(token, '.');
-        if (dot) *dot = '\0';
-        strncpy(anio, token, 16);
-    } else {
-        anio[0] = '\0';
+// Usar coordenadas estilo desplazado como en tu ejemplo
+void update_info_desplazada(char campos[][64], int num_campos) {
+    // Coordenadas por campo (X, Y)
+    const int x_offsets[] = {8, 16, 24, 32, 40, 48};  // puedes ajustar si tienes más campos
+    const int y_start = 11;
+    const int y_step  = 2;
+
+    for (int i = 0; i < num_campos && i < 6; i++) {
+        vga_write_string(x_offsets[i], y_start + i * y_step, campos[i]);
     }
 }
 
 int main() {
-    vga_clear();
+    vga_clear_manual();
     vga_enable();
 
-    char cantante[65], titulo[65], anio[17];
+    char campos[6][64];
+    int num_campos = 0;
 
     // ---- PRIMER EJEMPLO ----
-    const char *fileinfo = "Kiss-I Was Made For Lovin' U-1979.wav";
-    extraer_info(fileinfo, cantante, titulo, anio);
-    update_info(cantante, titulo, anio);
+    const char *info1 = "I Was Made for Lovin' You-Kiss-1979-Dynasty-Hard Rock-Lavf61.1.100/";
+    extraer_campos(info1, campos, &num_campos);
+    update_info_desplazada(campos, num_campos);
 
-    // Cambia datos tras delay largo
+    /*
+    // --- Espera larga (simula cambio de canción) ---
     volatile int delay;
     for (delay = 0; delay < 30000000; delay++);
 
     // ---- SEGUNDO EJEMPLO ----
-    fileinfo = "Queen-Bohemian Rhapsody-1975.wav";
-    extraer_info(fileinfo, cantante, titulo, anio);
-    update_info(cantante, titulo, anio);
+    const char *info2 = "Somebody to Love-Queen-1976-A Day at the Races-Rock-v1.0.0/";
+    extraer_campos(info2, campos, &num_campos);
+    update_info_desplazada(campos, num_campos);
+	*/
 
     while (1);
     return 0;
 }
-
