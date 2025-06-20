@@ -4,7 +4,7 @@
  * Machine generated for CPU 'NIOSII' in SOPC Builder design 'reloj_soc'
  * SOPC Builder design path: ../../reloj_soc.sopcinfo
  *
- * Generated: Mon Jun 09 01:31:21 CST 2025
+ * Generated: Thu Jun 19 14:17:59 CST 2025
  */
 
 /*
@@ -59,6 +59,7 @@
  */
 
 #include "altera_nios2_gen2_irq.h"
+#include "altera_avalon_fifo.h"
 #include "altera_avalon_jtag_uart.h"
 #include "altera_avalon_timer.h"
 #include "altera_up_avalon_audio.h"
@@ -70,6 +71,9 @@
  */
 
 ALTERA_NIOS2_GEN2_IRQ_INSTANCE ( NIOSII, NIOSII);
+ALTERA_AVALON_FIFO_INSTANCE ( FIFO_0, fifo_0);
+ALTERA_AVALON_FIFO_INSTANCE ( FIFO_1, fifo_1);
+ALTERA_AVALON_FIFO_INSTANCE ( FIFO_2, fifo_2);
 ALTERA_AVALON_JTAG_UART_INSTANCE ( UART, UART);
 ALTERA_AVALON_TIMER_INSTANCE ( TIMER, TIMER);
 ALTERA_UP_AVALON_AUDIO_AND_VIDEO_CONFIG_INSTANCE ( AUDIO_CONFIG, AUDIO_CONFIG);
@@ -98,6 +102,9 @@ void alt_irq_init ( const void* base )
 void alt_sys_init( void )
 {
     ALTERA_AVALON_TIMER_INIT ( TIMER, TIMER);
+    ALTERA_AVALON_FIFO_INIT ( FIFO_0, fifo_0);
+    ALTERA_AVALON_FIFO_INIT ( FIFO_1, fifo_1);
+    ALTERA_AVALON_FIFO_INIT ( FIFO_2, fifo_2);
     ALTERA_AVALON_JTAG_UART_INIT ( UART, UART);
     ALTERA_UP_AVALON_AUDIO_AND_VIDEO_CONFIG_INIT ( AUDIO_CONFIG, AUDIO_CONFIG);
     ALTERA_UP_AVALON_AUDIO_INIT ( AUDIO, AUDIO);

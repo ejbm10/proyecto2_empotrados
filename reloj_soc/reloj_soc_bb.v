@@ -1,13 +1,32 @@
 
 module reloj_soc (
+	audio_ADCDAT,
+	audio_ADCLRCK,
 	audio_BCLK,
 	audio_DACDAT,
 	audio_DACLRCK,
+	audio_clock_clk,
 	buttons_export,
 	clk_clk,
 	config_SDAT,
 	config_SCLK,
-	reset_reset_n,
+	memory_mem_a,
+	memory_mem_ba,
+	memory_mem_ck,
+	memory_mem_ck_n,
+	memory_mem_cke,
+	memory_mem_cs_n,
+	memory_mem_ras_n,
+	memory_mem_cas_n,
+	memory_mem_we_n,
+	memory_mem_reset_n,
+	memory_mem_dq,
+	memory_mem_dqs,
+	memory_mem_dqs_n,
+	memory_mem_odt,
+	memory_mem_dm,
+	memory_oct_rzqin,
+	reset_n_reset_n,
 	segments_export,
 	video_vga_controller_0_external_interface_CLK,
 	video_vga_controller_0_external_interface_HS,
@@ -18,14 +37,33 @@ module reloj_soc (
 	video_vga_controller_0_external_interface_G,
 	video_vga_controller_0_external_interface_B);	
 
+	input		audio_ADCDAT;
+	input		audio_ADCLRCK;
 	input		audio_BCLK;
 	output		audio_DACDAT;
 	input		audio_DACLRCK;
+	output		audio_clock_clk;
 	input	[3:0]	buttons_export;
 	input		clk_clk;
 	inout		config_SDAT;
 	output		config_SCLK;
-	input		reset_reset_n;
+	output	[12:0]	memory_mem_a;
+	output	[2:0]	memory_mem_ba;
+	output		memory_mem_ck;
+	output		memory_mem_ck_n;
+	output		memory_mem_cke;
+	output		memory_mem_cs_n;
+	output		memory_mem_ras_n;
+	output		memory_mem_cas_n;
+	output		memory_mem_we_n;
+	output		memory_mem_reset_n;
+	inout	[7:0]	memory_mem_dq;
+	inout		memory_mem_dqs;
+	inout		memory_mem_dqs_n;
+	output		memory_mem_odt;
+	output		memory_mem_dm;
+	input		memory_oct_rzqin;
+	input		reset_n_reset_n;
 	output	[27:0]	segments_export;
 	output		video_vga_controller_0_external_interface_CLK;
 	output		video_vga_controller_0_external_interface_HS;

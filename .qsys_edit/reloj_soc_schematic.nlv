@@ -1,38 +1,94 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst reloj_soc.REG_SEGMENTS -pg 1 -lvl 3 -y 730
-preplace inst reloj_soc.NIOSII -pg 1 -lvl 2 -y 390
-preplace inst reloj_soc.MEMORY -pg 1 -lvl 3 -y 830
-preplace inst reloj_soc.AUDIO_CLK.reset_from_locked -pg 1
-preplace inst reloj_soc.pll_0 -pg 1 -lvl 2 -y 560
-preplace inst reloj_soc.NIOSII.cpu -pg 1
-preplace inst reloj_soc.AUDIO_CONFIG -pg 1 -lvl 3 -y 30
-preplace inst reloj_soc.video_character_buffer_with_dma_0 -pg 1 -lvl 3 -y 190
+preplace inst reloj_soc.HPS.gpio1 -pg 1
 preplace inst reloj_soc.NIOSII.clock_bridge -pg 1
-preplace inst reloj_soc.REG_BUTTONS -pg 1 -lvl 3 -y 610
-preplace inst reloj_soc -pg 1 -lvl 1 -y 40 -regy -20
-preplace inst reloj_soc.CLK -pg 1 -lvl 1 -y 470
-preplace inst reloj_soc.UART -pg 1 -lvl 3 -y 510
-preplace inst reloj_soc.AUDIO_CLK.audio_pll -pg 1
-preplace inst reloj_soc.video_vga_controller_0 -pg 1 -lvl 4 -y 190
-preplace inst reloj_soc.TIMER -pg 1 -lvl 3 -y 410
-preplace inst reloj_soc.AUDIO -pg 1 -lvl 3 -y 290
+preplace inst reloj_soc.HPS.gpio2 -pg 1
+preplace inst reloj_soc.HPS.dma -pg 1
+preplace inst reloj_soc.HPS.eosc1 -pg 1
+preplace inst reloj_soc.HPS.eosc2 -pg 1
+preplace inst reloj_soc.HPS.f2s_sdram_ref_clk -pg 1
+preplace inst reloj_soc.NIOSII.cpu -pg 1
+preplace inst reloj_soc.REG_BUTTONS -pg 1 -lvl 3 -y 640
+preplace inst reloj_soc.HPS.axi_sdram -pg 1
+preplace inst reloj_soc.HPS.scu -pg 1
+preplace inst reloj_soc.pll_0 -pg 1 -lvl 2 -y 560
+preplace inst reloj_soc.HPS.sdrctl -pg 1
+preplace inst reloj_soc.HPS.rstmgr -pg 1
+preplace inst reloj_soc.video_vga_controller_0 -pg 1 -lvl 4 -y 210
+preplace inst reloj_soc.HPS.nand0 -pg 1
+preplace inst reloj_soc.HPS.l3regs -pg 1
+preplace inst reloj_soc.HPS.hps_io.border -pg 1
+preplace inst reloj_soc.HPS.sysmgr -pg 1
 preplace inst reloj_soc.NIOSII.reset_bridge -pg 1
+preplace inst reloj_soc.HPS.qspi -pg 1
+preplace inst reloj_soc.HPS.fpgamgr -pg 1
+preplace inst reloj_soc.NIOSII -pg 1 -lvl 2 -y 360
+preplace inst reloj_soc.UART -pg 1 -lvl 3 -y 540
+preplace inst reloj_soc.HPS.clk_0 -pg 1
+preplace inst reloj_soc.HPS.timer -pg 1
+preplace inst reloj_soc.HPS.fpga_interfaces -pg 1
+preplace inst reloj_soc.HPS.spim0 -pg 1
+preplace inst reloj_soc.REG_SEGMENTS -pg 1 -lvl 3 -y 1120
+preplace inst reloj_soc.HPS.spim1 -pg 1
+preplace inst reloj_soc.HPS -pg 1 -lvl 2 -y 850
+preplace inst reloj_soc.HPS.dcan0 -pg 1
+preplace inst reloj_soc.AUDIO_CLK.audio_pll -pg 1
+preplace inst reloj_soc.CLK -pg 1 -lvl 1 -y 470
+preplace inst reloj_soc.HPS.dcan1 -pg 1
+preplace inst reloj_soc.TIMER -pg 1 -lvl 3 -y 440
+preplace inst reloj_soc.HPS.bridges -pg 1
+preplace inst reloj_soc.HPS.timer0 -pg 1
+preplace inst reloj_soc.fifo_0 -pg 1 -lvl 3 -y 880
+preplace inst reloj_soc.HPS.timer1 -pg 1
+preplace inst reloj_soc.fifo_1 -pg 1 -lvl 3 -y 1000
+preplace inst reloj_soc.HPS.timer2 -pg 1
+preplace inst reloj_soc.fifo_2 -pg 1 -lvl 3 -y 760
+preplace inst reloj_soc.HPS.timer3 -pg 1
+preplace inst reloj_soc.HPS.gmac0 -pg 1
+preplace inst reloj_soc -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst reloj_soc.MEMORY -pg 1 -lvl 3 -y 1220
+preplace inst reloj_soc.HPS.gmac1 -pg 1
+preplace inst reloj_soc.HPS.hps_io -pg 1
+preplace inst reloj_soc.HPS.clkmgr -pg 1
+preplace inst reloj_soc.HPS.arm_a9_0 -pg 1
+preplace inst reloj_soc.AUDIO_CONFIG -pg 1 -lvl 3 -y 30
+preplace inst reloj_soc.HPS.uart0 -pg 1
+preplace inst reloj_soc.HPS.L2 -pg 1
+preplace inst reloj_soc.HPS.i2c0 -pg 1
+preplace inst reloj_soc.HPS.arm_a9_1 -pg 1
+preplace inst reloj_soc.HPS.uart1 -pg 1
+preplace inst reloj_soc.HPS.i2c1 -pg 1
+preplace inst reloj_soc.AUDIO_CLK.reset_from_locked -pg 1
+preplace inst reloj_soc.HPS.i2c2 -pg 1
+preplace inst reloj_soc.HPS.i2c3 -pg 1
+preplace inst reloj_soc.HPS.arm_gic_0 -pg 1
+preplace inst reloj_soc.HPS.f2s_periph_ref_clk -pg 1
 preplace inst reloj_soc.AUDIO_CLK -pg 1 -lvl 2 -y 220
-preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.reset,(SLAVE)CLK.clk_in_reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.segments,(SLAVE)REG_SEGMENTS.external_connection) 1 0 3 NJ 700 NJ 700 NJ
-preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)AUDIO.external_interface,(SLAVE)reloj_soc.audio) 1 0 3 NJ 330 NJ 330 NJ
-preplace netloc POINT_TO_POINT<net_container>reloj_soc</net_container>(SLAVE)video_vga_controller_0.avalon_vga_sink,(MASTER)video_character_buffer_with_dma_0.avalon_char_source) 1 3 1 1350
-preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.buttons,(SLAVE)REG_BUTTONS.external_connection) 1 0 3 NJ 650 NJ 650 NJ
-preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)AUDIO.interrupt,(SLAVE)UART.irq,(MASTER)NIOSII.irq,(SLAVE)REG_BUTTONS.irq,(SLAVE)TIMER.irq) 1 2 1 890
-preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)video_vga_controller_0.external_interface,(SLAVE)reloj_soc.video_vga_controller_0_external_interface) 1 0 4 NJ 140 NJ 140 NJ 140 NJ
-preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(MASTER)AUDIO_CLK.reset_source,(SLAVE)AUDIO.reset,(SLAVE)AUDIO_CONFIG.reset) 1 2 1 830
-preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)NIOSII.reset,(SLAVE)REG_SEGMENTS.reset,(SLAVE)video_vga_controller_0.reset,(SLAVE)AUDIO_CLK.ref_reset,(SLAVE)REG_BUTTONS.reset,(SLAVE)pll_0.reset,(SLAVE)MEMORY.reset1,(MASTER)CLK.clk_reset,(SLAVE)TIMER.reset,(SLAVE)video_character_buffer_with_dma_0.reset,(SLAVE)UART.reset) 1 1 3 430 350 850 180 1330
-preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(MASTER)pll_0.outclk0,(SLAVE)video_character_buffer_with_dma_0.clk,(SLAVE)video_vga_controller_0.clk) 1 2 2 930 160 1370
-preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)REG_SEGMENTS.clk,(SLAVE)MEMORY.clk1,(SLAVE)pll_0.refclk,(SLAVE)NIOSII.clk,(SLAVE)REG_BUTTONS.clk,(MASTER)CLK.clk,(SLAVE)AUDIO_CLK.ref_clk,(SLAVE)TIMER.clk,(SLAVE)UART.clk) 1 1 2 410 550 950
-preplace netloc INTERCONNECT<net_container>reloj_soc</net_container>(MASTER)NIOSII.data_master,(SLAVE)video_character_buffer_with_dma_0.avalon_char_buffer_slave,(MASTER)NIOSII.instruction_master,(SLAVE)REG_SEGMENTS.s1,(SLAVE)TIMER.s1,(SLAVE)AUDIO.avalon_audio_slave,(SLAVE)MEMORY.s1,(SLAVE)REG_BUTTONS.s1,(SLAVE)video_character_buffer_with_dma_0.avalon_char_control_slave,(SLAVE)AUDIO_CONFIG.avalon_av_config_slave,(SLAVE)UART.avalon_jtag_slave,(SLAVE)NIOSII.debug_mem_slave) 1 1 2 450 530 910
+preplace inst reloj_soc.AUDIO -pg 1 -lvl 3 -y 320
+preplace inst reloj_soc.HPS.usb0 -pg 1
+preplace inst reloj_soc.HPS.axi_ocram -pg 1
+preplace inst reloj_soc.HPS.sdmmc -pg 1
+preplace inst reloj_soc.HPS.usb1 -pg 1
+preplace inst reloj_soc.HPS.wd_timer0 -pg 1
+preplace inst reloj_soc.HPS.wd_timer1 -pg 1
+preplace inst reloj_soc.video_character_buffer_with_dma_0 -pg 1 -lvl 3 -y 190
+preplace inst reloj_soc.HPS.gpio0 -pg 1
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.memory,(SLAVE)HPS.memory) 1 0 2 NJ 880 NJ
+preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)NIOSII.clk,(SLAVE)pll_0.refclk,(SLAVE)AUDIO.clk,(SLAVE)AUDIO_CONFIG.clk,(SLAVE)REG_BUTTONS.clk,(SLAVE)fifo_1.clk_in,(SLAVE)fifo_2.clk_in,(SLAVE)UART.clk,(SLAVE)AUDIO_CLK.ref_clk,(SLAVE)TIMER.clk,(MASTER)CLK.clk,(SLAVE)fifo_0.clk_in,(SLAVE)HPS.h2f_axi_clock,(SLAVE)REG_SEGMENTS.clk,(SLAVE)MEMORY.clk1,(SLAVE)HPS.h2f_lw_axi_clock) 1 1 2 430 810 970
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.video_vga_controller_0_external_interface,(SLAVE)video_vga_controller_0.external_interface) 1 0 4 NJ 140 NJ 140 NJ 160 NJ
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)CLK.clk_in_reset,(SLAVE)reloj_soc.reset_n) 1 0 1 NJ
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(MASTER)AUDIO_CLK.audio_clk,(MASTER)reloj_soc.audio_clock) 1 2 3 NJ 300 NJ 320 NJ
+preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)video_vga_controller_0.reset,(SLAVE)AUDIO_CONFIG.reset,(SLAVE)AUDIO_CLK.ref_reset,(SLAVE)video_character_buffer_with_dma_0.reset,(SLAVE)AUDIO.reset,(SLAVE)REG_SEGMENTS.reset,(SLAVE)MEMORY.reset1,(SLAVE)fifo_1.reset_in,(SLAVE)NIOSII.reset,(MASTER)CLK.clk_reset,(SLAVE)fifo_0.reset_in,(SLAVE)fifo_2.reset_in,(SLAVE)pll_0.reset,(SLAVE)REG_BUTTONS.reset,(SLAVE)UART.reset,(SLAVE)TIMER.reset) 1 1 3 450 550 870 140 1410
+preplace netloc POINT_TO_POINT<net_container>reloj_soc</net_container>(MASTER)video_character_buffer_with_dma_0.avalon_char_source,(SLAVE)video_vga_controller_0.avalon_vga_sink) 1 3 1 N
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.buttons,(SLAVE)REG_BUTTONS.external_connection) 1 0 3 NJ 670 NJ 670 NJ
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.clk,(SLAVE)CLK.clk_in) 1 0 1 NJ
 preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.config,(SLAVE)AUDIO_CONFIG.external_interface) 1 0 3 NJ 80 NJ 80 NJ
-preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)CLK.clk_in,(SLAVE)reloj_soc.clk) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)AUDIO.clk,(MASTER)AUDIO_CLK.audio_clk,(SLAVE)AUDIO_CONFIG.clk) 1 2 1 890
-levelinfo -pg 1 0 200 1590
-levelinfo -hier reloj_soc 210 240 590 1020 1420 1580
+preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(MASTER)pll_0.outclk0,(SLAVE)video_vga_controller_0.clk,(SLAVE)video_character_buffer_with_dma_0.clk) 1 2 2 930 180 1370
+preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)fifo_0.in_csr,(SLAVE)fifo_2.in,(SLAVE)fifo_2.in_csr,(MASTER)HPS.h2f_lw_axi_master,(SLAVE)fifo_0.in) 1 2 1 990
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)AUDIO.external_interface,(SLAVE)reloj_soc.audio) 1 0 3 NJ 160 NJ 160 NJ
+preplace netloc POINT_TO_POINT<net_container>reloj_soc</net_container>(MASTER)HPS.h2f_axi_master,(SLAVE)fifo_1.out) 1 2 1 830
+preplace netloc EXPORT<net_container>reloj_soc</net_container>(SLAVE)reloj_soc.segments,(SLAVE)REG_SEGMENTS.external_connection) 1 0 3 NJ 1150 NJ 1150 NJ
+preplace netloc FAN_OUT<net_container>reloj_soc</net_container>(SLAVE)UART.irq,(SLAVE)TIMER.irq,(MASTER)NIOSII.irq,(SLAVE)AUDIO.interrupt,(SLAVE)REG_BUTTONS.irq) 1 2 1 950
+preplace netloc INTERCONNECT<net_container>reloj_soc</net_container>(SLAVE)TIMER.s1,(SLAVE)NIOSII.debug_mem_slave,(MASTER)NIOSII.instruction_master,(SLAVE)fifo_1.in,(SLAVE)fifo_0.out,(SLAVE)REG_SEGMENTS.s1,(SLAVE)UART.avalon_jtag_slave,(SLAVE)fifo_1.in_csr,(SLAVE)video_character_buffer_with_dma_0.avalon_char_control_slave,(SLAVE)fifo_2.out,(SLAVE)AUDIO_CONFIG.avalon_av_config_slave,(SLAVE)REG_BUTTONS.s1,(SLAVE)MEMORY.s1,(SLAVE)video_character_buffer_with_dma_0.avalon_char_buffer_slave,(SLAVE)AUDIO.avalon_audio_slave,(MASTER)NIOSII.data_master) 1 1 2 470 180 910
+levelinfo -pg 1 0 200 1720
+levelinfo -hier reloj_soc 210 240 590 1060 1460 1620

@@ -1,9 +1,12 @@
 #include "system.h"
+#include "stdint.h"
 #include "sys/alt_stdio.h"
 #include "sys/alt_irq.h"
 #include "priv/alt_legacy_irq.h"
 #include "altera_avalon_pio_regs.h"
+#include "altera_up_avalon_audio_and_video_config.h"
 #include "io.h"
+#include "unistd.h"
 
 #define CHAR_BUFFER_BASE  0x01020000
 #define CHAR_CONTROL_BASE 0x01000100
@@ -14,6 +17,9 @@ int minutos = 0;
 int segundos = 0;
 int paused = 0;
 int actualizar_display = 0;
+
+char metadata[256];
+int new_song = 0;
 
 volatile unsigned int* segments_ptr = (unsigned int *) REG_SEGMENTS_BASE;
 
@@ -39,6 +45,10 @@ volatile unsigned int* config_control = (unsigned int *) AUDIO_CONFIG_BASE;
 volatile unsigned int* config_status = (unsigned int *) (AUDIO_CONFIG_BASE + 0x04);
 volatile unsigned int* config_address = (unsigned int *) (AUDIO_CONFIG_BASE + 0x08);
 volatile unsigned int* config_data = (unsigned int *) (AUDIO_CONFIG_BASE + 0x0C);
+
+volatile unsigned int* song_fifo = (unsigned int *) FIFO_0_BASE;
+volatile unsigned int* buttons_fifo = (unsigned int *) FIFO_1_IN_BASE;
+volatile unsigned int* metadata_fifo = (unsigned int *) FIFO_2_BASE;
 
 void vga_clear()
 {
@@ -80,36 +90,6 @@ void delay()
     for (i = 0; i < 1000000; i++);
 }
 
-void wait() {
-	while ((*config_status & 0x102) == 0);
-}
-
-void config_wm8731(alt_u8 addr, alt_u16 data) {
-	wait();
-
-	*config_address = addr;
-	*config_data = data;
-
-	*config_control = 0x340002;
-}
-
-void init_wm8731() {
-	config_wm8731(0x0F, 0x000); // Reset CODEC
-
-	wait();
-
-	config_wm8731(0x00, 0x097); // Left Line In default
-	config_wm8731(0x01, 0x097); // Right Line In default
-	config_wm8731(0x02, 0x07F);	// Left output full volume
-	config_wm8731(0x03, 0x07F);	// Right output full volume
-	config_wm8731(0x04, 0x012);	// Analog Audio Config: Using DAC, Line In
-	config_wm8731(0x05, 0x000); // Digital Audio Config: Output unmuted, no filter
-	config_wm8731(0x06, 0x047); // Power off inputs and clock output (not needed)
-	config_wm8731(0x07, 0x009); // A bunch of config
-	config_wm8731(0x08, 0x000); // Sampling rate 48kHz normal
-	config_wm8731(0x09, 0x001); // Activate
-}
-
 unsigned int segmentos(int digito) {
     switch (digito) {
     case 0: return 0x40;
@@ -132,14 +112,15 @@ void button_isr_handler(void* context, alt_u32 id) {
     unsigned int buttons = *buttons_edge_ptr;
     *buttons_edge_ptr = buttons;
 
+    *buttons_fifo = buttons;
+
+    /*
     if (buttons == 0x8) paused = !paused;
-    else if (buttons == 0x2) {
-    	minutos = 0;
-    	segundos = 0;
-    } else if (buttons == 0x1) {
+    else if (buttons == 0x2 || buttons == 0x1) {
     	minutos = 0;
     	segundos = 0;
     }
+    */
 }
 
 
@@ -161,7 +142,6 @@ void timer_isr_handler(void* context, alt_u32 id) {
     actualizar_display = 1;
 }
 
-
 void mostrar_duracion(int minutos, int segundos) {
     int min_dec = minutos / 10;
     int min_uni = minutos % 10;
@@ -177,8 +157,32 @@ void mostrar_duracion(int minutos, int segundos) {
     *segments_ptr = display_value;
 }
 
+void receive_metadata() {
+	int i = 0;
+	char val = '0';
+	while (val != '/') {
+		val = *metadata_fifo;
+		metadata[i++] = val;
+	}
+	metadata[i--] = '\0';
+	alt_printf("%s\n", metadata);
+}
+
+void receive_audio_data() {
+	int16_t sample16 = (int16_t) (*song_fifo & 0xFFFF);
+	int32_t sample32 = sample16 << 8;
+
+	if ((((*audio_fifospace >> 24) & 0xFF) > 0) && ((*audio_fifospace >> 16) & 0xFF) > 0) {
+		*audio_leftdata = sample32;
+		*audio_rightdata = sample32;
+	}
+
+	usleep(0);
+}
 // Main
 int main() {
+	alt_putstr("Hello from Nios\n");
+
     *buttons_edge_ptr = 0;
     *buttons_mask_ptr = 0xF; // Habilitar interrupciones botones 0-3
 
@@ -191,22 +195,33 @@ int main() {
 
     alt_irq_register(TIMER_IRQ, NULL, timer_isr_handler);
 
-	*config_control = 0x340003;
-	*config_control = 0x340002;
+	*config_control = 0x1;	// Reset 1 for auto-initializing core
+	*config_control = 0x0;	// Reset 0 for normal flow
 
-	init_wm8731();
+	while (((*config_status >> 8) & 0x1) == 0 &&
+			((*config_status >> 1) & 0x1) == 0);	// Wait auto-initializing
 
-	*audio_control = 0xE;	// Set clears to 1
-	*audio_control = 0x2;	// Set clears to 0 for normal flow
+	*audio_control = 0xC;	// Set clears to 1
+	*audio_control = 0x0;	// Set clears to 0 for normal	 flow
+
+	new_song = 1;
+	int song_active = 0;
 
     while (1) {
-        if (actualizar_display) {
-            mostrar_duracion(minutos, segundos);
-            actualizar_display = 0;
-        }
-        if ((*audio_control & 0x200) != 0) {
+    	if (new_song) {
+    		receive_metadata();
+    		song_active = 1;
+    		new_song = 0;
+    	}
 
-        }
+    	if (song_active) {
+    		receive_audio_data();
+    	}
+
+    	if (actualizar_display) {
+    		mostrar_duracion(minutos, segundos);
+    		actualizar_display = 0;
+    	}
     }
 }
 

@@ -55,7 +55,7 @@ module reloj_soc_MEMORY (
 wire             clocken0;
 wire    [ 31: 0] readdata;
 wire             wren;
-  assign wren = chipselect & write;
+  assign wren = chipselect & write & clken;
   assign clocken0 = clken & ~reset_req;
   altsyncram the_altsyncram
     (
