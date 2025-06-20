@@ -15,11 +15,11 @@
 
 int minutos = 0;
 int segundos = 0;
-int paused = 0;
 int actualizar_display = 0;
 
 char metadata[256];
 int new_song = 0;
+int song_active = 0;
 
 volatile unsigned int* segments_ptr = (unsigned int *) REG_SEGMENTS_BASE;
 
@@ -112,15 +112,10 @@ void button_isr_handler(void* context, alt_u32 id) {
     unsigned int buttons = *buttons_edge_ptr;
     *buttons_edge_ptr = buttons;
 
-    *buttons_fifo = buttons;
+    //*buttons_fifo = buttons;
 
-    /*
-    if (buttons == 0x8) paused = !paused;
-    else if (buttons == 0x2 || buttons == 0x1) {
-    	minutos = 0;
-    	segundos = 0;
-    }
-    */
+
+    if (buttons == 0x8 || buttons == 0x4) song_active = !song_active;
 }
 
 
@@ -128,7 +123,7 @@ void button_isr_handler(void* context, alt_u32 id) {
 void timer_isr_handler(void* context, alt_u32 id) {
     *timer_status_ptr = 0; // Limpiar status
 
-    if (!paused) {
+    if (song_active) {
 		segundos++;
 		if (segundos >= 60) {
 			segundos = 0;
@@ -205,7 +200,6 @@ int main() {
 	*audio_control = 0x0;	// Set clears to 0 for normal	 flow
 
 	new_song = 1;
-	int song_active = 0;
 
     while (1) {
     	if (new_song) {

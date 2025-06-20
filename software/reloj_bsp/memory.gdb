@@ -3,7 +3,7 @@
 # Machine generated for CPU 'NIOSII' in SOPC Builder design 'reloj_soc'
 # SOPC Builder design path: ../../reloj_soc.sopcinfo
 #
-# Generated: Tue Jun 10 22:27:56 CST 2025
+# Generated: Fri Jun 20 00:41:33 CST 2025
 
 # DO NOT MODIFY THIS FILE
 #
