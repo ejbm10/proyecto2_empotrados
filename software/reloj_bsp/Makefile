@@ -222,6 +222,13 @@ Avalon_Audio_driver_SRCS_ROOT := drivers
 Avalon_Audio_driver_C_LIB_SRCS := \
 	$(Avalon_Audio_driver_SRCS_ROOT)/src/altera_up_avalon_audio.c
 
+# altera_avalon_fifo_driver sources root 
+altera_avalon_fifo_driver_SRCS_ROOT := drivers
+
+# altera_avalon_fifo_driver sources 
+altera_avalon_fifo_driver_C_LIB_SRCS := \
+	$(altera_avalon_fifo_driver_SRCS_ROOT)/src/altera_avalon_fifo_util.c
+
 # altera_avalon_jtag_uart_driver sources root 
 altera_avalon_jtag_uart_driver_SRCS_ROOT := drivers
 
@@ -354,6 +361,7 @@ hal_C_LIB_SRCS := \
 COMPONENT_C_LIB_SRCS += \
 	$(Avalon_Audio_and_Video_driver_C_LIB_SRCS) \
 	$(Avalon_Audio_driver_C_LIB_SRCS) \
+	$(altera_avalon_fifo_driver_C_LIB_SRCS) \
 	$(altera_avalon_jtag_uart_driver_C_LIB_SRCS) \
 	$(altera_avalon_timer_driver_C_LIB_SRCS) \
 	$(altera_nios2_gen2_hal_driver_C_LIB_SRCS) \
