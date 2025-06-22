@@ -6,8 +6,9 @@
    <connections preferredWidth="255" />
    <irq preferredWidth="34" />
    <name preferredWidth="228" />
+   <description preferredWidth="379" />
   </columns>
  </systemtable>
  <library expandedCategories="Project,Library" />
- <window width="1920" height="1008" x="0" y="0" />
+ <window width="2584" height="1380" x="-12" y="-12" />
 </preferences>

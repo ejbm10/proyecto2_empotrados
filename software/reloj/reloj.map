@@ -4,6 +4,8 @@ c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-el
                               obj/default/hello_world_small.o (__divsi3)
 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
                               obj/default/hello_world_small.o (__mulsi3)
+c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+                              obj/default/hello_world_small.o (memcpy)
 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
                               obj/default/hello_world_small.o (memset)
 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
@@ -155,7 +157,7 @@ LOAD c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nio
                 0x0000000000000180                PROVIDE (__ram_exceptions_end, ABSOLUTE (.))
                 0x0000000000000020                PROVIDE (__flash_exceptions_start, LOADADDR (.exceptions))
 
-.text           0x0000000000000180      0xef8
+.text           0x0000000000000180     0x116c
                 [!provide]                        PROVIDE (stext, ABSOLUTE (.))
  *(.interp)
  *(.hash)
@@ -202,92 +204,95 @@ LOAD c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nio
  *(.text .stub .text.* .gnu.linkonce.t.*)
  .text          0x0000000000000180       0x3c ../reloj_bsp//obj/HAL/src/crt0.o
                 0x0000000000000180                _start
- .text          0x00000000000001bc      0x388 obj/default/hello_world_small.o
+ .text          0x00000000000001bc      0x5a4 obj/default/hello_world_small.o
                 0x00000000000001bc                timer_isr_handler
-                0x0000000000000210                button_isr_handler
-                0x000000000000023c                vga_clear
-                0x0000000000000250                vga_enable
-                0x0000000000000264                vga_write_char
-                0x00000000000002ac                delay
-                0x00000000000002dc                message_to_vga
-                0x000000000000038c                segmentos
-                0x00000000000003b4                mostrar_duracion
-                0x000000000000045c                receive_metadata
-                0x00000000000004c8                receive_audio_data
- .text.startup  0x0000000000000544      0x114 obj/default/hello_world_small.o
-                0x0000000000000544                main
- .text          0x0000000000000658      0x1b4 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
-                0x0000000000000658                __divsi3
-                0x00000000000006dc                __modsi3
-                0x0000000000000750                __udivsi3
-                0x00000000000007b4                __umodsi3
- .text          0x000000000000080c       0x28 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
-                0x000000000000080c                __mulsi3
- .text          0x0000000000000834        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
- .text.memset   0x0000000000000834       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
-                0x0000000000000834                memset
- .text          0x0000000000000854        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
- .text.strlen   0x0000000000000854       0x1c c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
-                0x0000000000000854                strlen
- .text          0x0000000000000870       0x94 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
-                0x0000000000000870                alt_irq_register
- .text          0x0000000000000904        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
- .text          0x0000000000000904       0xe0 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
-                0x0000000000000904                alt_load
- .text          0x00000000000009e4       0x2c ../reloj_bsp/\libhal_bsp.a(alt_main.o)
-                0x00000000000009e4                alt_main
- .text          0x0000000000000a10      0x170 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
-                0x0000000000000a10                alt_printf
- .text          0x0000000000000b80       0x48 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
-                0x0000000000000b80                alt_putchar
- .text          0x0000000000000bc8       0x38 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
-                0x0000000000000bc8                alt_putstr
- .text          0x0000000000000c00        0x4 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
-                0x0000000000000c00                usleep
- .text          0x0000000000000c04       0xb4 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
-                0x0000000000000c04                alt_irq_init
-                0x0000000000000c24                alt_sys_init
- .text          0x0000000000000cb8       0x34 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
-                0x0000000000000cb8                altera_avalon_jtag_uart_write
- .text          0x0000000000000cec      0x130 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
-                0x0000000000000cec                alt_up_char_buffer_init
-                0x0000000000000d38                alt_up_char_buffer_open_dev
-                0x0000000000000d40                alt_up_char_buffer_draw
-                0x0000000000000d90                alt_up_char_buffer_string
-                0x0000000000000dfc                alt_up_char_buffer_clear
- .text          0x0000000000000e1c       0x88 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
-                0x0000000000000e1c                alt_busy_sleep
- .text          0x0000000000000ea4        0x4 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
-                0x0000000000000ea4                alt_dcache_flush_all
- .text          0x0000000000000ea8        0x8 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
- .text          0x0000000000000eb0       0x6c ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
-                0x0000000000000eb0                alt_dev_llist_insert
- .text          0x0000000000000f1c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
- .text          0x0000000000000f1c       0x74 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
-                0x0000000000000f1c                alt_find_dev
- .text          0x0000000000000f90        0x4 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
-                0x0000000000000f90                alt_icache_flush_all
- .text          0x0000000000000f94        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
- .text          0x0000000000000f94        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
- .text          0x0000000000000f94        0x8 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
-                0x0000000000000f94                altera_nios2_gen2_irq_init
- .text          0x0000000000000f9c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
- .text          0x0000000000000f9c       0x74 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
-                0x0000000000000f9c                alt_exception_cause_generated_bad_addr
- .text          0x0000000000001010        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
- .text          0x0000000000001010        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
- .text.memcmp   0x0000000000001010       0x30 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
-                0x0000000000001010                memcmp
- .text          0x0000000000001040        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
- .text.strcmp   0x0000000000001040       0x38 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
-                0x0000000000001040                strcmp
+                0x0000000000000230                button_isr_handler
+                0x000000000000025c                vga_clear
+                0x0000000000000280                vga_enable
+                0x0000000000000294                vga_write_string
+                0x0000000000000384                extraer_campos
+                0x000000000000048c                update_info_desplazada
+                0x0000000000000540                segmentos
+                0x0000000000000568                mostrar_duracion
+                0x0000000000000610                receive_metadata_and_update_vga
+                0x00000000000006e4                receive_audio_data
+ .text.startup  0x0000000000000760      0x144 obj/default/hello_world_small.o
+                0x0000000000000760                main
+ .text          0x00000000000008a4      0x1b4 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+                0x00000000000008a4                __divsi3
+                0x0000000000000928                __modsi3
+                0x000000000000099c                __udivsi3
+                0x0000000000000a00                __umodsi3
+ .text          0x0000000000000a58       0x28 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+                0x0000000000000a58                __mulsi3
+ .text          0x0000000000000a80        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+ .text.memcpy   0x0000000000000a80       0x28 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+                0x0000000000000a80                memcpy
+ .text          0x0000000000000aa8        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .text.memset   0x0000000000000aa8       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+                0x0000000000000aa8                memset
+ .text          0x0000000000000ac8        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .text.strlen   0x0000000000000ac8       0x1c c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+                0x0000000000000ac8                strlen
+ .text          0x0000000000000ae4       0x94 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+                0x0000000000000ae4                alt_irq_register
+ .text          0x0000000000000b78        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+ .text          0x0000000000000b78       0xe0 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+                0x0000000000000b78                alt_load
+ .text          0x0000000000000c58       0x2c ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+                0x0000000000000c58                alt_main
+ .text          0x0000000000000c84      0x170 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+                0x0000000000000c84                alt_printf
+ .text          0x0000000000000df4       0x48 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+                0x0000000000000df4                alt_putchar
+ .text          0x0000000000000e3c       0x38 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
+                0x0000000000000e3c                alt_putstr
+ .text          0x0000000000000e74        0x4 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+                0x0000000000000e74                usleep
+ .text          0x0000000000000e78       0xb4 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+                0x0000000000000e78                alt_irq_init
+                0x0000000000000e98                alt_sys_init
+ .text          0x0000000000000f2c       0x34 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                0x0000000000000f2c                altera_avalon_jtag_uart_write
+ .text          0x0000000000000f60      0x130 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+                0x0000000000000f60                alt_up_char_buffer_init
+                0x0000000000000fac                alt_up_char_buffer_open_dev
+                0x0000000000000fb4                alt_up_char_buffer_draw
+                0x0000000000001004                alt_up_char_buffer_string
+                0x0000000000001070                alt_up_char_buffer_clear
+ .text          0x0000000000001090       0x88 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+                0x0000000000001090                alt_busy_sleep
+ .text          0x0000000000001118        0x4 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                0x0000000000001118                alt_dcache_flush_all
+ .text          0x000000000000111c        0x8 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+ .text          0x0000000000001124       0x6c ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+                0x0000000000001124                alt_dev_llist_insert
+ .text          0x0000000000001190        0x0 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
+ .text          0x0000000000001190       0x74 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+                0x0000000000001190                alt_find_dev
+ .text          0x0000000000001204        0x4 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                0x0000000000001204                alt_icache_flush_all
+ .text          0x0000000000001208        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
+ .text          0x0000000000001208        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+ .text          0x0000000000001208        0x8 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+                0x0000000000001208                altera_nios2_gen2_irq_init
+ .text          0x0000000000001210        0x0 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
+ .text          0x0000000000001210       0x74 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+                0x0000000000001210                alt_exception_cause_generated_bad_addr
+ .text          0x0000000000001284        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
+ .text          0x0000000000001284        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .text.memcmp   0x0000000000001284       0x30 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+                0x0000000000001284                memcmp
+ .text          0x00000000000012b4        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+ .text.strcmp   0x00000000000012b4       0x38 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+                0x00000000000012b4                strcmp
  *(.gnu.warning.*)
  *(.fini)
                 [!provide]                        PROVIDE (__etext, ABSOLUTE (.))
                 [!provide]                        PROVIDE (_etext, ABSOLUTE (.))
                 [!provide]                        PROVIDE (etext, ABSOLUTE (.))
  *(.eh_frame_hdr)
-                0x0000000000001078                . = ALIGN (0x4)
+                0x00000000000012ec                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__preinit_array_start, ABSOLUTE (.))
  *(.preinit_array)
                 [!provide]                        PROVIDE (__preinit_array_end, ABSOLUTE (.))
@@ -309,189 +314,193 @@ LOAD c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nio
  *(SORT(.dtors.*))
                 [!provide]                        PROVIDE (__DTOR_END__, ABSOLUTE (.))
  *(.jcr)
-                0x0000000000001078                . = ALIGN (0x4)
+                0x00000000000012ec                . = ALIGN (0x4)
 
-.rodata         0x0000000000001078       0xbc
-                0x0000000000001078                PROVIDE (__ram_rodata_start, ABSOLUTE (.))
-                0x0000000000001078                . = ALIGN (0x4)
+.rodata         0x00000000000012ec      0x11c
+                0x00000000000012ec                PROVIDE (__ram_rodata_start, ABSOLUTE (.))
+                0x00000000000012ec                . = ALIGN (0x4)
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.4
-                0x0000000000001078       0x29 obj/default/hello_world_small.o
- .rodata        0x00000000000010a1        0x9 obj/default/hello_world_small.o
- *fill*         0x00000000000010aa        0x2 
+                0x00000000000012ec       0x6d obj/default/hello_world_small.o
+ *fill*         0x0000000000001359        0x3 
+ .rodata        0x000000000000135c       0x21 obj/default/hello_world_small.o
+ *fill*         0x000000000000137d        0x3 
  .rodata.str1.4
-                0x00000000000010ac       0x5e ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
- *fill*         0x000000000000110a        0x2 
+                0x0000000000001380       0x5e ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+ *fill*         0x00000000000013de        0x2 
  .rodata.str1.4
-                0x000000000000110c       0x1a ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
- *fill*         0x0000000000001126        0x2 
+                0x00000000000013e0       0x1a ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+ *fill*         0x00000000000013fa        0x2 
  .rodata.str1.4
-                0x0000000000001128        0xc ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+                0x00000000000013fc        0xc ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
                                           0xa (size before relaxing)
  *(.rodata1)
-                0x0000000000001134                . = ALIGN (0x4)
-                0x0000000000001134                PROVIDE (__ram_rodata_end, ABSOLUTE (.))
-                0x0000000000001078                PROVIDE (__flash_rodata_start, LOADADDR (.rodata))
+                0x0000000000001408                . = ALIGN (0x4)
+                0x0000000000001408                PROVIDE (__ram_rodata_end, ABSOLUTE (.))
+                0x00000000000012ec                PROVIDE (__flash_rodata_start, LOADADDR (.rodata))
 
-.rwdata         0x0000000000001134      0x16c load address 0x00000000000012a0
-                0x0000000000001134                PROVIDE (__ram_rwdata_start, ABSOLUTE (.))
-                0x0000000000001134                . = ALIGN (0x4)
+.rwdata         0x0000000000001408      0x170 load address 0x0000000000001578
+                0x0000000000001408                PROVIDE (__ram_rwdata_start, ABSOLUTE (.))
+                0x0000000000001408                . = ALIGN (0x4)
  *(.got.plt)
  *(.got)
  *(.data1)
  *(.data .data.* .gnu.linkonce.d.*)
- .data          0x0000000000001134        0x0 ../reloj_bsp//obj/HAL/src/crt0.o
- .data          0x0000000000001134        0x0 obj/default/hello_world_small.o
- .data          0x0000000000001134        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
- .data          0x0000000000001134        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
- .data          0x0000000000001134        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
- .data          0x0000000000001134        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
- .data          0x0000000000001134        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
- .data          0x0000000000001134        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
- .data          0x0000000000001134        0x0 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
- .data          0x0000000000001134        0x0 ../reloj_bsp/\libhal_bsp.a(alt_main.o)
- .data          0x0000000000001134        0x0 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
- .data          0x0000000000001134        0x0 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
- .data          0x0000000000001134        0x0 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
- .data          0x0000000000001134        0x0 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
- .data          0x0000000000001134       0xa8 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
- .data          0x00000000000011dc        0x0 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .data          0x00000000000011dc        0x0 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
- .data          0x00000000000011dc        0x0 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
- .data          0x00000000000011dc        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .data          0x00000000000011dc       0x58 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
-                0x00000000000011dc                alt_fd_list
-                0x000000000000120c                alt_dev_null
- .data          0x0000000000001234        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
- .data          0x0000000000001234        0x0 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
- .data          0x0000000000001234        0x0 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
- .data          0x0000000000001234        0x0 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .data          0x0000000000001234        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
- .data          0x0000000000001234        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
- .data          0x0000000000001234        0x0 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
- .data          0x0000000000001234        0x0 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
- .data          0x0000000000001234        0x0 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
- .data          0x0000000000001234        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
- .data          0x0000000000001234        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
- .data          0x0000000000001234        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
-                0x0000000000009234                _gp = ABSOLUTE ((. + 0x8000))
+ .data          0x0000000000001408        0x0 ../reloj_bsp//obj/HAL/src/crt0.o
+ .data          0x0000000000001408        0x0 obj/default/hello_world_small.o
+ .data          0x0000000000001408        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ .data          0x0000000000001408        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .data          0x0000000000001408        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+ .data          0x0000000000001408        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .data          0x0000000000001408        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .data          0x0000000000001408        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+ .data          0x0000000000001408        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+ .data          0x0000000000001408        0x0 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+ .data          0x0000000000001408        0x0 ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+ .data          0x0000000000001408        0x0 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+ .data          0x0000000000001408        0x0 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+ .data          0x0000000000001408        0x0 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
+ .data          0x0000000000001408        0x0 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+ .data          0x0000000000001408       0xa8 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .data          0x00000000000014b0        0x0 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .data          0x00000000000014b0        0x0 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+ .data          0x00000000000014b0        0x0 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .data          0x00000000000014b0        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .data          0x00000000000014b0       0x58 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+                0x00000000000014b0                alt_fd_list
+                0x00000000000014e0                alt_dev_null
+ .data          0x0000000000001508        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+ .data          0x0000000000001508        0x0 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
+ .data          0x0000000000001508        0x0 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+ .data          0x0000000000001508        0x0 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .data          0x0000000000001508        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
+ .data          0x0000000000001508        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+ .data          0x0000000000001508        0x0 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .data          0x0000000000001508        0x0 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
+ .data          0x0000000000001508        0x0 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+ .data          0x0000000000001508        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
+ .data          0x0000000000001508        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .data          0x0000000000001508        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+                0x0000000000009508                _gp = ABSOLUTE ((. + 0x8000))
                 [!provide]                        PROVIDE (gp, _gp)
  *(.rwdata .rwdata.*)
  *(.sdata .sdata.* .gnu.linkonce.s.*)
- .sdata         0x0000000000001234       0x4c obj/default/hello_world_small.o
-                0x0000000000001234                metadata_fifo
-                0x0000000000001238                buttons_fifo
-                0x000000000000123c                song_fifo
-                0x0000000000001240                config_data
-                0x0000000000001244                config_address
-                0x0000000000001248                config_status
-                0x000000000000124c                config_control
-                0x0000000000001250                audio_rightdata
-                0x0000000000001254                audio_leftdata
-                0x0000000000001258                audio_fifospace
-                0x000000000000125c                audio_control
-                0x0000000000001260                timer_periodh_ptr
-                0x0000000000001264                timer_periodl_ptr
-                0x0000000000001268                timer_control_ptr
-                0x000000000000126c                timer_status_ptr
-                0x0000000000001270                buttons_data_ptr
-                0x0000000000001274                buttons_mask_ptr
-                0x0000000000001278                buttons_edge_ptr
-                0x000000000000127c                segments_ptr
- .sdata         0x0000000000001280        0x4 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
-                0x0000000000001280                alt_priority_mask
- .sdata         0x0000000000001284        0x4 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
-                0x0000000000001284                UART
- .sdata         0x0000000000001288       0x14 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
-                0x0000000000001288                alt_max_fd
-                0x000000000000128c                alt_dev_list
-                0x0000000000001294                alt_fs_list
- .sdata         0x000000000000129c        0x4 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
-                0x000000000000129c                alt_errno
+ .sdata         0x0000000000001508       0x50 obj/default/hello_world_small.o
+                0x0000000000001508                metadata_fifo_csr
+                0x000000000000150c                metadata_fifo
+                0x0000000000001510                buttons_fifo
+                0x0000000000001514                song_fifo
+                0x0000000000001518                config_data
+                0x000000000000151c                config_address
+                0x0000000000001520                config_status
+                0x0000000000001524                config_control
+                0x0000000000001528                audio_rightdata
+                0x000000000000152c                audio_leftdata
+                0x0000000000001530                audio_fifospace
+                0x0000000000001534                audio_control
+                0x0000000000001538                timer_periodh_ptr
+                0x000000000000153c                timer_periodl_ptr
+                0x0000000000001540                timer_control_ptr
+                0x0000000000001544                timer_status_ptr
+                0x0000000000001548                buttons_data_ptr
+                0x000000000000154c                buttons_mask_ptr
+                0x0000000000001550                buttons_edge_ptr
+                0x0000000000001554                segments_ptr
+ .sdata         0x0000000000001558        0x4 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+                0x0000000000001558                alt_priority_mask
+ .sdata         0x000000000000155c        0x4 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+                0x000000000000155c                UART
+ .sdata         0x0000000000001560       0x14 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+                0x0000000000001560                alt_max_fd
+                0x0000000000001564                alt_dev_list
+                0x000000000000156c                alt_fs_list
+ .sdata         0x0000000000001574        0x4 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
+                0x0000000000001574                alt_errno
  *(.sdata2 .sdata2.* .gnu.linkonce.s2.*)
-                0x00000000000012a0                . = ALIGN (0x4)
-                0x00000000000012a0                _edata = ABSOLUTE (.)
+                0x0000000000001578                . = ALIGN (0x4)
+                0x0000000000001578                _edata = ABSOLUTE (.)
                 [!provide]                        PROVIDE (edata, ABSOLUTE (.))
-                0x00000000000012a0                PROVIDE (__ram_rwdata_end, ABSOLUTE (.))
-                0x00000000000012a0                PROVIDE (__flash_rwdata_start, LOADADDR (.rwdata))
+                0x0000000000001578                PROVIDE (__ram_rwdata_end, ABSOLUTE (.))
+                0x0000000000001578                PROVIDE (__flash_rwdata_start, LOADADDR (.rwdata))
 
-.bss            0x000000000000140c      0x230
-                0x000000000000140c                __bss_start = ABSOLUTE (.)
+.bss            0x00000000000016e8      0x230
+                0x00000000000016e8                __bss_start = ABSOLUTE (.)
                 [!provide]                        PROVIDE (__sbss_start, ABSOLUTE (.))
                 [!provide]                        PROVIDE (___sbss_start, ABSOLUTE (.))
  *(.dynsbss)
  *(.sbss .sbss.* .gnu.linkonce.sb.*)
- .sbss          0x000000000000140c       0x18 obj/default/hello_world_small.o
-                0x000000000000140c                totalSamples
-                0x0000000000001410                song_active
-                0x0000000000001414                new_song
-                0x0000000000001418                actualizar_display
-                0x000000000000141c                segundos
-                0x0000000000001420                minutos
- .sbss          0x0000000000001424        0x4 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
-                0x0000000000001424                alt_irq_active
- .sbss          0x0000000000001428        0xc ../reloj_bsp/\libhal_bsp.a(alt_main.o)
-                0x0000000000001428                alt_envp
-                0x000000000000142c                alt_argv
-                0x0000000000001430                alt_argc
- .sbss          0x0000000000001434        0x4 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
-                0x0000000000001434                alt_instruction_exception_handler
- .sbss          0x0000000000001438        0x4 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
-                0x0000000000001438                errno
+ .sbss          0x00000000000016e8       0x18 obj/default/hello_world_small.o
+                0x00000000000016e8                totalSamples
+                0x00000000000016ec                song_active
+                0x00000000000016f0                new_song
+                0x00000000000016f4                actualizar_display
+                0x00000000000016f8                segundos
+                0x00000000000016fc                minutos
+ .sbss          0x0000000000001700        0x4 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+                0x0000000000001700                alt_irq_active
+ .sbss          0x0000000000001704        0xc ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+                0x0000000000001704                alt_envp
+                0x0000000000001708                alt_argv
+                0x000000000000170c                alt_argc
+ .sbss          0x0000000000001710        0x4 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+                0x0000000000001710                alt_instruction_exception_handler
+ .sbss          0x0000000000001714        0x4 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
+                0x0000000000001714                errno
  *(.sbss2 .sbss2.* .gnu.linkonce.sb2.*)
  *(.scommon)
                 [!provide]                        PROVIDE (__sbss_end, ABSOLUTE (.))
                 [!provide]                        PROVIDE (___sbss_end, ABSOLUTE (.))
  *(.dynbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x000000000000143c        0x0 ../reloj_bsp//obj/HAL/src/crt0.o
- .bss           0x000000000000143c        0x0 obj/default/hello_world_small.o
- .bss           0x000000000000143c        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
- .bss           0x000000000000143c        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
- .bss           0x000000000000143c        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
- .bss           0x000000000000143c        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_main.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
- .bss           0x000000000000143c        0x0 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
- .bss           0x000000000000143c        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
- .bss           0x000000000000143c        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
- .bss           0x000000000000143c        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp//obj/HAL/src/crt0.o
+ .bss           0x0000000000001718        0x0 obj/default/hello_world_small.o
+ .bss           0x0000000000001718        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ .bss           0x0000000000001718        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .bss           0x0000000000001718        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+ .bss           0x0000000000001718        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .bss           0x0000000000001718        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
+ .bss           0x0000000000001718        0x0 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+ .bss           0x0000000000001718        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
+ .bss           0x0000000000001718        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .bss           0x0000000000001718        0x0 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
  *(COMMON)
- COMMON         0x000000000000143c      0x100 obj/default/hello_world_small.o
-                0x000000000000143c                metadata
- COMMON         0x000000000000153c      0x100 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
-                0x000000000000153c                alt_irq
-                0x000000000000163c                . = ALIGN (0x4)
-                0x000000000000163c                __bss_end = ABSOLUTE (.)
+ COMMON         0x0000000000001718      0x100 obj/default/hello_world_small.o
+                0x0000000000001718                metadata
+ COMMON         0x0000000000001818      0x100 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+                0x0000000000001818                alt_irq
+                0x0000000000001918                . = ALIGN (0x4)
+                0x0000000000001918                __bss_end = ABSOLUTE (.)
 
-.MEMORY         0x000000000000163c        0x0
+.MEMORY         0x0000000000001918        0x0
                 [!provide]                        PROVIDE (_alt_partition_MEMORY_start, ABSOLUTE (.))
  *(.MEMORY .MEMORY. MEMORY.*)
-                0x000000000000163c                . = ALIGN (0x4)
+                0x0000000000001918                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (_alt_partition_MEMORY_end, ABSOLUTE (.))
-                0x000000000000163c                _end = ABSOLUTE (.)
-                0x000000000000163c                end = ABSOLUTE (.)
-                0x000000000000163c                __alt_stack_base = ABSOLUTE (.)
+                0x0000000000001918                _end = ABSOLUTE (.)
+                0x0000000000001918                end = ABSOLUTE (.)
+                0x0000000000001918                __alt_stack_base = ABSOLUTE (.)
                 [!provide]                        PROVIDE (_alt_partition_MEMORY_load_addr, LOADADDR (.MEMORY))
 
 .stab
@@ -518,6 +527,7 @@ LOAD c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nio
                                          0x24 (size before relaxing)
  .comment       0x0000000000000023       0x24 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
  .comment       0x0000000000000023       0x24 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .comment       0x0000000000000023       0x24 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
  .comment       0x0000000000000023       0x24 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
  .comment       0x0000000000000023       0x24 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
  .comment       0x0000000000000023       0x24 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
@@ -557,7 +567,7 @@ LOAD c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nio
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000      0x428
+.debug_aranges  0x0000000000000000      0x448
  *(.debug_aranges)
  .debug_aranges
                 0x0000000000000000       0x28 ../reloj_bsp//obj/HAL/src/crt0.o
@@ -568,282 +578,291 @@ LOAD c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nio
  .debug_aranges
                 0x0000000000000070       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
  .debug_aranges
-                0x0000000000000090       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+                0x0000000000000090       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
  .debug_aranges
-                0x00000000000000b0       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+                0x00000000000000b0       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
  .debug_aranges
-                0x00000000000000d0       0x20 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+                0x00000000000000d0       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
  .debug_aranges
-                0x00000000000000f0       0x18 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+                0x00000000000000f0       0x20 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
  .debug_aranges
-                0x0000000000000108       0x20 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+                0x0000000000000110       0x18 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
  .debug_aranges
-                0x0000000000000128       0x20 ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+                0x0000000000000128       0x20 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
  .debug_aranges
-                0x0000000000000148       0x20 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+                0x0000000000000148       0x20 ../reloj_bsp/\libhal_bsp.a(alt_main.o)
  .debug_aranges
-                0x0000000000000168       0x20 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+                0x0000000000000168       0x20 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
  .debug_aranges
-                0x0000000000000188       0x20 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
+                0x0000000000000188       0x20 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
  .debug_aranges
-                0x00000000000001a8       0x20 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+                0x00000000000001a8       0x20 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
  .debug_aranges
-                0x00000000000001c8       0x20 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+                0x00000000000001c8       0x20 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
  .debug_aranges
-                0x00000000000001e8       0x20 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                0x00000000000001e8       0x20 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
  .debug_aranges
-                0x0000000000000208       0x20 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+                0x0000000000000208       0x20 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
  .debug_aranges
-                0x0000000000000228       0x20 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+                0x0000000000000228       0x20 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
  .debug_aranges
-                0x0000000000000248       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                0x0000000000000248       0x20 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
  .debug_aranges
-                0x0000000000000268       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+                0x0000000000000268       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
  .debug_aranges
-                0x0000000000000288       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+                0x0000000000000288       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
  .debug_aranges
-                0x00000000000002a8       0x18 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
+                0x00000000000002a8       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
  .debug_aranges
-                0x00000000000002c0       0x20 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+                0x00000000000002c8       0x18 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
  .debug_aranges
-                0x00000000000002e0       0x20 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                0x00000000000002e0       0x20 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
  .debug_aranges
-                0x0000000000000300       0x30 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
+                0x0000000000000300       0x20 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
  .debug_aranges
-                0x0000000000000330       0x20 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+                0x0000000000000320       0x30 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
  .debug_aranges
-                0x0000000000000350       0x20 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+                0x0000000000000350       0x20 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
  .debug_aranges
-                0x0000000000000370       0x38 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
+                0x0000000000000370       0x20 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
  .debug_aranges
-                0x00000000000003a8       0x28 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+                0x0000000000000390       0x38 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
  .debug_aranges
-                0x00000000000003d0       0x18 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
+                0x00000000000003c8       0x28 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
  .debug_aranges
-                0x00000000000003e8       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+                0x00000000000003f0       0x18 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
  .debug_aranges
-                0x0000000000000408       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+                0x0000000000000408       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .debug_aranges
+                0x0000000000000428       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x3924
+.debug_info     0x0000000000000000     0x3cfb
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x0000000000000000       0x7c ../reloj_bsp//obj/HAL/src/crt0.o
- .debug_info    0x000000000000007c      0x7d7 obj/default/hello_world_small.o
- .debug_info    0x0000000000000853      0x2c6 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
- .debug_info    0x0000000000000b19       0xb4 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
- .debug_info    0x0000000000000bcd       0xdc c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
- .debug_info    0x0000000000000ca9       0xc9 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
- .debug_info    0x0000000000000d72      0x30d ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
- .debug_info    0x000000000000107f       0x88 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
- .debug_info    0x0000000000001107      0x1c9 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
- .debug_info    0x00000000000012d0      0x18f ../reloj_bsp/\libhal_bsp.a(alt_main.o)
- .debug_info    0x000000000000145f      0x14d ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
- .debug_info    0x00000000000015ac      0x12a ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
- .debug_info    0x00000000000016d6      0x13a ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
- .debug_info    0x0000000000001810       0xd1 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
- .debug_info    0x00000000000018e1      0x62b ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
- .debug_info    0x0000000000001f0c      0x1ad ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .debug_info    0x00000000000020b9      0x4ab ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
- .debug_info    0x0000000000002564       0xd8 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
- .debug_info    0x000000000000263c       0x92 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .debug_info    0x00000000000026ce      0x499 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
- .debug_info    0x0000000000002b67      0x1b3 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
- .debug_info    0x0000000000002d1a       0xa6 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
- .debug_info    0x0000000000002dc0      0x32d ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
- .debug_info    0x00000000000030ed       0x92 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .debug_info    0x000000000000317f       0x85 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
- .debug_info    0x0000000000003204      0x1a4 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
- .debug_info    0x00000000000033a8       0xb8 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
- .debug_info    0x0000000000003460       0x8b ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
- .debug_info    0x00000000000034eb      0x1fd ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
- .debug_info    0x00000000000036e8       0x8a c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
- .debug_info    0x0000000000003772       0xf4 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
- .debug_info    0x0000000000003866       0xbe c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+ .debug_info    0x0000000000000000       0x76 ../reloj_bsp//obj/HAL/src/crt0.o
+ .debug_info    0x0000000000000076      0xaa7 obj/default/hello_world_small.o
+ .debug_info    0x0000000000000b1d      0x2c6 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ .debug_info    0x0000000000000de3       0xb4 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_info    0x0000000000000e97      0x119 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+ .debug_info    0x0000000000000fb0       0xdc c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .debug_info    0x000000000000108c       0xc9 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_info    0x0000000000001155      0x30d ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+ .debug_info    0x0000000000001462       0x88 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+ .debug_info    0x00000000000014ea      0x1c9 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_info    0x00000000000016b3      0x18f ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_info    0x0000000000001842      0x14d ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_info    0x000000000000198f      0x12a ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_info    0x0000000000001ab9      0x13a ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_info    0x0000000000001bf3       0xd1 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_info    0x0000000000001cc4      0x62b ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_info    0x00000000000022ef      0x1ad ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_info    0x000000000000249c      0x4ab ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+ .debug_info    0x0000000000002947       0xd8 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_info    0x0000000000002a1f       0x92 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_info    0x0000000000002ab1      0x499 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_info    0x0000000000002f4a      0x1b3 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+ .debug_info    0x00000000000030fd       0xa6 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
+ .debug_info    0x00000000000031a3      0x32d ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+ .debug_info    0x00000000000034d0       0x92 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_info    0x0000000000003562       0x7f ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
+ .debug_info    0x00000000000035e1      0x1a4 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+ .debug_info    0x0000000000003785       0xb8 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_info    0x000000000000383d       0x85 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
+ .debug_info    0x00000000000038c2      0x1fd ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+ .debug_info    0x0000000000003abf       0x8a c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
+ .debug_info    0x0000000000003b49       0xf4 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .debug_info    0x0000000000003c3d       0xbe c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
 
-.debug_abbrev   0x0000000000000000     0x18c7
+.debug_abbrev   0x0000000000000000     0x19a1
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000       0x12 ../reloj_bsp//obj/HAL/src/crt0.o
- .debug_abbrev  0x0000000000000012      0x2fd obj/default/hello_world_small.o
- .debug_abbrev  0x000000000000030f      0x10e c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
- .debug_abbrev  0x000000000000041d       0x6f c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
- .debug_abbrev  0x000000000000048c       0x8e c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
- .debug_abbrev  0x000000000000051a       0x7f c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
- .debug_abbrev  0x0000000000000599      0x1a5 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
- .debug_abbrev  0x000000000000073e       0x40 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
- .debug_abbrev  0x000000000000077e       0xd8 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
- .debug_abbrev  0x0000000000000856       0xf5 ../reloj_bsp/\libhal_bsp.a(alt_main.o)
- .debug_abbrev  0x000000000000094b       0xd5 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
- .debug_abbrev  0x0000000000000a20       0xd2 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
- .debug_abbrev  0x0000000000000af2       0xd3 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
- .debug_abbrev  0x0000000000000bc5       0x8d ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
- .debug_abbrev  0x0000000000000c52      0x1ed ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
- .debug_abbrev  0x0000000000000e3f       0xd5 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .debug_abbrev  0x0000000000000f14      0x16b ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
- .debug_abbrev  0x000000000000107f       0x8d ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
- .debug_abbrev  0x000000000000110c       0x42 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .debug_abbrev  0x000000000000114e       0xd9 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
- .debug_abbrev  0x0000000000001227      0x11c ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
- .debug_abbrev  0x0000000000001343       0x5a ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
- .debug_abbrev  0x000000000000139d      0x125 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
- .debug_abbrev  0x00000000000014c2       0x42 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .debug_abbrev  0x0000000000001504       0x12 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
- .debug_abbrev  0x0000000000001516      0x138 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
- .debug_abbrev  0x000000000000164e       0x67 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
- .debug_abbrev  0x00000000000016b5       0x12 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
- .debug_abbrev  0x00000000000016c7       0xe7 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
- .debug_abbrev  0x00000000000017ae       0x37 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
- .debug_abbrev  0x00000000000017e5       0x7f c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
- .debug_abbrev  0x0000000000001864       0x63 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+ .debug_abbrev  0x0000000000000012      0x33b obj/default/hello_world_small.o
+ .debug_abbrev  0x000000000000034d      0x10e c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ .debug_abbrev  0x000000000000045b       0x6f c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_abbrev  0x00000000000004ca       0x9c c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+ .debug_abbrev  0x0000000000000566       0x8e c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .debug_abbrev  0x00000000000005f4       0x7f c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_abbrev  0x0000000000000673      0x1a5 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+ .debug_abbrev  0x0000000000000818       0x40 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+ .debug_abbrev  0x0000000000000858       0xd8 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_abbrev  0x0000000000000930       0xf5 ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_abbrev  0x0000000000000a25       0xd5 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_abbrev  0x0000000000000afa       0xd2 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_abbrev  0x0000000000000bcc       0xd3 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_abbrev  0x0000000000000c9f       0x8d ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_abbrev  0x0000000000000d2c      0x1ed ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_abbrev  0x0000000000000f19       0xd5 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_abbrev  0x0000000000000fee      0x16b ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+ .debug_abbrev  0x0000000000001159       0x8d ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_abbrev  0x00000000000011e6       0x42 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_abbrev  0x0000000000001228       0xd9 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_abbrev  0x0000000000001301      0x11c ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+ .debug_abbrev  0x000000000000141d       0x5a ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
+ .debug_abbrev  0x0000000000001477      0x125 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+ .debug_abbrev  0x000000000000159c       0x42 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_abbrev  0x00000000000015de       0x12 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
+ .debug_abbrev  0x00000000000015f0      0x138 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+ .debug_abbrev  0x0000000000001728       0x67 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_abbrev  0x000000000000178f       0x12 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
+ .debug_abbrev  0x00000000000017a1       0xe7 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+ .debug_abbrev  0x0000000000001888       0x37 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
+ .debug_abbrev  0x00000000000018bf       0x7f c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .debug_abbrev  0x000000000000193e       0x63 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
 
-.debug_line     0x0000000000000000     0x1c52
+.debug_line     0x0000000000000000     0x1e6b
  *(.debug_line)
  .debug_line    0x0000000000000000       0x66 ../reloj_bsp//obj/HAL/src/crt0.o
- .debug_line    0x0000000000000066      0x316 obj/default/hello_world_small.o
- .debug_line    0x000000000000037c      0x105 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
- .debug_line    0x0000000000000481       0x80 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
- .debug_line    0x0000000000000501      0x15d c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
- .debug_line    0x000000000000065e      0x15c c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
- .debug_line    0x00000000000007ba       0xed ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
- .debug_line    0x00000000000008a7       0x50 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
- .debug_line    0x00000000000008f7       0xa4 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
- .debug_line    0x000000000000099b       0xea ../reloj_bsp/\libhal_bsp.a(alt_main.o)
- .debug_line    0x0000000000000a85      0x112 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
- .debug_line    0x0000000000000b97       0x55 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
- .debug_line    0x0000000000000bec       0xa0 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
- .debug_line    0x0000000000000c8c       0xcf ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
- .debug_line    0x0000000000000d5b      0x200 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
- .debug_line    0x0000000000000f5b      0x104 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .debug_line    0x000000000000105f      0x1a5 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
- .debug_line    0x0000000000001204       0xb5 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
- .debug_line    0x00000000000012b9       0x4e ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .debug_line    0x0000000000001307       0xf6 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
- .debug_line    0x00000000000013fd       0xd8 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
- .debug_line    0x00000000000014d5       0x51 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
- .debug_line    0x0000000000001526      0x107 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
- .debug_line    0x000000000000162d       0x4e ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .debug_line    0x000000000000167b       0x6b ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
- .debug_line    0x00000000000016e6       0xc8 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
- .debug_line    0x00000000000017ae       0x8c ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
- .debug_line    0x000000000000183a       0xb3 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
- .debug_line    0x00000000000018ed       0xbf ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
- .debug_line    0x00000000000019ac       0x5f c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
- .debug_line    0x0000000000001a0b      0x160 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
- .debug_line    0x0000000000001b6b       0xe7 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+ .debug_line    0x0000000000000066      0x3d1 obj/default/hello_world_small.o
+ .debug_line    0x0000000000000437      0x105 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ .debug_line    0x000000000000053c       0x80 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_line    0x00000000000005bc      0x15e c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+ .debug_line    0x000000000000071a      0x15d c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .debug_line    0x0000000000000877      0x15c c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_line    0x00000000000009d3       0xed ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+ .debug_line    0x0000000000000ac0       0x50 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+ .debug_line    0x0000000000000b10       0xa4 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_line    0x0000000000000bb4       0xea ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_line    0x0000000000000c9e      0x112 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_line    0x0000000000000db0       0x55 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_line    0x0000000000000e05       0xa0 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_line    0x0000000000000ea5       0xcf ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_line    0x0000000000000f74      0x200 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_line    0x0000000000001174      0x104 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_line    0x0000000000001278      0x1a5 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+ .debug_line    0x000000000000141d       0xb5 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_line    0x00000000000014d2       0x4e ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_line    0x0000000000001520       0xf6 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_line    0x0000000000001616       0xd8 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+ .debug_line    0x00000000000016ee       0x51 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
+ .debug_line    0x000000000000173f      0x107 ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+ .debug_line    0x0000000000001846       0x4e ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_line    0x0000000000001894       0x6b ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
+ .debug_line    0x00000000000018ff       0xc8 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+ .debug_line    0x00000000000019c7       0x8c ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_line    0x0000000000001a53       0xb3 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
+ .debug_line    0x0000000000001b06       0xbf ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+ .debug_line    0x0000000000001bc5       0x5f c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
+ .debug_line    0x0000000000001c24      0x160 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .debug_line    0x0000000000001d84       0xe7 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
 
-.debug_frame    0x0000000000000000      0x5d8
+.debug_frame    0x0000000000000000      0x62c
  *(.debug_frame)
- .debug_frame   0x0000000000000000      0x144 obj/default/hello_world_small.o
- .debug_frame   0x0000000000000144       0x50 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
- .debug_frame   0x0000000000000194       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
- .debug_frame   0x00000000000001b4       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
- .debug_frame   0x00000000000001d4       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
- .debug_frame   0x00000000000001f4       0x20 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
- .debug_frame   0x0000000000000214       0x30 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
- .debug_frame   0x0000000000000244       0x2c ../reloj_bsp/\libhal_bsp.a(alt_main.o)
- .debug_frame   0x0000000000000270       0x54 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
- .debug_frame   0x00000000000002c4       0x30 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
- .debug_frame   0x00000000000002f4       0x30 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
- .debug_frame   0x0000000000000324       0x20 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
- .debug_frame   0x0000000000000344       0x48 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
- .debug_frame   0x000000000000038c       0x20 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .debug_frame   0x00000000000003ac       0x70 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
- .debug_frame   0x000000000000041c       0x30 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
- .debug_frame   0x000000000000044c       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
- .debug_frame   0x000000000000046c       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
- .debug_frame   0x000000000000048c       0x2c ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
- .debug_frame   0x00000000000004b8       0x3c ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
- .debug_frame   0x00000000000004f4       0x20 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
- .debug_frame   0x0000000000000514       0x34 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
- .debug_frame   0x0000000000000548       0x20 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
- .debug_frame   0x0000000000000568       0x30 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
- .debug_frame   0x0000000000000598       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
- .debug_frame   0x00000000000005b8       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+ .debug_frame   0x0000000000000000      0x178 obj/default/hello_world_small.o
+ .debug_frame   0x0000000000000178       0x50 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ .debug_frame   0x00000000000001c8       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_frame   0x00000000000001e8       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+ .debug_frame   0x0000000000000208       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .debug_frame   0x0000000000000228       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_frame   0x0000000000000248       0x20 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+ .debug_frame   0x0000000000000268       0x30 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_frame   0x0000000000000298       0x2c ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+ .debug_frame   0x00000000000002c4       0x54 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_frame   0x0000000000000318       0x30 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_frame   0x0000000000000348       0x30 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_frame   0x0000000000000378       0x20 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_frame   0x0000000000000398       0x48 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_frame   0x00000000000003e0       0x20 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_frame   0x0000000000000400       0x70 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+ .debug_frame   0x0000000000000470       0x30 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_frame   0x00000000000004a0       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+ .debug_frame   0x00000000000004c0       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+ .debug_frame   0x00000000000004e0       0x2c ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+ .debug_frame   0x000000000000050c       0x3c ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+ .debug_frame   0x0000000000000548       0x20 ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+ .debug_frame   0x0000000000000568       0x34 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+ .debug_frame   0x000000000000059c       0x20 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_frame   0x00000000000005bc       0x30 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+ .debug_frame   0x00000000000005ec       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .debug_frame   0x000000000000060c       0x20 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
 
-.debug_str      0x0000000000000000     0x171e
+.debug_str      0x0000000000000000     0x17f1
  *(.debug_str)
- .debug_str     0x0000000000000000      0x40a obj/default/hello_world_small.o
-                                        0x469 (size before relaxing)
- .debug_str     0x000000000000040a      0x187 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ .debug_str     0x0000000000000000      0x4c9 obj/default/hello_world_small.o
+                                        0x52b (size before relaxing)
+ .debug_str     0x00000000000004c9      0x187 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
                                         0x1d2 (size before relaxing)
- .debug_str     0x0000000000000591       0x40 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_str     0x0000000000000650       0x40 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
                                         0x193 (size before relaxing)
- .debug_str     0x00000000000005d1      0x13a c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .debug_str     0x0000000000000690      0x14e c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+                                        0x1f3 (size before relaxing)
+ .debug_str     0x00000000000007de       0x3d c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
                                         0x1df (size before relaxing)
- .debug_str     0x000000000000070b       0x3d c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_str     0x000000000000081b       0x3d c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
                                         0x1e5 (size before relaxing)
- .debug_str     0x0000000000000748       0xde ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
-                                        0x216 (size before relaxing)
- .debug_str     0x0000000000000826       0x17 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
-                                        0x148 (size before relaxing)
- .debug_str     0x000000000000083d      0x15f ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_str     0x0000000000000858       0xa1 ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+                                        0x210 (size before relaxing)
+ .debug_str     0x00000000000008f9       0x17 ../reloj_bsp/\libhal_bsp.a(alt_irq_vars.o)
+                                        0x142 (size before relaxing)
+ .debug_str     0x0000000000000910      0x15f ../reloj_bsp/\libhal_bsp.a(alt_load.o)
                                         0x24e (size before relaxing)
- .debug_str     0x000000000000099c       0x5e ../reloj_bsp/\libhal_bsp.a(alt_main.o)
-                                        0x1ec (size before relaxing)
- .debug_str     0x00000000000009fa       0x59 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_str     0x0000000000000a6f       0x5e ../reloj_bsp/\libhal_bsp.a(alt_main.o)
+                                        0x1e6 (size before relaxing)
+ .debug_str     0x0000000000000acd       0x59 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
                                         0x118 (size before relaxing)
- .debug_str     0x0000000000000a53       0x59 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
-                                        0x194 (size before relaxing)
- .debug_str     0x0000000000000aac       0x15 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
-                                        0x199 (size before relaxing)
- .debug_str     0x0000000000000ac1       0x2f ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
-                                        0x169 (size before relaxing)
- .debug_str     0x0000000000000af0      0x2ed ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
-                                        0x4d7 (size before relaxing)
- .debug_str     0x0000000000000ddd       0x32 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
-                                        0x244 (size before relaxing)
- .debug_str     0x0000000000000e0f       0xc6 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
-                                        0x344 (size before relaxing)
- .debug_str     0x0000000000000ed5       0x33 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
-                                        0x179 (size before relaxing)
- .debug_str     0x0000000000000f08       0x1f ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
-                                        0x163 (size before relaxing)
- .debug_str     0x0000000000000f27      0x12c ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
-                                        0x313 (size before relaxing)
- .debug_str     0x0000000000001053       0x48 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
-                                        0x1de (size before relaxing)
- .debug_str     0x000000000000109b       0x14 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
-                                        0x157 (size before relaxing)
- .debug_str     0x00000000000010af       0x1e ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
-                                        0x208 (size before relaxing)
- .debug_str     0x00000000000010cd       0x1f ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
-                                        0x163 (size before relaxing)
- .debug_str     0x00000000000010ec       0x3a ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
-                                        0x1c6 (size before relaxing)
- .debug_str     0x0000000000001126       0x20 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+ .debug_str     0x0000000000000b26       0x59 ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+                                        0x18e (size before relaxing)
+ .debug_str     0x0000000000000b7f       0x15 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
                                         0x193 (size before relaxing)
- .debug_str     0x0000000000001146      0x48b ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
-                                        0x5ae (size before relaxing)
- .debug_str     0x00000000000015d1       0xd3 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
+ .debug_str     0x0000000000000b94       0x2f ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+                                        0x169 (size before relaxing)
+ .debug_str     0x0000000000000bc3      0x2ed ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+                                        0x4d1 (size before relaxing)
+ .debug_str     0x0000000000000eb0       0x32 ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+                                        0x23e (size before relaxing)
+ .debug_str     0x0000000000000ee2       0xc6 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+                                        0x33e (size before relaxing)
+ .debug_str     0x0000000000000fa8       0x33 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+                                        0x173 (size before relaxing)
+ .debug_str     0x0000000000000fdb       0x1f ../reloj_bsp/\libhal_bsp.a(alt_dcache_flush_all.o)
+                                        0x15d (size before relaxing)
+ .debug_str     0x0000000000000ffa      0x12c ../reloj_bsp/\libhal_bsp.a(alt_dev.o)
+                                        0x30d (size before relaxing)
+ .debug_str     0x0000000000001126       0x48 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+                                        0x1de (size before relaxing)
+ .debug_str     0x000000000000116e       0x14 ../reloj_bsp/\libhal_bsp.a(alt_errno.o)
+                                        0x157 (size before relaxing)
+ .debug_str     0x0000000000001182       0x1e ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+                                        0x202 (size before relaxing)
+ .debug_str     0x00000000000011a0       0x1f ../reloj_bsp/\libhal_bsp.a(alt_icache_flush_all.o)
+                                        0x15d (size before relaxing)
+ .debug_str     0x00000000000011bf       0x3a ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+                                        0x1c0 (size before relaxing)
+ .debug_str     0x00000000000011f9       0x20 ../reloj_bsp/\libhal_bsp.a(altera_nios2_gen2_irq.o)
+                                        0x18d (size before relaxing)
+ .debug_str     0x0000000000001219      0x48b ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+                                        0x5a8 (size before relaxing)
+ .debug_str     0x00000000000016a4       0xd3 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-int_errno.o)
                                         0x1d8 (size before relaxing)
- .debug_str     0x00000000000016a4       0x3d c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .debug_str     0x0000000000001777       0x3d c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
                                         0x1df (size before relaxing)
- .debug_str     0x00000000000016e1       0x3d c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+ .debug_str     0x00000000000017b4       0x3d c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
                                         0x1d8 (size before relaxing)
 
-.debug_loc      0x0000000000000000     0x12c2
+.debug_loc      0x0000000000000000     0x1675
  *(.debug_loc)
- .debug_loc     0x0000000000000000      0x375 obj/default/hello_world_small.o
- .debug_loc     0x0000000000000375      0x4ce c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
- .debug_loc     0x0000000000000843       0x93 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
- .debug_loc     0x00000000000008d6       0xa5 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
- .debug_loc     0x000000000000097b       0x1e c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
- .debug_loc     0x0000000000000999       0xfa ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
- .debug_loc     0x0000000000000a93      0x1de ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
- .debug_loc     0x0000000000000c71       0x2c ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
- .debug_loc     0x0000000000000c9d       0x37 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
- .debug_loc     0x0000000000000cd4       0x21 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
- .debug_loc     0x0000000000000cf5       0x51 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
- .debug_loc     0x0000000000000d46       0x8b ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
- .debug_loc     0x0000000000000dd1      0x1e7 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
- .debug_loc     0x0000000000000fb8       0x67 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
- .debug_loc     0x000000000000101f       0x7e ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
- .debug_loc     0x000000000000109d       0x7e ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
- .debug_loc     0x000000000000111b       0x72 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
- .debug_loc     0x000000000000118d       0x65 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
- .debug_loc     0x00000000000011f2       0x94 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
- .debug_loc     0x0000000000001286       0x3c c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+ .debug_loc     0x0000000000000000      0x5f3 obj/default/hello_world_small.o
+ .debug_loc     0x00000000000005f3      0x4ce c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ .debug_loc     0x0000000000000ac1       0x93 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-mul.o)
+ .debug_loc     0x0000000000000b54      0x135 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+ .debug_loc     0x0000000000000c89       0xa5 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .debug_loc     0x0000000000000d2e       0x1e c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_loc     0x0000000000000d4c       0xfa ../reloj_bsp/\libhal_bsp.a(alt_irq_register.o)
+ .debug_loc     0x0000000000000e46      0x1de ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_loc     0x0000000000001024       0x2c ../reloj_bsp/\libhal_bsp.a(alt_putchar.o)
+ .debug_loc     0x0000000000001050       0x37 ../reloj_bsp/\libhal_bsp.a(alt_putstr.o)
+ .debug_loc     0x0000000000001087       0x21 ../reloj_bsp/\libhal_bsp.a(alt_usleep.o)
+ .debug_loc     0x00000000000010a8       0x51 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_loc     0x00000000000010f9       0x8b ../reloj_bsp/\libhal_bsp.a(altera_avalon_jtag_uart_write.o)
+ .debug_loc     0x0000000000001184      0x1e7 ../reloj_bsp/\libhal_bsp.a(altera_up_avalon_video_character_buffer_with_dma.o)
+ .debug_loc     0x000000000000136b       0x67 ../reloj_bsp/\libhal_bsp.a(alt_busy_sleep.o)
+ .debug_loc     0x00000000000013d2       0x7e ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+ .debug_loc     0x0000000000001450       0x7e ../reloj_bsp/\libhal_bsp.a(alt_find_dev.o)
+ .debug_loc     0x00000000000014ce       0x72 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+ .debug_loc     0x0000000000001540       0x65 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+ .debug_loc     0x00000000000015a5       0x94 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .debug_loc     0x0000000000001639       0x3c c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -874,19 +893,20 @@ LOAD c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nio
                 [!provide]                        PROVIDE (__alt_heap_limit, 0x2000)
 OUTPUT(reloj.elf elf32-littlenios2)
 
-.debug_ranges   0x0000000000000000      0x278
+.debug_ranges   0x0000000000000000      0x298
  .debug_ranges  0x0000000000000000       0x20 ../reloj_bsp//obj/HAL/src/crt0.o
- .debug_ranges  0x0000000000000020       0x80 obj/default/hello_world_small.o
- .debug_ranges  0x00000000000000a0       0x60 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
- .debug_ranges  0x0000000000000100       0x10 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
- .debug_ranges  0x0000000000000110       0x10 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
- .debug_ranges  0x0000000000000120       0x48 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
- .debug_ranges  0x0000000000000168       0x18 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
- .debug_ranges  0x0000000000000180       0x38 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
- .debug_ranges  0x00000000000001b8       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
- .debug_ranges  0x00000000000001d8       0x28 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
- .debug_ranges  0x0000000000000200       0x10 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
- .debug_ranges  0x0000000000000210       0x30 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
- .debug_ranges  0x0000000000000240       0x18 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
- .debug_ranges  0x0000000000000258       0x10 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
- .debug_ranges  0x0000000000000268       0x10 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)
+ .debug_ranges  0x0000000000000020       0x90 obj/default/hello_world_small.o
+ .debug_ranges  0x00000000000000b0       0x60 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/mno-hw-mul\libgcc.a(lib2-divmod.o)
+ .debug_ranges  0x0000000000000110       0x10 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcpy.o)
+ .debug_ranges  0x0000000000000120       0x10 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memset.o)
+ .debug_ranges  0x0000000000000130       0x10 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strlen.o)
+ .debug_ranges  0x0000000000000140       0x48 ../reloj_bsp/\libhal_bsp.a(alt_load.o)
+ .debug_ranges  0x0000000000000188       0x18 ../reloj_bsp/\libhal_bsp.a(alt_printf.o)
+ .debug_ranges  0x00000000000001a0       0x38 ../reloj_bsp/\libhal_bsp.a(alt_sys_init.o)
+ .debug_ranges  0x00000000000001d8       0x20 ../reloj_bsp/\libhal_bsp.a(alt_dev_llist_insert.o)
+ .debug_ranges  0x00000000000001f8       0x28 ../reloj_bsp/\libhal_bsp.a(alt_irq_entry.o)
+ .debug_ranges  0x0000000000000220       0x10 ../reloj_bsp/\libhal_bsp.a(alt_irq_handler.o)
+ .debug_ranges  0x0000000000000230       0x30 ../reloj_bsp/\libhal_bsp.a(alt_exception_entry.o)
+ .debug_ranges  0x0000000000000260       0x18 ../reloj_bsp/\libhal_bsp.a(alt_instruction_exception_entry.o)
+ .debug_ranges  0x0000000000000278       0x10 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-memcmp.o)
+ .debug_ranges  0x0000000000000288       0x10 c:/intelfpga_lite/18.1/nios2eds/bin/gnu/h-x86_64-mingw32/bin/../lib/gcc/nios2-elf/5.3.0/../../../../../H-x86_64-mingw32/nios2-elf/lib/mno-hw-mul\libsmallc.a(lib_a-strcmp.o)

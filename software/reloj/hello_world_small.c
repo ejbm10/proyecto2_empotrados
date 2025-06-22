@@ -8,11 +8,16 @@
 #include "io.h"
 #include "unistd.h"
 #include "string.h"
+#include <stdio.h>
+#include "sys/alt_irq.h"
 
 #define CHAR_BUFFER_BASE  0x01020000
 #define CHAR_CONTROL_BASE 0x01000100
 #define CLEAR_COMMAND     0x01
 #define ENABLE_COMMAND    0x02
+#define MAX_COLS          60
+#define MAX_ROWS          80
+#define FIFO_2_CSR_BASE 0x00003020
 
 int minutos = 0;
 int segundos = 0;
@@ -51,45 +56,69 @@ volatile unsigned int* config_data = (unsigned int *) (AUDIO_CONFIG_BASE + 0x0C)
 volatile unsigned int* song_fifo = (unsigned int *) FIFO_0_BASE;
 volatile unsigned int* buttons_fifo = (unsigned int *) FIFO_1_IN_BASE;
 volatile unsigned int* metadata_fifo = (unsigned int *) FIFO_2_BASE;
+volatile unsigned int* metadata_fifo_csr = (unsigned int *) FIFO_2_CSR_BASE;
 
-void vga_clear()
-{
-    IOWR_32DIRECT(CHAR_CONTROL_BASE, 0, CLEAR_COMMAND);
+void vga_clear() {
+    for (int y = 0; y < MAX_ROWS; y++) {
+        for (int x = 0; x < MAX_COLS; x++) {
+            IOWR_8DIRECT(CHAR_BUFFER_BASE, (y * MAX_COLS + x), ' ');
+        }
+    }
 }
 
-void vga_enable()
-{
+void vga_enable() {
     IOWR_32DIRECT(CHAR_CONTROL_BASE, 0, ENABLE_COMMAND);
 }
 
-void vga_write_char(int x, int y, char c)
-{
-    IOWR_8DIRECT(CHAR_BUFFER_BASE, (y * 80 + x), c);
+// Escribe una cadena en la posición X, Y (no borra toda la fila)
+void vga_write_string(int x, int y, const char *text) {
+    int len = strlen(text);
+    if (x < 0) x = 0;
+    if (x >= MAX_COLS) x = MAX_COLS - 1;
+    if (y < 0) y = 0;
+    if (y >= MAX_ROWS) y = MAX_ROWS - 1;
+
+    for (int i = 0; i < len && (x + i) < MAX_COLS; i++) {
+        IOWR_8DIRECT(CHAR_BUFFER_BASE, (y * MAX_COLS + x + i), text[i]);
+    }
+    for (int i = x + len; i < MAX_COLS; i++) {
+        IOWR_8DIRECT(CHAR_BUFFER_BASE, (y * MAX_COLS + i), ' ');
+    }
 }
 
-void message_to_vga(const char* msg) {
-	// Clear
-	vga_clear();
-	delay();
-	vga_enable();
-	delay();
+// Separa campos de la metadata con "-" y elimina el "/" final
+void extraer_campos(const char *info, char campos[][64], int *num_campos) {
+    int idx = 0, pos = 0;
+    int len = strlen(info);
 
-	// Escribir la oración en pantalla
-	for (int i = 0; i < strlen(msg); i++)
-	{
-		vga_clear();
-		delay();
-		vga_enable();
-		delay();
-		vga_write_char(5 + i, 1, msg[i]);  // fila Y=10
-	}
+    for (int i = 0; i < 6; i++) campos[i][0] = '\0';
+
+    for (int i = 0; i < len && idx < 6; i++) {
+        if (info[i] == '-' || info[i] == '/') {
+            campos[idx][pos] = '\0';
+            idx++;
+            pos = 0;
+            if (info[i] == '/') break; // fin
+        } else if (pos < 63) {
+            campos[idx][pos++] = info[i];
+        }
+    }
+    *num_campos = idx;
+    // Depuración: imprime los campos extraídos
+    for (int i = 0; i < *num_campos; i++)
+        alt_printf("extract: [%d] = '%s'\n", i, campos[i]);
 }
 
+// Despliega los campos desplazados (cada campo en distinto XY)
+void update_info_desplazada(char campos[][64], int num_campos) {
+    const int x_offsets[] = {8, 16, 24, 32, 40, 48};
+    const int y_start = 2;
+    const int y_step  = 2;
 
-void delay()
-{
-    volatile int i;
-    for (i = 0; i < 1000000; i++);
+    for (int i = 0; i < num_campos && i < 6; i++) {
+    	alt_printf("Campo[%d]: %s\n", i, campos[i]);
+        vga_write_string(x_offsets[i], y_start + i * y_step, campos[i]);
+    }
 }
 
 unsigned int segmentos(int digito) {
@@ -123,19 +152,18 @@ void button_isr_handler(void* context, alt_u32 id) {
 
 // ISR timer
 void timer_isr_handler(void* context, alt_u32 id) {
-    *timer_status_ptr = 0; // Limpiar status
-
+    *timer_status_ptr = 1; // Limpiar status
+    alt_putstr("IRQ!\n");
     if (song_active) {
-		segundos++;
-		if (segundos >= 60) {
-			segundos = 0;
-			minutos++;
-		}
-		if (minutos >= 99) {
-			minutos = 0;
-		}
+        segundos++;
+        if (segundos >= 60) {
+            segundos = 0;
+            minutos++;
+        }
+        if (minutos >= 99) {
+            minutos = 0;
+        }
     }
-
     actualizar_display = 1;
 }
 
@@ -154,15 +182,29 @@ void mostrar_duracion(int minutos, int segundos) {
     *segments_ptr = display_value;
 }
 
-void receive_metadata() {
-	int i = 0;
-	char val = '0';
-	memset(metadata, 0, sizeof(metadata));
-	while (val != '/') {
-		val = *metadata_fifo;
-		metadata[i++] = val;
-	}
-	alt_printf("%s\n", metadata);
+void receive_metadata_and_update_vga() {
+    int i = 0;
+    char val = 0;
+    memset(metadata, 0, sizeof(metadata));
+    int max_len = 128;
+    while (i < max_len) {
+        while ((*metadata_fifo_csr) == 0);
+        val = *metadata_fifo;
+        metadata[i++] = val;
+        if (val == '/') break;
+    }
+    metadata[i] = '\0';
+
+    alt_printf("Meta completa: [%s]\n", metadata);
+
+    // Procesar y mostrar en VGA
+    char campos[6][64];
+    int num_campos = 0;
+    extraer_campos(metadata, campos, &num_campos);
+
+    vga_clear();
+    vga_enable();
+    update_info_desplazada(campos, num_campos);
 }
 
 void receive_audio_data() {
@@ -185,6 +227,7 @@ void receive_audio_data() {
 	usleep(0);
 }
 // Main
+
 int main() {
 	alt_putstr("Hello from Nios\n");
 
@@ -193,8 +236,11 @@ int main() {
 
     alt_irq_register(REG_BUTTONS_IRQ, NULL, button_isr_handler);
 
-    *timer_periodl_ptr = TIMER_PERIOD & 0xFFFF;
-    *timer_periodh_ptr = (TIMER_PERIOD >> 16) & 0xFFFF;
+    //*timer_periodl_ptr = TIMER_PERIOD & 0xFFFF;
+    //*timer_periodh_ptr = (TIMER_PERIOD >> 16) & 0xFFFF;
+
+    *timer_periodl_ptr = 50000000 & 0xFFFF;
+    *timer_periodh_ptr = (50000000 >> 16) & 0xFFFF;
 
     *timer_control_ptr = 0x7; // START + CONT + ITO
 
@@ -212,9 +258,12 @@ int main() {
 	new_song = 1;
 	totalSamples = 0;
 
+	vga_clear();
+	vga_enable();
+
     while (1) {
     	if (new_song) {
-    		receive_metadata();
+    		receive_metadata_and_update_vga();
     		song_active = 1;
     		new_song = 0;
     		minutos = 0;
@@ -227,8 +276,14 @@ int main() {
     	}
 
     	if (actualizar_display) {
-    		mostrar_duracion(minutos, segundos);
-    		actualizar_display = 0;
+    	    // Deshabilita IRQs mientras accedes a variables compartidas
+    	    alt_irq_context cpu_sr = alt_irq_disable_all();
+    	    int min_copy = minutos;
+    	    int seg_copy = segundos;
+    	    actualizar_display = 0;
+    	    alt_irq_enable_all(cpu_sr);
+
+    	    mostrar_duracion(min_copy, seg_copy);
     	}
     }
 }
